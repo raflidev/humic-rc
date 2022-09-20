@@ -6,7 +6,11 @@ content: [
     "./resources/**/*.vue",
 ],
   theme: {
-    extend: {},
+    extend: {
+        fontFamily: {
+            poppins: ['poppins', 'sans-serif'],
+        },
+    },
   },
   plugins: [],
 }
