@@ -13,7 +13,7 @@
 </head>
 
 <body class="font-poppins">
-    <div class="flex h-screen">
+    <div class="flex">
         <div class="w-2/12 bg-gray-50" id="sidebar">
             HUMIC RC
         </div>
@@ -48,8 +48,8 @@
                             </div>
                             <div class="w-1/6">
                                 <div class="flex justify-center">
-                                    <div class="bg-orange-400 p-2 rounded-full">
-                                        <i class="far fa-chart-bar text-3xl"></i>
+                                    <div class="bg-orange-400 p-3 flex justify-center rounded-full">
+                                        <i class="far fa-chart-bar text-white text-lg"></i>
                                     </div>
                                 </div>
                             </div>
@@ -74,8 +74,8 @@
                             </div>
                             <div class="w-1/6">
                                 <div class="flex justify-center">
-                                    <div class="bg-orange-400 p-2 rounded-full">
-                                        <i class="far fa-chart-bar text-3xl"></i>
+                                    <div class="bg-orange-400 p-3 flex justify-center rounded-full">
+                                        <i class="far fa-chart-bar text-white text-lg"></i>
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +83,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="">
+                <div class="flex mt-10">
+                    <div class="bg-white p-3 w-4/6">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 
 </html>
