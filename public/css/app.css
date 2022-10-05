@@ -542,8 +542,14 @@ video {
 .grid {
   display: grid;
 }
+.h-96 {
+  height: 24rem;
+}
 .h-screen {
   height: 100vh;
+}
+.h-128 {
+  height: 32rem;
 }
 .w-10\/12 {
   width: 83.333333%;
@@ -646,6 +652,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
 }
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -703,6 +713,9 @@ video {
 }
 .pb-36 {
   padding-bottom: 9rem;
+}
+.pt-10 {
+  padding-top: 2.5rem;
 }
 .pb-6 {
   padding-bottom: 1.5rem;

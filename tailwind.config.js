@@ -10,6 +10,9 @@ content: [
         fontFamily: {
             poppins: ['poppins', 'sans-serif'],
         },
+        spacing: {
+            '128': '32rem',
+        },
     },
   },
   plugins: [],

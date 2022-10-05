@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div id="example_wrapper" class="dataTables_wrapper px-16">
+        <div id="example_wrapper" class="dataTables_wrapper px-16 h-128  pt-10">
             <table id="example" class="display dataTable" style="width:100%" aria-describedby="example_info">
                 <thead>
                     <tr>
