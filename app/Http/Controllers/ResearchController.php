@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Research;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResearchController extends Controller
 {
@@ -14,7 +15,8 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        //
+        $research = DB::table('research')->get();
+        return view('home', ['research' => $research]);
     }
 
     /**

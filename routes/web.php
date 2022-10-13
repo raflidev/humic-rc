@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ResearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [ResearchController::class, 'index']);
 
 Route::get('/pengabdian', function () {
     return view('pengabdian');

@@ -18,14 +18,28 @@
     <div class="flex">
         @yield('content')
     </div>
+    <style>
+        div.dataTables_wrapper {
+            width: 100%;
+        }
+    </style>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let table = new DataTable('#example');
+        $(document).ready(function() {
+            $('#example').DataTable({
+                scrollX: true,
+            });
         });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     let table = new DataTable('#example', {
+        //         "scrollX": true
+        //     });
+        // });
     </script>
+    @yield('scripts')
 </body>
 
 </html>

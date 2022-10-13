@@ -4,7 +4,7 @@
     @include('layout.sidebar')
     <div class="w-10/12" id="sidebar">
         <div class="bg-slate-700 pb-36 px-16 py-10 text-white">
-            <div class="" id="navbar">
+            <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard - Kerjasama</h1>
                     <div class="rounded-md bg-blue-500 px-5 py-2">
@@ -23,25 +23,25 @@
                                     <div class="grid grid-cols-2 gap-3">
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
-                                            <div class="font-semibold">
+                                            <div class="font-semibold text-2xl">
                                                 2
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">MOU</div>
-                                            <div class="font-semibold">
+                                            <div class="font-semibold text-2xl">
                                                 2
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">MOA</div>
-                                            <div class="font-semibold">
+                                            <div class="font-semibold text-2xl">
                                                 5
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">IA</div>
-                                            <div class="font-semibold">
+                                            <div class="font-semibold text-2xl">
                                                 8
                                             </div>
                                         </div>
@@ -68,25 +68,25 @@
                                         <div class="grid grid-cols-2 gap-3">
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
-                                                <div class="font-semibold">
+                                                <div class="font-semibold text-2xl">
                                                     3
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">MOU</div>
-                                                <div class="font-semibold">
+                                                <div class="font-semibold text-2xl">
                                                     1
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">MOA</div>
-                                                <div class="font-semibold">
+                                                <div class="font-semibold text-2xl">
                                                     5
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">IA</div>
-                                                <div class="font-semibold">
+                                                <div class="font-semibold text-2xl">
                                                     4
                                                 </div>
                                             </div>
