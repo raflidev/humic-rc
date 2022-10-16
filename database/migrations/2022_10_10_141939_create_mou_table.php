@@ -15,20 +15,22 @@ return new class extends Migration
     {
         Schema::create('mou', function (Blueprint $table) {
             $table->id("mou_id");
+            $table->string("year");
+            $table->string("faculty");
+            $table->string("telu_number");
             $table->string("title");
+            $table->string("partner_number");
             $table->string("partner_name");
             $table->string("partner_type");
-            $table->string("telu_number");
-            $table->string("faculty");
-            $table->string("partner_number");
             $table->date("date_start");
             $table->date("date_end");
             $table->string("duration");
             $table->string("status");
-            $table->string("file");
             $table->string("lndn");
             $table->string("pnp");
             $table->string("akd");
+            $table->string("file");
+            $table->string("activity_real");
             $table->timestamps();
         });
     }

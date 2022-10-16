@@ -84,6 +84,7 @@
             <table id="example" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Fakultas</th>
                         <th>Prodi</th>
                         <th>Judul Penelitian</th>
@@ -103,32 +104,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Fakultas</td>
-                        <td>Prodi</td>
-                        <td>Judul Penelitian</td>
-                        <td>Kelompok Keahlian</td>
-                        <td>Nama Ketua</td>
-                        <td>Total Dana</td>
-                        <td>Jenis/Skema Penelitian</td>
-                        <td>Tahun Pelaksanaan</td>
-                        <td>Jenis Pendanaan</td>
-                        <td>Kelompok Masyarakat</td>
-                        <td>Dana Kelompok Masyarakat</td>
-                        <td>Kemenristek/BRIN</td>
-                        <td>Dana Kemenristek/BRIN</td>
-                        <td>Tanggal Kontrak</td>
-                        <td>Nomor Kontrak</td>
-                        <td>Keterangan</td>
-                    </tr>
+                    <?php $nomor = 1; ?>
                     @foreach ($research as $r)
                         <tr>
+                            <td>{{ $nomor }}</td>
                             <td>{{ $r->faculty }}</td>
                             <td>{{ $r->study_program }}</td>
                             <td>{{ $r->research_title }}</td>
                             <td>{{ $r->skill_group }}</td>
                             <td>{{ $r->head_name }}</td>
-                            <td>{{ $r->fund_total }}</td>
                             <td>{{ $r->fund_total }}</td>
                             <td>{{ $r->research_type }}</td>
                             <td>{{ $r->year }}</td>
@@ -137,9 +121,11 @@
                             <td>{{ $r->fund_group_society }}</td>
                             <td>{{ $r->brim }}</td>
                             <td>{{ $r->fund_brim }}</td>
-                            <td>{{ $r->date_contract }}</td>
+                            <td>{{ $r->date_start }} - {{ $r->date_end }}</td>
+                            <td>{{ $r->contract_number }}</td>
                             <td>{{ $r->description }}</td>
                         </tr>
+                        <?php $nomor++; ?>
                     @endforeach
                 </tbody>
             </table>

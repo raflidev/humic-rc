@@ -15,23 +15,25 @@ return new class extends Migration
     {
         Schema::create('research', function (Blueprint $table) {
             $table->id('research_id');
-            $table->string("study_program");
             $table->string("faculty");
+            $table->string("study_program");
             $table->string("research_title");
             $table->string("skill_group");
-            $table->string("year");
-            $table->string("group_society");
-            $table->string("fund_group_society");
-            $table->string("brim");
-            $table->string("fund_brim");
-            $table->date("date_contract");
-            $table->string("description");
             $table->string("head_name");
             $table->string("head_partner_name");
-            $table->string("fund_external");
-            $table->string("fund_total");
-            $table->string("fund_type");
+            $table->integer("fund_external");
+            $table->integer("fund_total");
             $table->string("research_type");
+            $table->string("year");
+            $table->string("fund_type");
+            $table->string("group_society");
+            $table->integer("fund_group_society");
+            $table->string("brim");
+            $table->integer("fund_brim");
+            $table->date("date_start");
+            $table->date("date_end");
+            $table->string("contract_number");
+            $table->string("description");
             $table->timestamps();
         });
     }

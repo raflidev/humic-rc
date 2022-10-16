@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\KerjasamaController;
+use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\ResearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ResearchController::class, 'index']);
 
-Route::get('/pengabdian', function () {
-    return view('pengabdian');
-});
 
-Route::get('/kerjasama', function () {
-    return view('kerjasama');
-});
+Route::get('/pengabdian', [PengabdianController::class, 'index']);
+
+Route::get('/kerjasama', [KerjasamaController::class, 'index']);
 
 Route::get('/ntf', function () {
     return view('ntf');

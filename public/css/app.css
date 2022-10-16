@@ -575,12 +575,6 @@ video {
 .w-5 {
   width: 1.25rem;
 }
-.w-96 {
-  width: 24rem;
-}
-.w-1\/2 {
-  width: 50%;
-}
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -722,13 +716,13 @@ video {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
-.py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 .pb-36 {
   padding-bottom: 9rem;
