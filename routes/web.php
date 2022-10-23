@@ -3,6 +3,7 @@
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ResearchController::class, 'index']);
+Route::get('/', [ResearchController::class, 'index'])->name('dashboard.research');
 
 
 Route::get('/pengabdian', [PengabdianController::class, 'index']);
@@ -27,6 +28,7 @@ Route::get('/ntf', function () {
     return view('ntf');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [UserController::class, 'login_index'])->name('login');
+Route::post('/login', [UserController::class, 'login'])->name('login.action');
+Route::get('/register', [UserController::class, 'register_index']);
+Route::post('/register', [UserController::class, 'register'])->name('register.action');;

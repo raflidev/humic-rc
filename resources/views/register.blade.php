@@ -20,19 +20,31 @@
                             <img src="{{ URL::asset('images/telu.png') }}" class="w-10" alt="" srcset="">
                         </div>
                         <h1 class="text-xl font-semibold text-center">
-                            Login
+                            Register
                         </h1>
-                        <form method="POST" action="{{ route('login.action') }}">
+                        <form action="{{ route('register.action') }}" method="POST">
                             @csrf
                             <div class="mb-6">
+                                <label for="text" class="block mb-2 text-sm font-medium ">Nama</label>
+                                <input type="text" id="name" name="name"
+                                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    placeholder="" required="">
+                            </div>
+                            <div class="mb-6">
                                 <label for="username" class="block mb-2 text-sm font-medium ">Username</label>
-                                <input type="text" id="username" name="username"
+                                <input type="text" name="username" id="username"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="" required="">
                             </div>
                             <div class="mb-6">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Password</label>
                                 <input type="password" name="password" placeholder="password" id="password"
+                                    class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    required="">
+                            </div>
+                            <div class="mb-6">
+                                <label for="password" class="block mb-2 text-sm font-medium ">Confirm Password</label>
+                                <input type="password" name="confirmed_password" placeholder="password" id="password"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     required="">
                             </div>

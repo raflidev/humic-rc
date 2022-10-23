@@ -7,9 +7,23 @@
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard</h1>
-                    <div class="rounded-md bg-blue-500 px-5 py-2">
-                        Login
-                    </div>
+                    @guest
+                        <a href="/login" class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">
+                            Login
+                        </a>
+                    @endguest
+                    @auth
+                    @if (Auth::user()->status == true)
+                        <div>
+                            <a href="profile" class="hover:underline mr-4">
+                                Halo, {{ Auth::user()->name }}
+                            </a>
+                            <a href="/logout" class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">
+                                Logout
+                            </a>
+                        </div>
+                    @endif
+                    @endauth
                 </div>
             </div>
 
