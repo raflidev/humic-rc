@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ResearchController::class, 'index'])->name('dashboard.research');
-
+Route::get('/penelitian/add', [ResearchController::class, 'create'])->name('research.create')->middleware('auth');
+Route::post('/penelitian/add', [ResearchController::class, 'store'])->name('research.store')->middleware('auth');
 
 Route::get('/pengabdian', [PengabdianController::class, 'index']);
 
@@ -30,5 +31,6 @@ Route::get('/ntf', function () {
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login.action');
+
 Route::get('/register', [UserController::class, 'register_index']);
-Route::post('/register', [UserController::class, 'register'])->name('register.action');;
+Route::post('/register', [UserController::class, 'register'])->name('register.action');

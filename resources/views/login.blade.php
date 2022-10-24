@@ -28,7 +28,7 @@
                                 <label for="username" class="block mb-2 text-sm font-medium ">Username</label>
                                 <input type="text" id="username" name="username"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="" required="">
+                                    placeholder="Username" required="">
                             </div>
                             <div class="mb-6">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Password</label>

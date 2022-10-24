@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string("research_title");
             $table->string("skill_group");
             $table->string("head_name");
-            $table->string("head_partner_name");
+            $table->string("head_partner_name")->nullable();
+            $table->text("member")->nullable();
+            $table->text("student")->nullable();
             $table->integer("fund_external");
             $table->integer("fund_total");
             $table->string("research_type");
