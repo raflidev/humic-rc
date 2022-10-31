@@ -28,7 +28,13 @@ class ResearchController extends Controller
     public function create()
     {
         $research = DB::table('research')->get();
-        return view('admin.research', ['research' => $research]);
+        return view('admin.research.research_add', ['research' => $research]);
+    }
+
+    public function create_index()
+    {
+        $research = DB::table('research')->get();
+        return view('admin.research.research', ['research' => $research]);
     }
 
     /**
@@ -40,24 +46,24 @@ class ResearchController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'faculty' => 'required',
-            'study_program' => 'required',
-            'research_title' => 'required',
-            'skill_group' => 'required',
-            'head_name' => 'required',
-            'fund_external' => 'required',
-            'fund_total' => 'required',
-            'research_type' => 'required',
-            'year' => 'required',
-            'fund_type' => 'required',
-            'group_society' => 'required',
-            'fund_group_society' => 'required',
+            'fakultas' => 'required',
+            'prodi' => 'required',
+            'judul_penelitian' => 'required',
+            'kelompok_keahlian' => 'required',
+            'nama_ketua' => 'required',
+            'total_dana_external' => 'required',
+            'total_dana' => 'required',
+            'skema_penelitian' => 'required',
+            'tahun_pelaksanaan' => 'required',
+            'jenis_pendanaan' => 'required',
+            'kelompok_masyarakat' => 'required',
+            'dana_kelompok_masyarakat' => 'required',
             'brim' => 'required',
-            'fund_brim' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required',
-            'contract_number' => 'required',
-            'description' => 'required',
+            'dana_brim' => 'required',
+            'tanggal_kontrak_start' => 'required',
+            'tanggal_kontrak_end' => 'required',
+            'nomor_kontrak' => 'required',
+            'keterangan' => 'required',
         ]);
 
         $research = new Research([
@@ -85,7 +91,7 @@ class ResearchController extends Controller
 
         $research->save();
 
-        return redirect()->route('/');
+        return redirect()->route('research.create_index');
     }
 
     /**
@@ -105,9 +111,10 @@ class ResearchController extends Controller
      * @param  \App\Models\Research  $research
      * @return \Illuminate\Http\Response
      */
-    public function edit(Research $research)
+    public function edit(Research $research, $id)
     {
-        //
+        $research = DB::table('research')->where('research_id', $id)->get();
+        return view('admin.research.research_edit', ['research' => $research]);
     }
 
     /**
@@ -117,9 +124,54 @@ class ResearchController extends Controller
      * @param  \App\Models\Research  $research
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Research $research)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'fakultas' => 'required',
+            'prodi' => 'required',
+            'judul_penelitian' => 'required',
+            'kelompok_keahlian' => 'required',
+            'nama_ketua' => 'required',
+            'total_dana_external' => 'required',
+            'total_dana' => 'required',
+            'skema_penelitian' => 'required',
+            'tahun_pelaksanaan' => 'required',
+            'jenis_pendanaan' => 'required',
+            'kelompok_masyarakat' => 'required',
+            'dana_kelompok_masyarakat' => 'required',
+            'brim' => 'required',
+            'dana_brim' => 'required',
+            'tanggal_kontrak_start' => 'required',
+            'tanggal_kontrak_end' => 'required',
+            'nomor_kontrak' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $research = Research::where('research_id', $id);
+        $research->update([
+            'faculty' => $request->fakultas,
+            'study_program' => $request->prodi,
+            'research_title' => $request->judul_penelitian,
+            'skill_group' => $request->kelompok_keahlian,
+            'head_name' => $request->nama_ketua,
+            // 'head_partner_name' => $request->nama_ketua_pasangan,
+            // 'fund_external' => $request->dana_eksternal,
+            'fund_external' => $request->total_dana_external,
+            'fund_total' => $request->total_dana,
+            'research_type' => $request->skema_penelitian,
+            'year' => $request->tahun_pelaksanaan,
+            'fund_type' => $request->jenis_pendanaan,
+            'group_society' => $request->kelompok_masyarakat,
+            'fund_group_society' => $request->dana_kelompok_masyarakat,
+            'brim' => $request->brim,
+            'fund_brim' => $request->dana_brim,
+            'date_start' => $request->tanggal_kontrak_start,
+            'date_end' => $request->tanggal_kontrak_end,
+            'contract_number' => $request->nomor_kontrak,
+            'description' => $request->keterangan,
+        ]);
+
+        return redirect()->route('research.create_index');
     }
 
     /**
@@ -128,8 +180,10 @@ class ResearchController extends Controller
      * @param  \App\Models\Research  $research
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Research $research)
+    public function destroy(Research $research, $id)
     {
-        //
+        $research = Research::where('research_id', $id);
+        $research->delete();
+        return redirect()->route('research.create_index');  
     }
 }

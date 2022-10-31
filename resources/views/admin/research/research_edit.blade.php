@@ -31,64 +31,72 @@
                     <p class="">{{ $err }}</p>
                 @endforeach
             @endif
-            <form action="{{ route('research.store') }}" method="post">
+            <form action="{{ route('research.update', ['id' => $research[0]->research_id]) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
                             <label for="fakultas" class="block mb-2 text-sm font-medium ">Fakultas</label>
                             <input type="text" name="fakultas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Fakultas" required="" value="{{ old('fakultas') }}">
+                                placeholder="Fakultas" required="" value="{{ old('fakultas', $research[0]->faculty) }}">
                         </div>
                         <div class="mb-6">
                             <label for="prodi" class="block mb-2 text-sm font-medium ">Prodi</label>
                             <input type="text" name="prodi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Prodi" required="" value="{{ old('prodi') }}">
+                                placeholder="Prodi" required="" value="{{ old('prodi', $research[0]->study_program) }}">
                         </div>
                         <div class="mb-6">
                             <label for="judul_penelitian" class="block mb-2 text-sm font-medium ">Judul Penelitian</label>
                             <input type="text" name="judul_penelitian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="judul Penelitian" required="" value="{{ old('judul_penelitian') }}">
+                                placeholder="judul Penelitian" required=""
+                                value="{{ old('judul_penelitian', $research[0]->research_title) }}">
                         </div>
                         <div class="mb-6">
                             <label for="kelompok_keahlian" class="block mb-2 text-sm font-medium ">Kelompok Keahlian</label>
                             <input type="text" name="kelompok_keahlian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kelompok Keahlian" required="" value="{{ old('kelompok_keahlian') }}">
+                                placeholder="Kelompok Keahlian" required=""
+                                value="{{ old('kelompok_keahlian', $research[0]->skill_group) }}">
                         </div>
                         <div class="mb-6">
                             <label for="nama_ketua" class="block mb-2 text-sm font-medium ">Nama Ketua</label>
                             <input type="text" name="nama_ketua"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
+                                placeholder="Nama Ketua" required=""
+                                value="{{ old('nama_ketua', $research[0]->head_name) }}">
                         </div>
                         <div class="mb-6">
                             <label for="total_dana_external" class="block mb-2 text-sm font-medium ">Dana External</label>
                             <input type="number" name="total_dana_external"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Dana External" required="" value="{{ old('total_dana_external') }}">
+                                placeholder="Dana External" required=""
+                                value="{{ old('total_dana_external', $research[0]->fund_external) }}">
                         </div>
                         <div class="mb-6">
                             <label for="total_dana" class="block mb-2 text-sm font-medium ">Total Dana</label>
                             <input type="number" name="total_dana"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Total Dana" required="" value="{{ old('total_dana') }}">
+                                placeholder="Total Dana" required=""
+                                value="{{ old('total_dana', $research[0]->fund_total) }}">
                         </div>
                         <div class="mb-6">
                             <label for="skema_penelitian" class="block mb-2 text-sm font-medium ">Jenis/Skema
                                 Penelitian</label>
                             <input type="text" name="skema_penelitian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis/Skema Penelitian" required="" value="{{ old('skema_penelitian') }}">
+                                placeholder="Jenis/Skema Penelitian" required=""
+                                value="{{ old('skema_penelitian', $research[0]->research_type) }}">
                         </div>
                         <div class="mb-6">
                             <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun Pelaksanaan</label>
                             <input type="date" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tahun Pelaksanaan" required="" value="{{ old('tahun_pelaksanaan') }}">
+                                placeholder="Tahun Pelaksanaan" required=""
+                                value="{{ old('tahun_pelaksanaan', $research[0]->year) }}">
                         </div>
                     </div>
                     <div class="w-1/2">
@@ -97,7 +105,8 @@
                             <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
                             <input type="text" name="jenis_pendanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis Pendanaan" required="" value="{{ old('jenis_pendanaan') }}">
+                                placeholder="Jenis Pendanaan" required=""
+                                value="{{ old('jenis_pendanaan', $research[0]->fund_type) }}">
                         </div>
                         <div class="mb-6">
                             <label for="kelompok_masyarakat" class="block mb-2 text-sm font-medium ">Kelompok
@@ -105,7 +114,7 @@
                             <input type="text" name="kelompok_masyarakat"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Kelompok Masyarakat" required=""
-                                value="{{ old('kelompok_masyarakat') }}">
+                                value="{{ old('kelompok_masyarakat', $research[0]->group_society) }}">
                         </div>
                         <div class="mb-6">
                             <label for="dana_kelompok_masyarakat" class="block mb-2 text-sm font-medium ">Dana Kelompok
@@ -113,19 +122,20 @@
                             <input type="number" name="dana_kelompok_masyarakat"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Dana Kelompok Masyarakat" required=""
-                                value="{{ old('dana_kelompok_masyarakat') }}">
+                                value="{{ old('dana_kelompok_masyarakat', $research[0]->fund_group_society) }}">
                         </div>
                         <div class="mb-6">
                             <label for="brim" class="block mb-2 text-sm font-medium ">BRIM</label>
                             <input type="text" name="brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="BRIM" required="" value="{{ old('brim') }}">
+                                placeholder="BRIM" required="" value="{{ old('brim', $research[0]->brim) }}">
                         </div>
                         <div class="mb-6">
                             <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Kemenristek/BRIN</label>
                             <input type="number" name="dana_brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Dana Kemenristek/BRIN" required="" value="{{ old('dana_brim') }}">
+                                placeholder="Dana Kemenristek/BRIN" required=""
+                                value="{{ old('dana_brim', $research[0]->fund_brim) }}">
                         </div>
                         <div class="mb-6">
                             <label for="tanggal_kontrak_start" class="block mb-2 text-sm font-medium ">Awal Tanggal
@@ -133,7 +143,7 @@
                             <input type="date" name="tanggal_kontrak_start"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Awal Tanggal Kontrak" required=""
-                                value="{{ old('tanggal_kontrak_start') }}">
+                                value="{{ old('tanggal_kontrak_start', $research[0]->date_start) }}">
                         </div>
                         <div class="mb-6">
                             <label for="tanggal_kontrak_end" class="block mb-2 text-sm font-medium ">Akhir Tanggal
@@ -141,19 +151,21 @@
                             <input type="date" name="tanggal_kontrak_end"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Akhir Tanggal Kontrak" required=""
-                                value="{{ old('tanggal_kontrak_end') }}">
+                                value="{{ old('tanggal_kontrak_end', $research[0]->date_end) }}">
                         </div>
                         <div class="mb-6">
                             <label for="nomor_kontrak" class="block mb-2 text-sm font-medium ">Nomor Kontrak</label>
                             <input type="text" name="nomor_kontrak"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nomor Kontrak" required="" value="{{ old('nomor_kontrak') }}">
+                                placeholder="Nomor Kontrak" required=""
+                                value="{{ old('nomor_kontrak', $research[0]->contract_number) }}">
                         </div>
                         <div class="mb-6">
                             <label for="keterangan" class="block mb-2 text-sm font-medium ">Keterangan</label>
                             <input type="text" name="keterangan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Keterangan" required="" value="{{ old('keterangan') }}">
+                                placeholder="Keterangan" required=""
+                                value="{{ old('keterangan', $research[0]->description) }}">
                         </div>
                         <div class="mb-6">
                             <button type="submit"
@@ -162,56 +174,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="pt-10 px-10">
-            <table id="example" class="display nowrap" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Fakultas</th>
-                        <th>Prodi</th>
-                        <th>Judul Penelitian</th>
-                        <th>Kelompok Keahlian</th>
-                        <th>Nama Ketua</th>
-                        <th>Total Dana</th>
-                        <th>Jenis/Skema Penelitian</th>
-                        <th>Tahun Pelaksanaan</th>
-                        <th>Jenis Pendanaan</th>
-                        <th>Kelompok Masyarakat</th>
-                        <th>Dana Kelompok Masyarakat</th>
-                        <th>Kemenristek/BRIN</th>
-                        <th>Dana Kemenristek/BRIN</th>
-                        <th>Tanggal Kontrak</th>
-                        <th>Nomor Kontrak</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $nomor = 1; ?>
-                    @foreach ($research as $r)
-                        <tr>
-                            <td>{{ $nomor }}</td>
-                            <td>{{ $r->faculty }}</td>
-                            <td>{{ $r->study_program }}</td>
-                            <td>{{ $r->research_title }}</td>
-                            <td>{{ $r->skill_group }}</td>
-                            <td>{{ $r->head_name }}</td>
-                            <td>{{ $r->fund_total }}</td>
-                            <td>{{ $r->research_type }}</td>
-                            <td>{{ $r->year }}</td>
-                            <td>{{ $r->fund_type }}</td>
-                            <td>{{ $r->group_society }}</td>
-                            <td>{{ $r->fund_group_society }}</td>
-                            <td>{{ $r->brim }}</td>
-                            <td>{{ $r->fund_brim }}</td>
-                            <td>{{ $r->date_start }} - {{ $r->date_end }}</td>
-                            <td>{{ $r->contract_number }}</td>
-                            <td>{{ $r->description }}</td>
-                        </tr>
-                        <?php $nomor++; ?>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     @endsection
 

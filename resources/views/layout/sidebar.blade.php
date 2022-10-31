@@ -39,28 +39,35 @@
                     <div class="mt-6">
                         <div class="text-sm uppercase font-semibold text-slate-500">Area Admin</div>
                         <div class="space-y-3 mt-5">
-                            <a href='/penelitian/add'
+                            <a href='/user/input'
+                                class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                <div class="w-5 text-center">
+                                    <i class="fas fa-user hover:text-white text-slate-400"></i>
+                                </div>
+                                <div class="text-sm font-semibold uppercase">User</div>
+                            </a>
+                            <a href="/penelitian/input"
                                 class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                 <div class="w-5 text-center">
                                     <i class="fas fa-database hover:text-white text-slate-400"></i>
                                 </div>
                                 <div class="text-sm font-semibold uppercase">Input Penelitian</div>
                             </a>
-                            <a href="/pengabdian"
+                            <a href="/pengabdian/input"
                                 class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                 <div class="w-5 text-center">
                                     <i class="fas fa-people-carry hover:text-white text-slate-400"></i>
                                 </div>
                                 <div class="text-sm font-semibold uppercase">Input Pengabdian Masyarakat</div>
                             </a>
-                            <a href="/kerjasama"
+                            <a href="/kerjasama/input"
                                 class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                 <div class="w-5 text-center">
                                     <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                                 </div>
                                 <div class="text-sm font-semibold uppercase">Input Kerja Sama</div>
                             </a>
-                            <a href="/ntf"
+                            <a href="/ntf/input"
                                 class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                 <div class="w-5 text-center">
                                     <i class="fas fa-dot-circle hover:text-white text-slate-400"></i>

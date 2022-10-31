@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string("society");
             $table->string("society_address");
             $table->string("city");
-            $table->string("pengnas_tw");
+            // $table->string("pengnas_tw");
             $table->integer("fund");
             $table->string("society_scheme");
             $table->string("society_faculty");

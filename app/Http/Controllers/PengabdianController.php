@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengnas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,8 @@ class PengabdianController extends Controller
      */
     public function create()
     {
-        //
+        $pengabdian = DB::table('pengnas')->get();
+        return view('admin.pengabdian', ['pengabdian' => $pengabdian]);
     }
 
     /**
@@ -36,7 +38,41 @@ class PengabdianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'periode' => 'required',
+            'skema' => 'required',
+            'fakultas' => 'required',
+            'prodi' => 'required',
+            'kelompok_keahlian' => 'required',
+            'judul_abdimas' => 'required',
+            'nama_ketua' => 'required',
+            'dana' => 'required',
+            'masyarakat_sasar' => 'required',
+            'alamat_masyarakat_sasar' => 'required',
+            'kota' => 'required',
+            'skema_masyarakat' => 'required',
+            'fakultas_masyarakat' => 'required',
+        ]);
+
+        $pengnas = new Pengnas([
+            'period' => $request->periode,
+            'scheme' => $request->skema,
+            'faculty' => $request->fakultas,
+            'study_program' => $request->prodi,
+            'skill_group' => $request->kelompok_keahlian,
+            'title_abdimas' => $request->judul_abdimas,
+            'head' => $request->nama_ketua,
+            'fund' => $request->dana,
+            'society' => $request->masyarakat_sasar,
+            'society_address' => $request->alamat_masyarakat_sasar,
+            'city' => $request->kota,
+            'society_scheme' => $request->skema_masyarakat,
+            'society_faculty' => $request->fakultas_masyarakat,
+        ]);
+
+        $pengnas->save();
+
+        return redirect()->route('/');
     }
 
     /**
