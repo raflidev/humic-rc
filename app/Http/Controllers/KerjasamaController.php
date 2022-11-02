@@ -40,9 +40,17 @@ class KerjasamaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_mou()
     {
-        //
+        return view('admin.kerjasama.kerjasama_mou_add');
+    }
+    public function create_moa()
+    {
+        return view('admin.kerjasama.kerjasama_moa_add');
+    }
+    public function create_ai()
+    {
+        return view('admin.kerjasama.kerjasama_ai_add');
     }
 
     /**

@@ -26,7 +26,8 @@
                     @endauth
                 </div>
             </div>
-
+            <a href={{ route('kerjasama.create_ai') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
+                AI</a>
         </div>
 
         <div class="pt-10 px-10">

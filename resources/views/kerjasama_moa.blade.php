@@ -3,10 +3,10 @@
 @section('content')
     @include('layout.sidebar')
     <div class="w-10/12" id="sidebar">
-        <div class="bg-slate-700 pb-36 px-16 py-10 text-white">
+        <div class="bg-slate-700 px-16 py-10 text-white">
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
-                    <h1 class="font-semibold uppercase">Dashboard - Kerjasama MOA   </h1>
+                    <h1 class="font-semibold uppercase">Dashboard - Kerjasama MOA</h1>
                     @guest
                         <a href="/login" class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">
                             Login
@@ -27,7 +27,8 @@
                 </div>
             </div>
 
-
+            <a href={{ route('kerjasama.create_moa') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
+                MOA</a>
         </div>
 
 

@@ -55,8 +55,11 @@ Route::post('/pengabdian/input/add', [PengabdianController::class, 'store'])->na
 
 Route::get('/kerjasama', [KerjasamaController::class, 'index']);
 Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou');
-Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa');;
-Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai');;
+Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa');
+Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai');
+Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->name('kerjasama.create_mou');
+Route::get('/kerjasama/moa/add', [KerjasamaController::class, 'create_moa'])->name('kerjasama.create_moa');
+Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai');
 
 Route::get('/ntf', function () {
     return view('ntf');
