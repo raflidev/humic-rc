@@ -26,51 +26,47 @@
                     @endauth
                 </div>
             </div>
-            <a href={{ route('user.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
-                User</a>
-
+            <a href={{ route('pengabdian.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
+                Pengabdian Masyarakat</a>
         </div>
-
         <div class="pt-10 px-10">
             <table id="example" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Action</th>
+                        <th>Periode</th>
+                        <th>Skema</th>
+                        <th>Fakultas</th>
+                        <th>Prodi</th>
+                        <th>Kelompok Keahlian</th>
+                        <th>Judul Abdimas</th>
+                        <th>Nama Ketua</th>
+                        <th>Dana</th>
+                        <th>Masyarakat Sasar</th>
+                        <th>Kota</th>
+                        <th>Skema Masyarakat</th>
+                        <th>Alamat Skema Masyarakat</th>
+                        <th>Fakultas Masyarakat</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $nomor = 1; ?>
-                    @foreach ($user as $r)
+                    @foreach ($pengabdian as $p)
                         <tr>
                             <td>{{ $nomor }}</td>
-                            <td>{{ $r->name }}</td>
-                            <td>{{ $r->username }}</td>
-                            <td>{{ $r->password }}</td>
-                            <td>
-                                <a href="{{ route('user.edit', ['id' => $r->id]) }}"
-                                    class="bg-yellow-500 px-4 py-1 rounded-lg text-white">Edit</a>
-
-                                <form method="POST" action="{{ route('user.destroy', ['id' => $r->id]) }}"
-                                    style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="bg-red-500 px-4 py-1 rounded-lg text-white"
-                                        onclick="return confirm('Delete?')">Hapus</button>
-                                </form>
-                                @if ($r->status == 0)
-                                    <form method="POST" action="{{ route('user.verifikasi', ['id' => $r->id]) }}"
-                                        style="display: inline-block;">
-                                        @csrf
-                                        @method('PUT')
-                                        <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
-                                            onclick="return confirm('Verifikasi?')">Verifikasi</button>
-                                    </form>
-                                @endif
-                            </td>
+                            <td>{{ $p->period }}</td>
+                            <td>{{ $p->scheme }}</td>
+                            <td>{{ $p->faculty }}</td>
+                            <td>{{ $p->study_program }}</td>
+                            <td>{{ $p->skill_group }}</td>
+                            <td>{{ $p->title_abdimas }}</td>
+                            <td>{{ $p->head }}</td>
+                            <td>{{ $p->fund }}</td>
+                            <td>{{ $p->society }}</td>
+                            <td>{{ $p->society_address }}</td>
+                            <td>{{ $p->city }}</td>
+                            <td>{{ $p->society_scheme }}</td>
+                            <td>{{ $p->society_faculty }}</td>
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach

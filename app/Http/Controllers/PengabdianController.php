@@ -24,10 +24,15 @@ class PengabdianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create_index()
+    {
+        $data = DB::table('pengnas')->get();
+        return view('admin.pengabdian.pengabdian', ['pengabdian' => $data]);
+    }
+
     public function create()
     {
-        $pengabdian = DB::table('pengnas')->get();
-        return view('admin.pengabdian', ['pengabdian' => $pengabdian]);
+        return view('admin.pengabdian.pengabdian_add');
     }
 
     /**

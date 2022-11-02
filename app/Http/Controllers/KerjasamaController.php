@@ -14,10 +14,25 @@ class KerjasamaController extends Controller
      */
     public function index()
     {
+        return view('kerjasama');
+    }
+
+    public function index_mou()
+    {
         $data = DB::table('mou')->get();
-        $data2 = DB::table('moa')->get();
-        $data3 = DB::table('ai')->get();
-        return view('kerjasama', ['data' => $data, 'data2' => $data2, 'data3' => $data3]);
+        return view('kerjasama_mou', ['data' => $data]);
+    }
+
+    public function index_moa()
+    {
+        $data = DB::table('moa')->get();
+        return view('kerjasama_moa', ['data' => $data]);
+    }
+
+    public function index_ai()
+    {
+        $data = DB::table('ai')->get();
+        return view('kerjasama_ai', ['data' => $data]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -19,9 +20,20 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->boolean('status');
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });
+
+        DB::table('users')->insert(
+            array(
+                'name' => 'HUMIC RC',
+                'username' => 'humicrc2022',
+                'password' => bcrypt('humic123'),
+                'status' => true,
+                'role' => 'superadmin',
+            )
+        );
     }
 
     /**

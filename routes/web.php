@@ -35,20 +35,28 @@ Route::get('/user/input', [UserController::class, 'index'])->name('user.index')-
 Route::get('/user/input/add', [UserController::class, 'create'])->name('user.create')->middleware('auth');
 Route::post('/user/input/add', [UserController::class, 'store'])->name('user.store')->middleware('auth');
 // edit
+Route::put('/user/input/verifikasi/{id}', [UserController::class, 'verifikasi'])->name('user.verifikasi')->middleware('auth');
+
 Route::get('/user/input/edit/{id}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
 Route::put('/user/input/edit/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 // delete
 Route::delete('/user/input/hapus/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
 
+
+// CRUD ADMIN
+Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth');
+
 // CRUD PENGNAS
-Route::get('/input_pengabdian', [PengabdianController::class, 'index']);
 Route::get('/pengabdian', [PengabdianController::class, 'index']);
-Route::get('/pengabdian/add', [PengabdianController::class, 'create'])->name('pengabdian.create')->middleware('auth');
-Route::post('/pengabdian/add', [PengabdianController::class, 'store'])->name('pengabdian.store')->middleware('auth');
+Route::get('/pengabdian/input', [PengabdianController::class, 'create_index']);
+Route::get('/pengabdian/input/add', [PengabdianController::class, 'create'])->name('pengabdian.create')->middleware('auth');
+Route::post('/pengabdian/input/add', [PengabdianController::class, 'store'])->name('pengabdian.store')->middleware('auth');
 
 
 Route::get('/kerjasama', [KerjasamaController::class, 'index']);
-Route::get('/kerjasama', [KerjasamaController::class, 'index']);
+Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou');
+Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa');;
+Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai');;
 
 Route::get('/ntf', function () {
     return view('ntf');

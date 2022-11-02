@@ -16,7 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $user = DB::table('users')->where('role', 'user')->get();
+        return view('admin.user.user', ['user' => $user]);
+    }
+
+    public function index_admin()
+    {
+        $user = DB::table('users')->where('role', 'superadmin')->get();
         return view('admin.user.user', ['user' => $user]);
     }
 
@@ -60,6 +66,7 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'status' => false,
+            'role' => 'user',
         ]);
 
         $user->save();
@@ -73,7 +80,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.user_add');
     }
 
     /**
@@ -84,7 +91,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = new User([
+            'name' => $request->nama,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'status' => false,
+            'role' => 'user',
+        ]);
+
+        $user->save();
+        return redirect()->route('user.index');
+    }
+
+    public function verifikasi($id)
+    {
+        $user = User::find($id);
+        $user->update(['status' => true]);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -106,7 +135,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = DB::table('users')->where('id', $id)->get();
+        return view('admin.user.user_edit', ['user' => $user]);
     }
 
     /**
@@ -118,7 +148,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->nama,
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('user.index');
     }
 
     /**
