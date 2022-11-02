@@ -59,7 +59,15 @@ class KerjasamaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store_moa(Request $request)
+    {
+        //
+    }
+    public function store_mou(Request $request)
+    {
+        //
+    }
+    public function store_ai(Request $request)
     {
         //
     }

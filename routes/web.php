@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // CRUD PENELITIAN
-Route::get('/', [ResearchController::class, 'index'])->name('dashboard.research');
+Route::get('/', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');
 // add
 Route::get('/penelitian/input/add', [ResearchController::class, 'create'])->name('research.create')->middleware('auth');
@@ -47,19 +47,22 @@ Route::delete('/user/input/hapus/{id}', [UserController::class, 'destroy'])->nam
 Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth');
 
 // CRUD PENGNAS
-Route::get('/pengabdian', [PengabdianController::class, 'index']);
-Route::get('/pengabdian/input', [PengabdianController::class, 'create_index']);
+Route::get('/pengabdian', [PengabdianController::class, 'index'])->name('pengabdian.index');
+Route::get('/pengabdian/input', [PengabdianController::class, 'create_index'])->name('pengabdian.create_index')->middleware('auth');
 Route::get('/pengabdian/input/add', [PengabdianController::class, 'create'])->name('pengabdian.create')->middleware('auth');
 Route::post('/pengabdian/input/add', [PengabdianController::class, 'store'])->name('pengabdian.store')->middleware('auth');
 
 
-Route::get('/kerjasama', [KerjasamaController::class, 'index']);
+Route::get('/kerjasama', [KerjasamaController::class, 'index'])->name('kerjasama.index');
 Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou');
 Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa');
 Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai');
 Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->name('kerjasama.create_mou');
 Route::get('/kerjasama/moa/add', [KerjasamaController::class, 'create_moa'])->name('kerjasama.create_moa');
 Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai');
+Route::post('/kerjasama/mou/add', [KerjasamaController::class, 'store_mou'])->name('kerjasama.store_mou');
+Route::post('/kerjasama/moa/add', [KerjasamaController::class, 'store_moa'])->name('kerjasama.store_moa');
+Route::post('/kerjasama/ai/add', [KerjasamaController::class, 'store_ai'])->name('kerjasama.store_ai');
 
 Route::get('/ntf', function () {
     return view('ntf');

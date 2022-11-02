@@ -31,95 +31,101 @@
                     <p class="">{{ $err }}</p>
                 @endforeach
             @endif
-            <form action="{{ route('pengabdian.store') }}" method="post">
+            <form action="{{ route('kerjasama.store_mou') }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
-                            <label for="periode" class="block mb-2 text-sm font-medium ">Periode</label>
-                            <input type="text" name="periode"
+                            <label for="tahun" class="block mb-2 text-sm font-medium ">Tahun</label>
+                            <input type="text" name="tahun"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Periode" required="" value="{{ old('periode') }}">
+                                placeholder="Tahun" required="" value="{{ old('tahun') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="skema" class="block mb-2 text-sm font-medium ">Skema</label>
-                            <input type="text" name="skema"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Skema" required="" value="{{ old('skema') }}">
-                        </div>
-                        <div class="mb-6">
-                            <label for="fakultas" class="block mb-2 text-sm font-medium ">Fakultas</label>
+                            <label for="fakultas" class="block mb-2 text-sm font-medium ">Fakultas/Direktorat</label>
                             <input type="text" name="fakultas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Fakultas" required="" value="{{ old('fakultas') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="prodi" class="block mb-2 text-sm font-medium ">Prodi</label>
-                            <input type="text" name="prodi"
+                            <label for="telunumber" class="block mb-2 text-sm font-medium ">Nomor Tel-U</label>
+                            <input type="text" name="telunumber"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Prodi" required="" value="{{ old('prodi') }}">
+                                placeholder="Nomor Tel-U" required="" value="{{ old('telunumber') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="kelompok_keahlian" class="block mb-2 text-sm font-medium ">Kelompok Keahlian</label>
-                            <input type="text" name="kelompok_keahlian"
+                            <label for="nomormitra" class="block mb-2 text-sm font-medium ">Nomor Mitra</label>
+                            <input type="text" name="nomormitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kelompok Keahlian" required="" value="{{ old('kelompok_keahlian') }}">
+                                placeholder="Nomor Mitra" required="" value="{{ old('nomormitra') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="judul_abdimas" class="block mb-2 text-sm font-medium ">Judul Abdimas</label>
-                            <input type="text" name="judul_abdimas"
+                            <label for="title" class="block mb-2 text-sm font-medium ">Judul/Kegiatan</label>
+                            <input type="text" name="title"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Judul Abdimas" required="" value="{{ old('judul_abdimas') }}">
+                                placeholder="Judul/Kegiatan" required="" value="{{ old('title') }}">
                         </div>
-
+                        <div class="mb-6">
+                            <label for="instansiMitra" class="block mb-2 text-sm font-medium ">Instansi Mitra</label>
+                            <input type="text" name="instansiMitra"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Instansi Mitra" required="" value="{{ old('instansiMitra') }}">
+                        </div>
+                        <div class="mb-6">
+                            <label for="tanggalPengesahan" class="block mb-2 text-sm font-medium ">Tanggal
+                                Pengesahan</label>
+                            <input type="text" name="tanggalPengesahan"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Tanggal Pengesahan" required="" value="{{ old('tanggalPengesahan') }}">
+                        </div>
 
                     </div>
                     <div class="w-1/2">
+
                         <div class="mb-6">
-                            <label for="nama_ketua" class="block mb-2 text-sm font-medium ">Nama Ketua</label>
-                            <input type="text" name="nama_ketua"
+                            <label for="tanggalBerakhir" class="block mb-2 text-sm font-medium ">Tanggal Berakhir</label>
+                            <input type="number" name="tanggalBerakhir"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
+                                placeholder="Tanggal Berakhir" required="" value="{{ old('tanggalBerakhir') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="dana" class="block mb-2 text-sm font-medium ">Dana</label>
-                            <input type="number" name="dana"
+                            <label for="durasi" class="block mb-2 text-sm font-medium ">Durasi</label>
+                            <input type="number" name="durasi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Dana" required="" value="{{ old('dana') }}">
+                                placeholder="Durasi" required="" value="{{ old('durasi') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="masyarakat_sasar" class="block mb-2 text-sm font-medium ">Masyarakat Sasar</label>
-                            <input type="number" name="masyarakat_sasar"
+                            <label for="lndn" class="block mb-2 text-sm font-medium ">Luar Negeri / Dalam
+                                Negeri</label>
+                            <input type="text" name="lndn"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Masyarakat Sasar" required="" value="{{ old('masyarakat_sasar') }}">
+                                placeholder="Luar Negeri / Dalam Negeri" required="" value="{{ old('lndn') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="kota" class="block mb-2 text-sm font-medium ">Kota</label>
-                            <input type="text" name="kota"
+                            <label for="pnp" class="block mb-2 text-sm font-medium ">Profit / Non Profit</label>
+                            <input type="text" name="pnp"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kota" required="" value="{{ old('kota') }}">
+                                placeholder="Profit / Non Profit" required="" value="{{ old('pnp') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="skema_masyarakat" class="block mb-2 text-sm font-medium ">Skema Masyarakat</label>
-                            <input type="text" name="skema_masyarakat"
+                            <label for="akd" class="block mb-2 text-sm font-medium ">Akademik / Non</label>
+                            <input type="text" name="akd"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Skema Masyarakat" required="" value="{{ old('skema_masyarakat') }}">
+                                placeholder="Akademik / Non" required="" value="{{ old('akd') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="alamat_masyarakat_sasar" class="block mb-2 text-sm font-medium ">Alamat Skema
-                                Masyarakat</label>
-                            <input type="text" name="alamat_masyarakat_sasar"
+                            <label for="filemou" class="block mb-2 text-sm font-medium ">File MOU</label>
+                            <input type="text" name="filemou"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Alamat Skema Masyarakat" required=""
-                                value="{{ old('alamat_masyarakat_sasar') }}">
+                                placeholder="File MOU" required="" value="{{ old('filemou') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="fakultas_masyarakat" class="block mb-2 text-sm font-medium ">Fakultas
-                                Masyarakat</label>
-                            <input type="text" name="fakultas_masyarakat"
+                            <label for="aktifitas" class="block mb-2 text-sm font-medium ">Kegiatan yang Telah
+                                Terealisasi</label>
+                            <input type="text" name="aktifitas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Fakultas Masyarakat" required=""
-                                value="{{ old('fakultas_masyarakat') }}">
+                                placeholder="Kegiatan yang Telah Terealisasi" required=""
+                                value="{{ old('aktifitas') }}">
                         </div>
                         <div class="mb-6">
                             <button type="submit"
