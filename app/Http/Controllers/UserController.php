@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($request->only('username', 'password'))) {
-            return redirect()->route('dashboard.research');
+            return redirect()->route('research.index');
         }
 
         return back()->withErrors([
@@ -166,5 +166,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('research.index');
     }
 }

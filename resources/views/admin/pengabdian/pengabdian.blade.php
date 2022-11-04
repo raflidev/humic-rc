@@ -7,23 +7,7 @@
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard</h1>
-                    @guest
-                        <a href="/login" class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">
-                            Login
-                        </a>
-                    @endguest
-                    @auth
-                        @if (Auth::user()->status == true)
-                            <div>
-                                <a href="profile" class="hover:underline mr-4">
-                                    Halo, {{ Auth::user()->name }}
-                                </a>
-                                <a href="/logout" class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">
-                                    Logout
-                                </a>
-                            </div>
-                        @endif
-                    @endauth
+                    @include('layout.navbar')
                 </div>
             </div>
             <a href={{ route('pengabdian.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah

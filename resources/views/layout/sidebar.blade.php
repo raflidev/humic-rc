@@ -97,26 +97,40 @@
                         <div class="mt-6">
                             <div class="text-sm uppercase font-semibold text-slate-500">Area User</div>
                             <div class="space-y-3 mt-5">
-                                <a href="/penelitian/input"
-                                    class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                <a href="{{ route('research.create_index') }}"
+                                    class="flex space-x-3 {{ Route::is('research.create_index') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-database hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Penelitian</div>
                                 </a>
-                                <a href="/pengabdian/input"
-                                    class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                <a href="{{ route('pengabdian.create_index') }}"
+                                    class="flex space-x-3 {{ Route::is('pengabdian.create_index') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-people-carry hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Pengabdian Masyarakat</div>
                                 </a>
-                                <a href="/kerjasama/input"
-                                    class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                <a href="{{ route('kerjasama.moa') }}"
+                                    class="flex space-x-3 {{ Route::is('kerjasama.moa') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                                     </div>
-                                    <div class="text-sm font-semibold uppercase">Input Kerja Sama</div>
+                                    <div class="text-sm font-semibold uppercase">Input Kerja Sama - MOA</div>
+                                </a>
+                                <a href="{{ route('kerjasama.mou') }}"
+                                    class="flex space-x-3 {{ Route::is('kerjasama.mou') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    <div class="w-5 text-center">
+                                        <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
+                                    </div>
+                                    <div class="text-sm font-semibold uppercase">Input Kerja Sama - MOU</div>
+                                </a>
+                                <a href="{{ route('kerjasama.ai') }}"
+                                    class="flex space-x-3 {{ Route::is('kerjasama.ai') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    <div class="w-5 text-center">
+                                        <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
+                                    </div>
+                                    <div class="text-sm font-semibold uppercase">Input Kerja Sama - AI</div>
                                 </a>
                                 <a href='/user/input'
                                     class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">

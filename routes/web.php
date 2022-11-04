@@ -41,7 +41,8 @@ Route::get('/user/input/edit/{id}', [UserController::class, 'edit'])->name('user
 Route::put('/user/input/edit/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 // delete
 Route::delete('/user/input/hapus/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
-
+// logout
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 
 // CRUD ADMIN
 Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth');
