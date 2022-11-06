@@ -30,28 +30,31 @@ Route::put('/penelitian/input/edit/{id}', [ResearchController::class, 'update'])
 Route::delete('/penelitian/input/hapus/{id}', [ResearchController::class, 'destroy'])->name('research.destroy')->middleware('auth');
 
 // CRUD USER
-Route::get('/user/input', [UserController::class, 'index'])->name('user.index')->middleware('auth');
+Route::get('/user/input', [UserController::class, 'index'])->name('user.index')->middleware('auth', 'superadmin');
 // add
-Route::get('/user/input/add', [UserController::class, 'create'])->name('user.create')->middleware('auth');
-Route::post('/user/input/add', [UserController::class, 'store'])->name('user.store')->middleware('auth');
+Route::get('/user/input/add', [UserController::class, 'create'])->name('user.create')->middleware('auth', 'superadmin');
+Route::post('/user/input/add', [UserController::class, 'store'])->name('user.store')->middleware('auth', 'superadmin');
 // edit
-Route::put('/user/input/verifikasi/{id}', [UserController::class, 'verifikasi'])->name('user.verifikasi')->middleware('auth');
+Route::put('/user/input/verifikasi/{id}', [UserController::class, 'verifikasi'])->name('user.verifikasi')->middleware('auth', 'superadmin');
 
-Route::get('/user/input/edit/{id}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
-Route::put('/user/input/edit/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
+Route::get('/user/input/edit/{id}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth', 'superadmin');
+Route::put('/user/input/edit/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth', 'superadmin');
 // delete
-Route::delete('/user/input/hapus/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
+Route::delete('/user/input/hapus/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth', 'superadmin');
 // logout
 Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 
 // CRUD ADMIN
-Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth');
+Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth', 'superadmin');
 
 // CRUD PENGNAS
 Route::get('/pengabdian', [PengabdianController::class, 'index'])->name('pengabdian.index');
 Route::get('/pengabdian/input', [PengabdianController::class, 'create_index'])->name('pengabdian.create_index')->middleware('auth');
 Route::get('/pengabdian/input/add', [PengabdianController::class, 'create'])->name('pengabdian.create')->middleware('auth');
 Route::post('/pengabdian/input/add', [PengabdianController::class, 'store'])->name('pengabdian.store')->middleware('auth');
+Route::get('/pengabdian/input/edit/{id}', [PengabdianController::class, 'edit'])->name('pengabdian.edit')->middleware('auth');
+Route::put('/pengabdian/input/edit/{id}', [PengabdianController::class, 'update'])->name('pengabdian.update')->middleware('auth');
+Route::delete('/pengabdian/input/hapus/{id}', [PengabdianController::class, 'destroy'])->name('pengabdian.destroy')->middleware('auth');
 
 
 Route::get('/kerjasama', [KerjasamaController::class, 'index'])->name('kerjasama.index');

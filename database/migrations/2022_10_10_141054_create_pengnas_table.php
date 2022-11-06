@@ -22,12 +22,13 @@ return new class extends Migration
             $table->string("skill_group");
             $table->string("title_abdimas");
             $table->string("head");
-            // lecturer total ()
-            // student total ()
+            $table->text("lecturer")->nullable();
+            $table->string("lecturer_total");
+            $table->text("student")->nullable();
+            $table->string("student_total");
             $table->string("society");
             $table->string("society_address");
             $table->string("city");
-            // $table->string("pengnas_tw");
             $table->integer("fund");
             $table->string("society_scheme");
             $table->string("society_faculty");

@@ -21,7 +21,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Username</th>
+                        <th>NIP</th>
                         <th>Password</th>
                         <th>Action</th>
                     </tr>
@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{ $nomor }}</td>
                             <td>{{ $r->name }}</td>
-                            <td>{{ $r->username }}</td>
+                            <td>{{ $r->nip }}</td>
                             <td>{{ $r->password }}</td>
                             <td>
                                 <a href="{{ route('user.edit', ['id' => $r->id]) }}"

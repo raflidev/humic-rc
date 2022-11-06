@@ -71,7 +71,6 @@
                                     <button class="bg-red-500 px-4 py-1 rounded-lg"
                                         onclick="return confirm('Delete?')">Hapus</button>
                                 </form>
-
                             </td>
                         </tr>
                         <?php $nomor++; ?>

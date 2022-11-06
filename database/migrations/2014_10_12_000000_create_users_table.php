@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique();
+            $table->string('nip')->unique();
             $table->string('password');
             $table->boolean('status');
             $table->string('role');
@@ -28,7 +28,7 @@ return new class extends Migration
         DB::table('users')->insert(
             array(
                 'name' => 'HUMIC RC',
-                'username' => 'humicrc2022',
+                'nip' => '1301',
                 'password' => bcrypt('humic123'),
                 'status' => true,
                 'role' => 'superadmin',

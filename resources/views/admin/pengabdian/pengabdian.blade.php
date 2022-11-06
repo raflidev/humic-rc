@@ -25,12 +25,17 @@
                         <th>Kelompok Keahlian</th>
                         <th>Judul Abdimas</th>
                         <th>Nama Ketua</th>
+                        <th>Anggota Dosen</th>
+                        <th>Jumlah Dosen</th>
+                        <th>Anggota Mahasiswa</th>
+                        <th>Jumlah Mahasiswa</th>
                         <th>Dana</th>
                         <th>Masyarakat Sasar</th>
                         <th>Kota</th>
                         <th>Skema Masyarakat</th>
                         <th>Alamat Skema Masyarakat</th>
                         <th>Fakultas Masyarakat</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,12 +50,29 @@
                             <td>{{ $p->skill_group }}</td>
                             <td>{{ $p->title_abdimas }}</td>
                             <td>{{ $p->head }}</td>
+                            <td>{{ $p->lecturer }}</td>
+                            <td>{{ $p->lecturer }}</td>
+                            <td>{{ $p->student }}</td>
+                            <td>{{ $p->student_total }}</td>
                             <td>{{ $p->fund }}</td>
                             <td>{{ $p->society }}</td>
                             <td>{{ $p->society_address }}</td>
                             <td>{{ $p->city }}</td>
                             <td>{{ $p->society_scheme }}</td>
                             <td>{{ $p->society_faculty }}</td>
+                            <td>
+                                <a href="{{ route('pengabdian.edit', ['id' => $p->pengnas_id]) }}"
+                                    class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
+
+                                <form method="POST" action="{{ route('pengabdian.destroy', ['id' => $p->pengnas_id]) }}"
+                                    style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 px-4 py-1 rounded-lg"
+                                        onclick="return confirm('Delete?')">Hapus</button>
+                                </form>
+
+                            </td>
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach

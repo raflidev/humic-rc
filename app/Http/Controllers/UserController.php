@@ -39,16 +39,16 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'nip' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($request->only('username', 'password'))) {
+        if (Auth::attempt($request->only('nip', 'password'))) {
             return redirect()->route('research.index');
         }
 
         return back()->withErrors([
-            'password' => 'Wrong username or password',
+            'password' => 'Wrong nip or password',
         ]);
     }
 
@@ -56,14 +56,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'nip' => 'required',
             'password' => 'required',
             'confirmed_password' => 'required|same:password',
         ]);
 
         $user = new User([
             'name' => $request->name,
-            'username' => $request->username,
+            'nip' => $request->nip,
             'password' => bcrypt($request->password),
             'status' => false,
             'role' => 'user',
@@ -93,13 +93,13 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'username' => 'required',
+            'nip' => 'required',
             'password' => 'required',
         ]);
 
         $user = new User([
             'name' => $request->nama,
-            'username' => $request->username,
+            'nip' => $request->nip,
             'password' => bcrypt($request->password),
             'status' => false,
             'role' => 'user',
@@ -151,7 +151,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update([
             'name' => $request->nama,
-            'username' => $request->username,
+            'nip' => $request->nip,
             'password' => bcrypt($request->password),
         ]);
         return redirect()->route('user.index');

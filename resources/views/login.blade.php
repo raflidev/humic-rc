@@ -25,10 +25,10 @@
                         <form method="POST" action="{{ route('login.action') }}">
                             @csrf
                             <div class="mb-6">
-                                <label for="username" class="block mb-2 text-sm font-medium ">Username</label>
-                                <input type="text" id="username" name="username"
+                                <label for="nip" class="block mb-2 text-sm font-medium ">NIP</label>
+                                <input type="text" id="nip" name="nip"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                    placeholder="Username" required="">
+                                    placeholder="NIP" required="">
                             </div>
                             <div class="mb-6">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Password</label>
