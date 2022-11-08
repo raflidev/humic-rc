@@ -15,58 +15,63 @@
                     <p class="">{{ $err }}</p>
                 @endforeach
             @endif
-            <form action="{{ route('kerjasama.store_moa') }}" method="post">
+            <form action="{{ route('kerjasama.update_moa', ['id' => $data->moa_id]) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
                             <label for="tahun" class="block mb-2 text-sm font-medium ">Tahun</label>
                             <input type="text" name="tahun"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tahun" required="" value="{{ old('tahun') }}">
+                                placeholder="Tahun" required="" value="{{ old('tahun', $data->year) }}">
                         </div>
                         <div class="mb-6">
                             <label for="fakultas" class="block mb-2 text-sm font-medium ">Fakultas/Direktorat</label>
                             <input type="text" name="fakultas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Fakultas" required="" value="{{ old('fakultas') }}">
+                                placeholder="Fakultas" required="" value="{{ old('fakultas', $data->faculty) }}">
                         </div>
                         <div class="mb-6">
                             <label for="moanumber" class="block mb-2 text-sm font-medium ">Nomor MoA</label>
                             <input type="text" name="moanumber"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nomor MoA" required="" value="{{ old('moanumber') }}">
+                                placeholder="Nomor MoA" required="" value="{{ old('moanumber', $data->moa_number) }}">
                         </div>
                         <div class="mb-6">
                             <label for="nomormitra" class="block mb-2 text-sm font-medium ">Nomor MoA Mitra</label>
                             <input type="text" name="nomormitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nomor Mitra" required="" value="{{ old('nomormitra') }}">
+                                placeholder="Nomor Mitra" required=""
+                                value="{{ old('nomormitra', $data->moa_number_partner) }}">
                         </div>
                         <div class="mb-6">
                             <label for="title" class="block mb-2 text-sm font-medium ">Judul/Kegiatan</label>
                             <input type="text" name="title"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Judul/Kegiatan" required="" value="{{ old('title') }}">
+                                placeholder="Judul/Kegiatan" required="" value="{{ old('title', $data->title) }}">
                         </div>
                         <div class="mb-6">
                             <label for="instansiMitra" class="block mb-2 text-sm font-medium ">Instansi Mitra</label>
                             <input type="text" name="instansiMitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Instansi Mitra" required="" value="{{ old('instansiMitra') }}">
+                                placeholder="Instansi Mitra" required=""
+                                value="{{ old('instansiMitra', $data->partner_name) }}">
                         </div>
                         <div class="mb-6">
                             <label for="jenisMitra" class="block mb-2 text-sm font-medium ">Jenis Mitra</label>
                             <input type="text" name="jenisMitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis Mitra" required="" value="{{ old('jenisMitra') }}">
+                                placeholder="Jenis Mitra" required=""
+                                value="{{ old('jenisMitra', $data->partner_type) }}">
                         </div>
                         <div class="mb-6">
                             <label for="tanggalPengesahan" class="block mb-2 text-sm font-medium ">Tanggal
                                 Pengesahan</label>
                             <input type="date" name="tanggalPengesahan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Pengesahan" required="" value="{{ old('tanggalPengesahan') }}">
+                                placeholder="Tanggal Pengesahan" required=""
+                                value="{{ old('tanggalPengesahan', $data->date_start) }}">
                         </div>
 
                     </div>
@@ -75,44 +80,51 @@
                             <label for="tanggalBerakhir" class="block mb-2 text-sm font-medium ">Tanggal Berakhir</label>
                             <input type="date" name="tanggalBerakhir"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Berakhir" required="" value="{{ old('tanggalBerakhir') }}">
+                                placeholder="Tanggal Berakhir" required=""
+                                value="{{ old('tanggalBerakhir', $data->date_end) }}">
                         </div>
                         <div class="mb-6">
                             <label for="durasi" class="block mb-2 text-sm font-medium ">Durasi</label>
                             <input type="text" name="durasi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Durasi" required="" value="{{ old('durasi') }}">
+                                placeholder="Durasi" required="" value="{{ old('durasi', $data->duration) }}">
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
-                            <input type="number" name="status"
+                            <input type="text" name="status"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Status" required="" value="{{ old('status') }}">
+                                placeholder="Status" required="" value="{{ old('status', $data->status) }}">
                         </div>
                         <div class="mb-6">
                             <label for="lndn" class="block mb-2 text-sm font-medium ">Luar Negeri / Dalam
                                 Negeri</label>
-                            <input type="text" name="lndn"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Luar Negeri / Dalam Negeri" required="" value="{{ old('lndn') }}">
+                            <select name="lndn" id="" {{ old('lndn', $data->lndn) }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Luar Negeri">Luar Negeri</option>
+                                <option value="Dalam Negeri">Dalam Negeri</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="pnp" class="block mb-2 text-sm font-medium ">Profit / Non Profit</label>
-                            <input type="text" name="pnp"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Profit / Non Profit" required="" value="{{ old('pnp') }}">
+                            <select name="pnp" id="" {{ old('pnp', $data->pnp) }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Profit">Profit</option>
+                                <option value="Non Profit">Non Profit</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="akd" class="block mb-2 text-sm font-medium ">Akademik / Non</label>
-                            <input type="text" name="akd"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Akademik / Non" required="" value="{{ old('akd') }}">
+                            <select name="akd" id="" {{ old('akd', $data->akd) }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Akademik">Akademik</option>
+                                <option value="Non Akademik">Non Akademik</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="link" class="block mb-2 text-sm font-medium ">Link Eviden</label>
                             <input type="text" name="link"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Link Eviden" required="" value="{{ old('link') }}">
+                                placeholder="Link Eviden" required="" value="{{ old('link', $data->link) }}">
                         </div>
                         <div class="mb-6">
                             <label for="aktifitas" class="block mb-2 text-sm font-medium ">Kegiatan yang Telah
@@ -120,7 +132,7 @@
                             <input type="text" name="aktifitas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Kegiatan yang Telah Terealisasi" required=""
-                                value="{{ old('aktifitas') }}">
+                                value="{{ old('aktifitas', $data->activity_real) }}">
                         </div>
                         <div class="mb-6">
                             <button type="submit"

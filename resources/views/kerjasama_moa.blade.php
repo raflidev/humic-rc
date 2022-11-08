@@ -38,6 +38,7 @@
                         <th>Akd/Non Akd</th>
                         <th>Link eviden</th>
                         <th>Kegiatan yang telah terealiasasi</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,9 +62,20 @@
                             <td>{{ $r->akd }}</td>
                             <td>{{ $r->link }}</td>
                             <td>{{ $r->activity_real }}</td>
+                            <td>
+                                <a href="{{ route('kerjasama.edit_moa', ['id' => $r->moa_id]) }}"
+                                    class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
+                                <form method="POST" action="{{ route('kerjasama.destroy_moa', ['id' => $r->moa_id]) }}"
+                                    style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 px-4 py-1 rounded-lg"
+                                        onclick="return confirm('Delete?')">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
-                        <?php $nomor2++; ?>
+                        <?php $nomor++; ?>
                     @endforeach
                 </tbody>
             </table>

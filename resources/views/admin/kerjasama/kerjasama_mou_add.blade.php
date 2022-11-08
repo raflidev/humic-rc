@@ -21,7 +21,7 @@
                     <div class="w-1/2">
                         <div class="mb-6">
                             <label for="tahun" class="block mb-2 text-sm font-medium ">Tahun</label>
-                            <input type="text" name="tahun"
+                            <input type="number" name="tahun"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun" required="" value="{{ old('tahun') }}">
                         </div>
@@ -56,9 +56,15 @@
                                 placeholder="Instansi Mitra" required="" value="{{ old('instansiMitra') }}">
                         </div>
                         <div class="mb-6">
+                            <label for="jenisMitra" class="block mb-2 text-sm font-medium ">Jenis Mitra</label>
+                            <input type="text" name="jenisMitra"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Jenis Mitra" required="" value="{{ old('jenisMitra') }}">
+                        </div>
+                        <div class="mb-6">
                             <label for="tanggalPengesahan" class="block mb-2 text-sm font-medium ">Tanggal
                                 Pengesahan</label>
-                            <input type="text" name="tanggalPengesahan"
+                            <input type="date" name="tanggalPengesahan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tanggal Pengesahan" required="" value="{{ old('tanggalPengesahan') }}">
                         </div>
@@ -68,7 +74,7 @@
 
                         <div class="mb-6">
                             <label for="tanggalBerakhir" class="block mb-2 text-sm font-medium ">Tanggal Berakhir</label>
-                            <input type="number" name="tanggalBerakhir"
+                            <input type="date" name="tanggalBerakhir"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tanggal Berakhir" required="" value="{{ old('tanggalBerakhir') }}">
                         </div>
@@ -79,23 +85,35 @@
                                 placeholder="Durasi" required="" value="{{ old('durasi') }}">
                         </div>
                         <div class="mb-6">
+                            <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
+                            <input type="text" name="status"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Status" required="" value="{{ old('status') }}">
+                        </div>
+                        <div class="mb-6">
                             <label for="lndn" class="block mb-2 text-sm font-medium ">Luar Negeri / Dalam
                                 Negeri</label>
-                            <input type="text" name="lndn"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Luar Negeri / Dalam Negeri" required="" value="{{ old('lndn') }}">
+                            <select name="lndn" id="" {{ old('lndn') }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Luar Negeri">Luar Negeri</option>
+                                <option value="Dalam Negeri">Dalam Negeri</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="pnp" class="block mb-2 text-sm font-medium ">Profit / Non Profit</label>
-                            <input type="text" name="pnp"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Profit / Non Profit" required="" value="{{ old('pnp') }}">
+                            <select name="pnp" id="" {{ old('pnp') }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Profit">Profit</option>
+                                <option value="Non Profit">Non Profit</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="akd" class="block mb-2 text-sm font-medium ">Akademik / Non</label>
-                            <input type="text" name="akd"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Akademik / Non" required="" value="{{ old('akd') }}">
+                            <select name="akd" id="" {{ old('akd') }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Akademik">Akademik</option>
+                                <option value="Non Akademik">Non Akademik</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="filemou" class="block mb-2 text-sm font-medium ">File MOU</label>

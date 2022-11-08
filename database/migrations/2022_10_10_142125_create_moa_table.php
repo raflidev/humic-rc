@@ -26,7 +26,6 @@ return new class extends Migration
             $table->date("date_start");
             $table->date("date_end");
             $table->string("duration");
-            $table->string("activity");
             $table->string("lndn");
             $table->string("pnp");
             $table->string("akd");
