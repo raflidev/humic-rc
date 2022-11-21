@@ -101,7 +101,7 @@ class UserController extends Controller
             'name' => $request->nama,
             'nip' => $request->nip,
             'password' => bcrypt($request->password),
-            'status' => false,
+            'status' => true,
             'role' => 'user',
         ]);
 
@@ -165,7 +165,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id);
+        $user->delete();
+        return redirect()->route('user.index');
     }
 
     public function logout(Request $request)

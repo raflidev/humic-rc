@@ -54,6 +54,96 @@
                                 value="{{ old('nama_ketua', $research[0]->head_name) }}">
                         </div>
                         <div class="mb-6">
+                            <?php
+                            $anggota = explode('|', $research[0]->member);
+                            $jumlah = count($anggota);
+                            $count = 1;
+                            ?>
+                            <div class="">
+                                <label for="jumlah_anggota" class="block mb-2 text-sm font-medium ">Jumlah
+                                    Anggota</label>
+                                <input type="text" id="jumlah_anggota" name="jumlah_anggota"
+                                    class="bg-gray-300 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    placeholder="Jumlah Anggota" required="" value="{{ $jumlah }}"
+                                    readonly="readonly">
+                            </div>
+                            <div class="bg-slate-400 rounded px-2 py-1">
+                                @foreach ($anggota as $a)
+                                    <div class="my-3 ">
+                                        <label for="nama_anggota{{ $count }}"
+                                            class="block mb-2 text-sm font-medium ">Nama Anggota
+                                            {{ $count }}</label>
+                                        <input type="text" name="nama_anggota{{ $count }}"
+                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                            placeholder="Nama Anggota {{ $count }}" required=""
+                                            value="{{ $a }}">
+                                    </div>
+                                    <?php $count++; ?>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <?php
+                            $anggota_mitra = explode('|', $research[0]->member_partner);
+                            $jumlah_mitra = count($anggota_mitra);
+                            $count = 1;
+                            ?>
+                            <div class="">
+                                <label for="jumlah_anggota_mitra" class="block mb-2 text-sm font-medium ">Jumlah Anggota
+                                    Mitra</label>
+                                <input type="text" id="jumlah_anggota_mitra" name="jumlah_anggota_mitra"
+                                    class="bg-gray-300 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    placeholder="Jumlah Anggota Mitra" required="" value="{{ $jumlah_mitra }}"
+                                    readonly="readonly">
+                            </div>
+                            <div class="bg-slate-400 rounded px-2 py-1">
+                                @foreach ($anggota_mitra as $a)
+                                    <div class="my-3 ">
+                                        <label for="nama_anggota_mitra{{ $count }}"
+                                            class="block mb-2 text-sm font-medium ">Nama Anggota Mitra
+                                            {{ $count }}</label>
+                                        <input type="text" name="nama_anggota_mitra{{ $count }}"
+                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                            placeholder="Nama Anggota Mitra {{ $count }}" required=""
+                                            value="{{ $a }}">
+                                    </div>
+                                    <?php $count++; ?>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <?php
+                            $mahasiswa = explode('|', $research[0]->student);
+                            $jumlah_mahasiswa = count($mahasiswa);
+                            $count = 1;
+                            ?>
+                            <div class="">
+                                <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
+                                    Mahasiswa</label>
+                                <input type="text" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
+                                    class="bg-gray-300 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                    placeholder="Jumlah Mahasiswa" required="" value="{{ $jumlah_mahasiswa }}"
+                                    readonly="readonly">
+                            </div>
+                            <div class="bg-slate-400 rounded px-2 py-1">
+                                @foreach ($mahasiswa as $a)
+                                    <div class="my-3 ">
+                                        <label for="nama_mahasiswa{{ $count }}"
+                                            class="block mb-2 text-sm font-medium ">Nama Mahasiswa
+                                            {{ $count }}</label>
+                                        <input type="text" name="nama_mahasiswa{{ $count }}"
+                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                            placeholder="Nama Mahasiswa {{ $count }}" required=""
+                                            value="{{ $a }}">
+                                    </div>
+                                    <?php $count++; ?>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="w-1/2">
+                        <div class="mb-6">
                             <label for="total_dana_external" class="block mb-2 text-sm font-medium ">Dana External</label>
                             <input type="number" name="total_dana_external"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
@@ -76,15 +166,13 @@
                                 value="{{ old('skema_penelitian', $research[0]->research_type) }}">
                         </div>
                         <div class="mb-6">
-                            <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun Pelaksanaan</label>
+                            <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun
+                                Pelaksanaan</label>
                             <input type="date" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required=""
                                 value="{{ old('tahun_pelaksanaan', $research[0]->year) }}">
                         </div>
-                    </div>
-                    <div class="w-1/2">
-
                         <div class="mb-6">
                             <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
                             <input type="text" name="jenis_pendanaan"

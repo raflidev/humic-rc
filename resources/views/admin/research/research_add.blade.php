@@ -50,33 +50,96 @@
                                 placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
                         </div>
                         <div class="mb-6">
+                            <div class="flex items-end space-x-3">
+                                <div class="w-5/6">
+                                    <label for="jumlah_anggota" class="block mb-2 text-sm font-medium ">Jumlah
+                                        Anggota</label>
+                                    <input type="text" id="jumlah_anggota" name="jumlah_anggota"
+                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                        placeholder="Jumlah Anggota" required="" value="{{ old('jumlah_anggota') }}">
+                                </div>
+                                <div class="w-1/6">
+                                    <button id="buttonAnggota"
+                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
+                                </div>
+                            </div>
+                            <div id="anggota" class="mt-4 bg-slate-400 rounded py-2 hidden">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="nama_ketua_mitra" class="block mb-2 text-sm font-medium ">Nama Ketua Mitra</label>
+                            <input type="text" name="nama_ketua_mitra"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Ketua Mitra" required="" value="{{ old('nama_ketua_mitra') }}">
+                        </div>
+                        <div class="mb-6">
+                            <div class="flex items-end space-x-3">
+                                <div class="w-5/6">
+                                    <label for="jumlah_anggota_mitra" class="block mb-2 text-sm font-medium ">Jumlah Anggota
+                                        Mitra</label>
+                                    <input type="text" id="jumlah_anggota_mitra" name="jumlah_anggota_mitra"
+                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                        placeholder="Jumlah Anggota Mitra" required=""
+                                        value="{{ old('jumlah_anggota_mitra') }}">
+                                </div>
+                                <div class="w-1/6">
+                                    <button id="buttonAnggotaMitra"
+                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
+                                </div>
+                            </div>
+                            <div id="anggotaMitra" class="mt-4 bg-slate-400 rounded py-2 hidden">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-end space-x-3">
+                                <div class="w-5/6">
+                                    <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
+                                        Mahasiswa</label>
+                                    <input type="text" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
+                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                        placeholder="Jumlah Mahasiswa" required=""
+                                        value="{{ old('jumlah_mahasiswa') }}">
+                                </div>
+                                <div class="w-1/6">
+                                    <button id="buttonMahasiswa"
+                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
+                                </div>
+                            </div>
+                            <div id="mahasiswa" class="mt-4 bg-slate-400 rounded py-2 hidden">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
                             <label for="total_dana_external" class="block mb-2 text-sm font-medium ">Dana External</label>
                             <input type="number" name="total_dana_external"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Dana External" required="" value="{{ old('total_dana_external') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="total_dana" class="block mb-2 text-sm font-medium ">Total Dana</label>
+                            <label for="total_dana" class="block mb-asdasd2 text-sm font-medium ">Total Dana</label>
                             <input type="number" name="total_dana"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Total Dana" required="" value="{{ old('total_dana') }}">
                         </div>
+
+                    </div>
+                    <div class="w-1/2">
                         <div class="mb-6">
                             <label for="skema_penelitian" class="block mb-2 text-sm font-medium ">Jenis/Skema
                                 Penelitian</label>
                             <input type="text" name="skema_penelitian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis/Skema Penelitian" required="" value="{{ old('skema_penelitian') }}">
+                                placeholder="Jenis/Skema Penelitian" required=""
+                                value="{{ old('skema_penelitian') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun Pelaksanaan</label>
+                            <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun
+                                Pelaksanaan</label>
                             <input type="date" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required="" value="{{ old('tahun_pelaksanaan') }}">
                         </div>
-                    </div>
-                    <div class="w-1/2">
-
                         <div class="mb-6">
                             <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
                             <input type="text" name="jenis_pendanaan"
@@ -179,5 +242,74 @@
                 document.getElementById('myChartTest'),
                 config
             );
+
+            document.getElementById('buttonAnggota').addEventListener('click', (event) => {
+                event.preventDefault();
+                var container = document.getElementById('anggota');
+                container.classList.remove('hidden');
+                var count = container.childElementCount;
+                if (count > 0) {
+                    container.innerHTML = "";
+                }
+                var jumlah = document.getElementById('jumlah_anggota').value
+                if (jumlah == 0) {
+                    container.classList.add('hidden');
+                }
+                for (let i = 1; i <= jumlah; i++) {
+                    container.innerHTML +=
+                        `<div class="mb-6 px-2">
+                            <label for="nama_anggota${i}" class="block text-sm font-medium">Nama Anggota ${i}</label>
+                            <input type="text" name="nama_anggota${i}"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Anggota ${i}" required="" value="{{ old('nama_anggota${i}') }}">
+                        </div>`;
+                }
+            });
+
+            document.getElementById('buttonAnggotaMitra').addEventListener('click', (event) => {
+                event.preventDefault();
+                var container = document.getElementById('anggotaMitra');
+                container.classList.remove('hidden');
+                var count = container.childElementCount;
+                if (count > 0) {
+                    container.innerHTML = "";
+                }
+                var jumlah = document.getElementById('jumlah_anggota_mitra').value
+                if (jumlah == 0) {
+                    container.classList.add('hidden');
+                }
+                for (let i = 1; i <= jumlah; i++) {
+                    container.innerHTML +=
+                        `<div class="mb-6 px-2">
+                            <label for="nama_anggota_mitra${i}" class="block text-sm font-medium">Nama Anggota Mitra ${i}</label>
+                            <input type="text" name="nama_anggota_mitra${i}"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Anggota Mitra ${i}" required="" value="{{ old('nama_anggota_mitra${i}') }}">
+                        </div>`;
+                }
+            });
+
+            document.getElementById('buttonMahasiswa').addEventListener('click', (event) => {
+                event.preventDefault();
+                var container = document.getElementById('mahasiswa');
+                container.classList.remove('hidden');
+                var count = container.childElementCount;
+                if (count > 0) {
+                    container.innerHTML = "";
+                }
+                var jumlah = document.getElementById('jumlah_mahasiswa').value
+                if (jumlah == 0) {
+                    container.classList.add('hidden');
+                }
+                for (let i = 1; i <= jumlah; i++) {
+                    container.innerHTML +=
+                        `<div class="mb-6 px-2">
+                            <label for="nama_mahasiswa${i}" class="block text-sm font-medium">Nama Mahasiswa ${i}</label>
+                            <input type="text" name="nama_mahasiswa${i}"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Mahasiswa ${i}" required="" value="{{ old('nama_mahasiswa${i}') }}">
+                        </div>`;
+                }
+            });
         </script>
     @endsection

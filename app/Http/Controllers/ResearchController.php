@@ -66,14 +66,43 @@ class ResearchController extends Controller
             'keterangan' => 'required',
         ]);
 
+        $dataMember = [];
+        $input = $request->input();
+        $anggota = $request->jumlah_anggota;
+        if ($anggota > 0) {
+            for ($i = 1; $i <= $anggota; $i++) {
+                $dataMember[$i] = $input["nama_anggota$i"];
+            }
+        }
+
+        $dataMemberPartner = [];
+        $input = $request->input();
+        $anggota_mitra = $request->jumlah_anggota_mitra;
+        if ($anggota_mitra > 0) {
+            for ($i = 1; $i <= $anggota_mitra; $i++) {
+                $dataMemberPartner[$i] = $input["nama_anggota_mitra$i"];
+            }
+        }
+
+        $dataMahasiswa = [];
+        $input = $request->input();
+        $mahasiswa = $request->jumlah_mahasiswa;
+        if ($mahasiswa > 0) {
+            for ($i = 1; $i <= $mahasiswa; $i++) {
+                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
+            }
+        }
+
+
         $research = new Research([
             'faculty' => $request->fakultas,
             'study_program' => $request->prodi,
             'research_title' => $request->judul_penelitian,
             'skill_group' => $request->kelompok_keahlian,
             'head_name' => $request->nama_ketua,
-            // 'head_partner_name' => $request->nama_ketua_pasangan,
-            // 'fund_external' => $request->dana_eksternal,
+            'member' => implode("|", $dataMember),
+            'student' => implode("|", $dataMahasiswa),
+            'member_partner' => implode("|", $dataMemberPartner),
             'fund_external' => $request->total_dana_external,
             'fund_total' => $request->total_dana,
             'research_type' => $request->skema_penelitian,
@@ -147,6 +176,33 @@ class ResearchController extends Controller
             'keterangan' => 'required',
         ]);
 
+        $dataMember = [];
+        $input = $request->input();
+        $anggota = $request->jumlah_anggota;
+        if ($anggota > 0) {
+            for ($i = 1; $i <= $anggota; $i++) {
+                $dataMember[$i] = $input["nama_anggota$i"];
+            }
+        }
+
+        $dataMemberPartner = [];
+        $input = $request->input();
+        $anggota_mitra = $request->jumlah_anggota_mitra;
+        if ($anggota_mitra > 0) {
+            for ($i = 1; $i <= $anggota_mitra; $i++) {
+                $dataMemberPartner[$i] = $input["nama_anggota_mitra$i"];
+            }
+        }
+
+        $dataMahasiswa = [];
+        $input = $request->input();
+        $mahasiswa = $request->jumlah_mahasiswa;
+        if ($mahasiswa > 0) {
+            for ($i = 1; $i <= $mahasiswa; $i++) {
+                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
+            }
+        }
+
         $research = Research::where('research_id', $id);
         $research->update([
             'faculty' => $request->fakultas,
@@ -154,6 +210,9 @@ class ResearchController extends Controller
             'research_title' => $request->judul_penelitian,
             'skill_group' => $request->kelompok_keahlian,
             'head_name' => $request->nama_ketua,
+            'member' => implode("|", $dataMember),
+            'student' => implode("|", $dataMahasiswa),
+            'member_partner' => implode("|", $dataMemberPartner),
             // 'head_partner_name' => $request->nama_ketua_pasangan,
             // 'fund_external' => $request->dana_eksternal,
             'fund_external' => $request->total_dana_external,
@@ -184,6 +243,6 @@ class ResearchController extends Controller
     {
         $research = Research::where('research_id', $id);
         $research->delete();
-        return redirect()->route('research.create_index');  
+        return redirect()->route('research.create_index');
     }
 }

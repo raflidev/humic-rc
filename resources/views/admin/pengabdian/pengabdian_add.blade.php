@@ -62,30 +62,41 @@
                                 placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="anggota_dosen" class="block mb-2 text-sm font-medium ">Anggota Dosen</label>
-                            <input type="text" name="anggota_dosen"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Anggota Dosen" value="{{ old('anggota_dosen') }}">
-                        </div>
-                        <div class="mb-6">
-                            <label for="jumlah_dosen" class="block mb-2 text-sm font-medium ">Jumlah Dosen</label>
-                            <input type="number" name="jumlah_dosen"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jumlah Dosen" value="{{ old('jumlah_dosen') }}">
+                            <div class="flex items-end space-x-3">
+                                <div class="w-5/6">
+                                    <label for="jumlah_dosen" class="block mb-2 text-sm font-medium ">Jumlah Dosen</label>
+                                    <input type="text" id="jumlah_dosen" name="jumlah_dosen"
+                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                        placeholder="Jumlah Dosen" required="" value="{{ old('jumlah_dosen') }}">
+                                </div>
+                                <div class="w-1/6">
+                                    <button id="buttonDosen"
+                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
+                                </div>
+                            </div>
+                            <div id="dosen" class="mt-4 bg-slate-400 rounded py-2 hidden">
+                            </div>
                         </div>
                     </div>
                     <div class="w-1/2">
+
                         <div class="mb-6">
-                            <label for="anggota_mahasiswa" class="block mb-2 text-sm font-medium ">Anggota Mahasiswa</label>
-                            <input type="text" name="anggota_mahasiswa"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Anggota Mahasiswa" value="{{ old('anggota_mahasiswa') }}">
-                        </div>
-                        <div class="mb-6">
-                            <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah Mahasiswa</label>
-                            <input type="number" name="jumlah_mahasiswa"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jumlah Mahasiswa" value="{{ old('jumlah_mahasiswa') }}">
+                            <div class="flex items-end space-x-3">
+                                <div class="w-5/6">
+                                    <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
+                                        Mahasiswa</label>
+                                    <input type="text" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
+                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                        placeholder="Jumlah Mahasiswa" required=""
+                                        value="{{ old('jumlah_mahasiswa') }}">
+                                </div>
+                                <div class="w-1/6">
+                                    <button id="buttonMahasiswa"
+                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
+                                </div>
+                            </div>
+                            <div id="mahasiswa" class="mt-4 bg-slate-400 rounded py-2 hidden">
+                            </div>
                         </div>
                         <div class="mb-6">
                             <label for="dana" class="block mb-2 text-sm font-medium ">Dana</label>
@@ -135,4 +146,54 @@
                 </div>
             </form>
         </div>
+    @endsection
+
+    @section('scripts')
+        <script>
+            document.getElementById('buttonDosen').addEventListener('click', (event) => {
+                event.preventDefault();
+                var container = document.getElementById('dosen');
+                container.classList.remove('hidden');
+                var count = container.childElementCount;
+                if (count > 0) {
+                    container.innerHTML = "";
+                }
+                var jumlah = document.getElementById('jumlah_dosen').value
+                if (jumlah == 0) {
+                    container.classList.add('hidden');
+                }
+                for (let i = 1; i <= jumlah; i++) {
+                    container.innerHTML +=
+                        `<div class="mb-6 px-2">
+                            <label for="nama_dosen${i}" class="block text-sm font-medium">Nama Dosen ${i}</label>
+                            <input type="text" name="nama_dosen${i}"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Dosen ${i}" required="" value="{{ old('nama_dosen${i}') }}">
+                        </div>`;
+                }
+            });
+
+            document.getElementById('buttonMahasiswa').addEventListener('click', (event) => {
+                event.preventDefault();
+                var container = document.getElementById('mahasiswa');
+                container.classList.remove('hidden');
+                var count = container.childElementCount;
+                if (count > 0) {
+                    container.innerHTML = "";
+                }
+                var jumlah = document.getElementById('jumlah_mahasiswa').value
+                if (jumlah == 0) {
+                    container.classList.add('hidden');
+                }
+                for (let i = 1; i <= jumlah; i++) {
+                    container.innerHTML +=
+                        `<div class="mb-6 px-2">
+                            <label for="nama_mahasiswa${i}" class="block text-sm font-medium">Nama Mahasiswa ${i}</label>
+                            <input type="text" name="nama_mahasiswa${i}"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Mahasiswa ${i}" required="" value="{{ old('nama_mahasiswa${i}') }}">
+                        </div>`;
+                }
+            });
+        </script>
     @endsection

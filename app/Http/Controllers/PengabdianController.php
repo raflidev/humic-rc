@@ -59,6 +59,24 @@ class PengabdianController extends Controller
             'fakultas_masyarakat' => 'required',
         ]);
 
+        $dataDosen = [];
+        $input = $request->input();
+        $anggota_dosen = $request->jumlah_dosen;
+        if ($anggota_dosen > 0) {
+            for ($i = 1; $i <= $anggota_dosen; $i++) {
+                $dataDosen[$i] = $input["nama_dosen$i"];
+            }
+        }
+
+        $dataMahasiswa = [];
+        $input = $request->input();
+        $mahasiswa = $request->jumlah_mahasiswa;
+        if ($mahasiswa > 0) {
+            for ($i = 1; $i <= $mahasiswa; $i++) {
+                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
+            }
+        }
+
         $pengnas = new Pengnas([
             'period' => $request->periode,
             'scheme' => $request->skema,
@@ -67,9 +85,9 @@ class PengabdianController extends Controller
             'skill_group' => $request->kelompok_keahlian,
             'title_abdimas' => $request->judul_abdimas,
             'head' => $request->nama_ketua,
-            'lecturer' => $request->anggota_dosen,
+            'lecturer' => implode("|", $dataDosen),
             'lecturer_total' => $request->jumlah_dosen,
-            'student' => $request->anggota_mahasiswa,
+            'student' => implode("|", $dataMahasiswa),
             'student_total' => $request->jumlah_mahasiswa,
             'fund' => $request->dana,
             'society' => $request->masyarakat_sasar,
@@ -132,6 +150,24 @@ class PengabdianController extends Controller
             'fakultas_masyarakat' => 'required',
         ]);
 
+        $dataDosen = [];
+        $input = $request->input();
+        $anggota_dosen = $request->jumlah_dosen;
+        if ($anggota_dosen > 0) {
+            for ($i = 1; $i <= $anggota_dosen; $i++) {
+                $dataDosen[$i] = $input["nama_dosen$i"];
+            }
+        }
+
+        $dataMahasiswa = [];
+        $input = $request->input();
+        $mahasiswa = $request->jumlah_mahasiswa;
+        if ($mahasiswa > 0) {
+            for ($i = 1; $i <= $mahasiswa; $i++) {
+                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
+            }
+        }
+
         $pengnas = Pengnas::where('pengnas_id', $id);
         $pengnas->update([
             'period' => $request->periode,
@@ -141,9 +177,9 @@ class PengabdianController extends Controller
             'skill_group' => $request->kelompok_keahlian,
             'title_abdimas' => $request->judul_abdimas,
             'head' => $request->nama_ketua,
-            'lecturer' => $request->anggota_dosen,
+            'lecturer' => implode("|", $dataDosen),
             'lecturer_total' => $request->jumlah_dosen,
-            'student' => $request->anggota_mahasiswa,
+            'student' => implode("|", $dataMahasiswa),
             'student_total' => $request->jumlah_mahasiswa,
             'fund' => $request->dana,
             'society' => $request->masyarakat_sasar,

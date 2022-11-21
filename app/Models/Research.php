@@ -19,6 +19,7 @@ class Research extends Model
         'fund_external',
         'member',
         'student',
+        'member_partner',
         'fund_total',
         'research_type',
         'year',
