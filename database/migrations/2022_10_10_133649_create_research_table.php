@@ -37,6 +37,7 @@ return new class extends Migration
             $table->date("date_end");
             $table->string("contract_number");
             $table->string("description");
+            $table->boolean('status');
             $table->timestamps();
         });
     }

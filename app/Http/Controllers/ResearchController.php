@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Research;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ResearchController extends Controller
@@ -16,7 +18,11 @@ class ResearchController extends Controller
     public function index()
     {
         $research = DB::table('research')->get();
-        return view('home', ['research' => $research]);
+        $total_dana_internal = DB::table('research')->where('fund_type', 'internal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
+        $total_dana_eksternal = DB::table('research')->where('fund_type', 'eksternal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
+        $penelitian_internal = DB::table('research')->where("fund_type", 'internal')->count();
+        $penelitian_eksternal = DB::table('research')->where("fund_type", 'eksternal')->count();
+        return view('home', ['research' => $research, 'internal' => $total_dana_internal, 'external' => $total_dana_eksternal, 'penelitian_internal' => $penelitian_internal, 'penelitian_eksternal' => $penelitian_eksternal]);
     }
 
     /**
@@ -33,7 +39,12 @@ class ResearchController extends Controller
 
     public function create_index()
     {
-        $research = DB::table('research')->get();
+        if (Auth::user()->role == "user") {
+            $name = "%" . Auth::user()->name . "%";
+            $research = DB::table('research')->where("head_name", 'like', "$name")->orWhere('member', 'like', "$name")->get();
+        } else {
+            $research = DB::table('research')->get();
+        }
         return view('admin.research.research', ['research' => $research]);
     }
 
@@ -93,30 +104,57 @@ class ResearchController extends Controller
             }
         }
 
-
-        $research = new Research([
-            'faculty' => $request->fakultas,
-            'study_program' => $request->prodi,
-            'research_title' => $request->judul_penelitian,
-            'skill_group' => $request->kelompok_keahlian,
-            'head_name' => $request->nama_ketua,
-            'member' => implode("|", $dataMember),
-            'student' => implode("|", $dataMahasiswa),
-            'member_partner' => implode("|", $dataMemberPartner),
-            'fund_external' => $request->total_dana_external,
-            'fund_total' => $request->total_dana,
-            'research_type' => $request->skema_penelitian,
-            'year' => $request->tahun_pelaksanaan,
-            'fund_type' => $request->jenis_pendanaan,
-            'group_society' => $request->kelompok_masyarakat,
-            'fund_group_society' => $request->dana_kelompok_masyarakat,
-            'brim' => $request->brim,
-            'fund_brim' => $request->dana_brim,
-            'date_start' => $request->tanggal_kontrak_start,
-            'date_end' => $request->tanggal_kontrak_end,
-            'contract_number' => $request->nomor_kontrak,
-            'description' => $request->keterangan,
-        ]);
+        if (Auth::user()->role == 'user') {
+            $research = new Research([
+                'faculty' => $request->fakultas,
+                'study_program' => $request->prodi,
+                'research_title' => $request->judul_penelitian,
+                'skill_group' => $request->kelompok_keahlian,
+                'head_name' => $request->nama_ketua,
+                'member' => implode("|", $dataMember),
+                'student' => implode("|", $dataMahasiswa),
+                'member_partner' => implode("|", $dataMemberPartner),
+                'fund_external' => $request->total_dana_external,
+                'fund_total' => $request->total_dana,
+                'research_type' => $request->skema_penelitian,
+                'year' => $request->tahun_pelaksanaan,
+                'fund_type' => $request->jenis_pendanaan,
+                'group_society' => $request->kelompok_masyarakat,
+                'fund_group_society' => $request->dana_kelompok_masyarakat,
+                'brim' => $request->brim,
+                'fund_brim' => $request->dana_brim,
+                'date_start' => $request->tanggal_kontrak_start,
+                'date_end' => $request->tanggal_kontrak_end,
+                'contract_number' => $request->nomor_kontrak,
+                'description' => $request->keterangan,
+                'status' => False,
+            ]);
+        } else {
+            $research = new Research([
+                'faculty' => $request->fakultas,
+                'study_program' => $request->prodi,
+                'research_title' => $request->judul_penelitian,
+                'skill_group' => $request->kelompok_keahlian,
+                'head_name' => $request->nama_ketua,
+                'member' => implode("|", $dataMember),
+                'student' => implode("|", $dataMahasiswa),
+                'member_partner' => implode("|", $dataMemberPartner),
+                'fund_external' => $request->total_dana_external,
+                'fund_total' => $request->total_dana,
+                'research_type' => $request->skema_penelitian,
+                'year' => $request->tahun_pelaksanaan,
+                'fund_type' => $request->jenis_pendanaan,
+                'group_society' => $request->kelompok_masyarakat,
+                'fund_group_society' => $request->dana_kelompok_masyarakat,
+                'brim' => $request->brim,
+                'fund_brim' => $request->dana_brim,
+                'date_start' => $request->tanggal_kontrak_start,
+                'date_end' => $request->tanggal_kontrak_end,
+                'contract_number' => $request->nomor_kontrak,
+                'description' => $request->keterangan,
+                'status' => '1',
+            ]);
+        }
 
         $research->save();
 
@@ -233,6 +271,12 @@ class ResearchController extends Controller
         return redirect()->route('research.create_index');
     }
 
+    public function verifikasi($id)
+    {
+        $research = Research::where('research_id', $id);
+        $research->update(['status' => true]);
+        return redirect()->route('research.create_index');
+    }
     /**
      * Remove the specified resource from storage.
      *

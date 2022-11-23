@@ -27,5 +27,6 @@ class Pengnas extends Model
         'city',
         'society_scheme',
         'society_faculty',
+        'status',
     ];
 }

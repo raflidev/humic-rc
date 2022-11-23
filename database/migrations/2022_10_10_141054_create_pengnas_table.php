@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer("fund");
             $table->string("society_scheme");
             $table->string("society_faculty");
+            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -38,6 +38,9 @@
         //         "scrollX": true
         //     });
         // });
+        function closePopup() {
+            document.getElementById('error').classList.add('hidden');
+        }
     </script>
     @yield('scripts')
 </body>

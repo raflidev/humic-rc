@@ -32,5 +32,6 @@ class Research extends Model
         'date_end',
         'contract_number',
         'description',
+        'status',
     ];
 }

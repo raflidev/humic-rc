@@ -61,7 +61,7 @@
                         <div class="flex items-center">
                             <div class="w-5/6 space-y-5">
                                 <div>
-                                    <div class="text-gray-500 text-sm uppercase pb-2">Skema Dana Internal</div>
+                                    <div class="text-gray-500 text-sm uppercase pb-2">Kerjasama luar negeri</div>
                                     <div>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div>
@@ -109,7 +109,7 @@
         <div class="-mt-20 px-16">
             <div class="flex ">
                 <div class="w-4/6">
-                    <canvas class="bg-slate-300 p-5 rounded-md" id="myChart"></canvas>
+                    <canvas class="bg-slate-300 p-5 rounded-md" id="kerjasamaChart"></canvas>
                 </div>
             </div>
         </div>
@@ -133,5 +133,32 @@
                     scrollX: true,
                 });
             });
+
+            const labels = [
+                'Kerjasama Dalam Negeri',
+                'Kerjasama Luar Negeri',
+            ];
+
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Kerjasama',
+                    backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                    borderColor: '#fff',
+                    color: 'rgba(255, 159, 64, 0.2)',
+                    data: [17 ,13],
+                }]
+            };
+
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {}
+            };
+
+            new Chart(
+                document.getElementById('kerjasamaChart'),
+                config
+            );
         </script>
     @endsection

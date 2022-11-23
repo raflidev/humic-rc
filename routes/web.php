@@ -26,6 +26,7 @@ Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name
 // edit
 Route::get('/penelitian/input/edit/{id}', [ResearchController::class, 'edit'])->name('research.edit')->middleware('auth');
 Route::put('/penelitian/input/edit/{id}', [ResearchController::class, 'update'])->name('research.update')->middleware('auth');
+Route::put('/penelitian/input/verifikasi/{id}', [ResearchController::class, 'verifikasi'])->name('research.verifikasi')->middleware('auth');
 // delete
 Route::delete('/penelitian/input/hapus/{id}', [ResearchController::class, 'destroy'])->name('research.destroy')->middleware('auth');
 
@@ -54,6 +55,7 @@ Route::get('/pengabdian/input/add', [PengabdianController::class, 'create'])->na
 Route::post('/pengabdian/input/add', [PengabdianController::class, 'store'])->name('pengabdian.store')->middleware('auth');
 Route::get('/pengabdian/input/edit/{id}', [PengabdianController::class, 'edit'])->name('pengabdian.edit')->middleware('auth');
 Route::put('/pengabdian/input/edit/{id}', [PengabdianController::class, 'update'])->name('pengabdian.update')->middleware('auth');
+Route::put('/pengabdian/input/verifikasi/{id}', [PengabdianController::class, 'verifikasi'])->name('pengabdian.verifikasi')->middleware('auth');
 Route::delete('/pengabdian/input/hapus/{id}', [PengabdianController::class, 'destroy'])->name('pengabdian.destroy')->middleware('auth');
 
 
@@ -79,10 +81,10 @@ Route::delete('/kerjasama/ai/hapus/{id}', [KerjasamaController::class, 'destroy_
 
 Route::get('/ntf', function () {
     return view('ntf');
-});
+})->name('ntf');
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login.action');
 
-Route::get('/register', [UserController::class, 'register_index']);
+Route::get('/register', [UserController::class, 'register_index'])->name('register');;
 Route::post('/register', [UserController::class, 'register'])->name('register.action');

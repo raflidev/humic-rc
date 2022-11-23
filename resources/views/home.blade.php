@@ -19,14 +19,14 @@
                                 <div>
                                     <div class="text-gray-500 text-sm uppercase">Penelitian Nasional</div>
                                     <div class="text-2xl font-semibold">
-                                        20
+                                        {{ $penelitian_internal  }}
                                     </div>
                                 </div>
                                 <div>
                                     <div class="text-gray-500 text-sm uppercase">Dana Penelitian 3 tahun terakhir
                                     </div>
                                     <div class="font-semibold">
-                                        Rp.300.000.000
+                                       Rp {{number_format($internal,0,',','.');}}
                                     </div>
                                 </div>
 
@@ -46,14 +46,14 @@
                                 <div>
                                     <div class="text-gray-500 text-sm uppercase">Penelitian Internasional</div>
                                     <div class="text-2xl font-semibold">
-                                        5
+                                        {{ $penelitian_eksternal }}
                                     </div>
                                 </div>
                                 <div>
                                     <div class="text-gray-500 text-sm uppercase">Dana Penelitian 3 tahun terakhir
                                     </div>
                                     <div class="font-semibold">
-                                        Rp.300.000.000
+                                        Rp {{number_format($external,0,',','.');}}
                                     </div>
                                 </div>
 

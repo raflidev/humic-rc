@@ -16,8 +16,40 @@
         <div class="-mt-20 px-16">
             <div class="flex ">
                 <div class="w-4/6">
-                    <canvas class="bg-slate-300 p-5 rounded-md" id="myChart"></canvas>
+                    <canvas class="bg-slate-300 p-5 rounded-md" id="ntf"></canvas>
                 </div>
             </div>
         </div>
+    @endsection
+
+    @section('scripts')
+    <script>
+         const labels = [
+                '2020',
+                '2021',
+                '2022'
+            ];
+
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Dana NTF',
+                    backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                    borderColor: '#fff',
+                    color: 'rgba(255, 159, 64, 0.2)',
+                    data: [1000000, 1100000, 1200000],
+                }]
+            };
+
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {}
+            };
+
+            new Chart(
+                document.getElementById('ntf'),
+                config
+            );
+    </script>
     @endsection

@@ -25,7 +25,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="text-gray-500 text-sm uppercase">Total Pengnas</div>
+                                        <div class="text-gray-500 text-sm uppercase">Total Pengmas</div>
                                         <div class="text-2xl font-semibold">
                                             5
                                         </div>
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="text-gray-500 text-sm uppercase">Total Pengnas</div>
+                                        <div class="text-gray-500 text-sm uppercase">Total Pengmas</div>
                                         <div class="text-2xl font-semibold">
                                             0
                                         </div>
@@ -125,7 +125,7 @@
         <div class="-mt-20 px-16">
             <div class="flex ">
                 <div class="w-4/6">
-                    <canvas class="bg-slate-300 p-5 rounded-md" id="myChart"></canvas>
+                    <canvas class="bg-slate-300 p-5 rounded-md" id="pengabdian"></canvas>
                 </div>
             </div>
         </div>
@@ -174,4 +174,35 @@
                 </tbody>
             </table>
         </div>
+    @endsection
+
+    @section('scripts')
+        <script>
+            const labels = [
+                'Fakultas Informatika',
+                'Fakultas Elektro',
+            ];
+
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Dana pertahun',
+                    backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                    borderColor: '#fff',
+                    color: 'rgba(255, 159, 64, 0.2)',
+                    data: [9900000,6900000],
+                }]
+            };
+
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {}
+            };
+
+            new Chart(
+                document.getElementById('pengabdian'),
+                config
+            );
+        </script>
     @endsection

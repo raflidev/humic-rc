@@ -26,8 +26,8 @@
                         </div>
                         <div class="text-sm font-semibold uppercase">Kerja Sama</div>
                     </a>
-                    <a href="/ntf"
-                        class="flex space-x-3 items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                    <a href="{{ route('ntf') }}"
+                        class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('ntf') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
                         <div class="w-5 text-center">
                             <i class="fas fa-dot-circle hover:text-white text-slate-400"></i>
                         </div>

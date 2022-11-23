@@ -56,7 +56,7 @@
                         <div class="mb-6">
                             <?php
                             $anggota = explode('|', $research[0]->member);
-                            $jumlah = count($anggota);
+                            $jumlah = $anggota[0] != '' ? count($anggota) : 0;
                             $count = 1;
                             ?>
                             <div class="">
@@ -67,25 +67,27 @@
                                     placeholder="Jumlah Anggota" required="" value="{{ $jumlah }}"
                                     readonly="readonly">
                             </div>
-                            <div class="bg-slate-400 rounded px-2 py-1">
-                                @foreach ($anggota as $a)
-                                    <div class="my-3 ">
-                                        <label for="nama_anggota{{ $count }}"
-                                            class="block mb-2 text-sm font-medium ">Nama Anggota
-                                            {{ $count }}</label>
-                                        <input type="text" name="nama_anggota{{ $count }}"
-                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                            placeholder="Nama Anggota {{ $count }}" required=""
-                                            value="{{ $a }}">
-                                    </div>
-                                    <?php $count++; ?>
-                                @endforeach
-                            </div>
+                            @if ($jumlah > 0)
+                                <div class="bg-slate-400 rounded px-2 py-1">
+                                    @foreach ($anggota as $a)
+                                        <div class="my-3 ">
+                                            <label for="nama_anggota{{ $count }}"
+                                                class="block mb-2 text-sm font-medium ">Nama Anggota
+                                                {{ $count }}</label>
+                                            <input type="text" name="nama_anggota{{ $count }}"
+                                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                                placeholder="Nama Anggota {{ $count }}" required=""
+                                                value="{{ $a }}">
+                                        </div>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                         <div class="mb-6">
                             <?php
                             $anggota_mitra = explode('|', $research[0]->member_partner);
-                            $jumlah_mitra = count($anggota_mitra);
+                            $jumlah_mitra = $anggota_mitra[0] != '' ? count($anggota_mitra) : 0;
                             $count = 1;
                             ?>
                             <div class="">
@@ -96,25 +98,27 @@
                                     placeholder="Jumlah Anggota Mitra" required="" value="{{ $jumlah_mitra }}"
                                     readonly="readonly">
                             </div>
-                            <div class="bg-slate-400 rounded px-2 py-1">
-                                @foreach ($anggota_mitra as $a)
-                                    <div class="my-3 ">
-                                        <label for="nama_anggota_mitra{{ $count }}"
-                                            class="block mb-2 text-sm font-medium ">Nama Anggota Mitra
-                                            {{ $count }}</label>
-                                        <input type="text" name="nama_anggota_mitra{{ $count }}"
-                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                            placeholder="Nama Anggota Mitra {{ $count }}" required=""
-                                            value="{{ $a }}">
-                                    </div>
-                                    <?php $count++; ?>
-                                @endforeach
-                            </div>
+                            @if ($jumlah_mitra > 0)
+                                <div class="bg-slate-400 rounded px-2 py-1">
+                                    @foreach ($anggota_mitra as $a)
+                                        <div class="my-3 ">
+                                            <label for="nama_anggota_mitra{{ $count }}"
+                                                class="block mb-2 text-sm font-medium ">Nama Anggota Mitra
+                                                {{ $count }}</label>
+                                            <input type="text" name="nama_anggota_mitra{{ $count }}"
+                                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                                placeholder="Nama Anggota Mitra {{ $count }}" required=""
+                                                value="{{ $a }}">
+                                        </div>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                         <div class="mb-6">
                             <?php
                             $mahasiswa = explode('|', $research[0]->student);
-                            $jumlah_mahasiswa = count($mahasiswa);
+                            $jumlah_mahasiswa = $mahasiswa[0] != '' ? count($mahasiswa) : 0;
                             $count = 1;
                             ?>
                             <div class="">
@@ -125,20 +129,22 @@
                                     placeholder="Jumlah Mahasiswa" required="" value="{{ $jumlah_mahasiswa }}"
                                     readonly="readonly">
                             </div>
-                            <div class="bg-slate-400 rounded px-2 py-1">
-                                @foreach ($mahasiswa as $a)
-                                    <div class="my-3 ">
-                                        <label for="nama_mahasiswa{{ $count }}"
-                                            class="block mb-2 text-sm font-medium ">Nama Mahasiswa
-                                            {{ $count }}</label>
-                                        <input type="text" name="nama_mahasiswa{{ $count }}"
-                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                            placeholder="Nama Mahasiswa {{ $count }}" required=""
-                                            value="{{ $a }}">
-                                    </div>
-                                    <?php $count++; ?>
-                                @endforeach
-                            </div>
+                            @if ($jumlah_mahasiswa > 0)
+                                <div class="bg-slate-400 rounded px-2 py-1">
+                                    @foreach ($mahasiswa as $a)
+                                        <div class="my-3 ">
+                                            <label for="nama_mahasiswa{{ $count }}"
+                                                class="block mb-2 text-sm font-medium ">Nama Mahasiswa
+                                                {{ $count }}</label>
+                                            <input type="text" name="nama_mahasiswa{{ $count }}"
+                                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                                placeholder="Nama Mahasiswa {{ $count }}" required=""
+                                                value="{{ $a }}">
+                                        </div>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
 
                     </div>

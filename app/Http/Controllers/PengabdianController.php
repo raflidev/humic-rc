@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengnas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PengabdianController extends Controller
@@ -16,7 +17,8 @@ class PengabdianController extends Controller
     public function index()
     {
         $data = DB::table('pengnas')->get();
-        return view('pengabdian', ['data' => $data]);
+        $total_pengmas = DB::table('pengnas')->get()->count();
+        return view('pengabdian', ['data' => $data, 'total_pengmas' => $total_pengmas]);
     }
 
     /**
@@ -76,26 +78,49 @@ class PengabdianController extends Controller
                 $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
             }
         }
-
-        $pengnas = new Pengnas([
-            'period' => $request->periode,
-            'scheme' => $request->skema,
-            'faculty' => $request->fakultas,
-            'study_program' => $request->prodi,
-            'skill_group' => $request->kelompok_keahlian,
-            'title_abdimas' => $request->judul_abdimas,
-            'head' => $request->nama_ketua,
-            'lecturer' => implode("|", $dataDosen),
-            'lecturer_total' => $request->jumlah_dosen,
-            'student' => implode("|", $dataMahasiswa),
-            'student_total' => $request->jumlah_mahasiswa,
-            'fund' => $request->dana,
-            'society' => $request->masyarakat_sasar,
-            'society_address' => $request->alamat_masyarakat_sasar,
-            'city' => $request->kota,
-            'society_scheme' => $request->skema_masyarakat,
-            'society_faculty' => $request->fakultas_masyarakat,
-        ]);
+        if (Auth::user()->role == "superadmin") {
+            $pengnas = new Pengnas([
+                'period' => $request->periode,
+                'scheme' => $request->skema,
+                'faculty' => $request->fakultas,
+                'study_program' => $request->prodi,
+                'skill_group' => $request->kelompok_keahlian,
+                'title_abdimas' => $request->judul_abdimas,
+                'head' => $request->nama_ketua,
+                'lecturer' => implode("|", $dataDosen),
+                'lecturer_total' => $request->jumlah_dosen,
+                'student' => implode("|", $dataMahasiswa),
+                'student_total' => $request->jumlah_mahasiswa,
+                'fund' => $request->dana,
+                'society' => $request->masyarakat_sasar,
+                'society_address' => $request->alamat_masyarakat_sasar,
+                'city' => $request->kota,
+                'society_scheme' => $request->skema_masyarakat,
+                'society_faculty' => $request->fakultas_masyarakat,
+                'status' => True,
+            ]);
+        } else {
+            $pengnas = new Pengnas([
+                'period' => $request->periode,
+                'scheme' => $request->skema,
+                'faculty' => $request->fakultas,
+                'study_program' => $request->prodi,
+                'skill_group' => $request->kelompok_keahlian,
+                'title_abdimas' => $request->judul_abdimas,
+                'head' => $request->nama_ketua,
+                'lecturer' => implode("|", $dataDosen),
+                'lecturer_total' => $request->jumlah_dosen,
+                'student' => implode("|", $dataMahasiswa),
+                'student_total' => $request->jumlah_mahasiswa,
+                'fund' => $request->dana,
+                'society' => $request->masyarakat_sasar,
+                'society_address' => $request->alamat_masyarakat_sasar,
+                'city' => $request->kota,
+                'society_scheme' => $request->skema_masyarakat,
+                'society_faculty' => $request->fakultas_masyarakat,
+                'status' => False,
+            ]);
+        }
 
         $pengnas->save();
 
@@ -189,6 +214,13 @@ class PengabdianController extends Controller
             'society_faculty' => $request->fakultas_masyarakat,
         ]);
 
+        return redirect()->route('pengabdian.create_index');
+    }
+
+    public function verifikasi($id)
+    {
+        $pengnas = Pengnas::where('pengnas_id', $id);
+        $pengnas->update(['status' => true]);
         return redirect()->route('pengabdian.create_index');
     }
 

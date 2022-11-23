@@ -48,7 +48,7 @@ class UserController extends Controller
         }
 
         return back()->withErrors([
-            'password' => 'Wrong nip or password',
+            'wrong' => 'NIP atau Password anda salah!',
         ]);
     }
 
@@ -56,8 +56,8 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'nip' => 'required',
-            'password' => 'required',
+            'nip' => 'required|unique:users|min:8',
+            'password' => 'required|min:8',
             'confirmed_password' => 'required|same:password',
         ]);
 
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nip' => 'required',
+            'nip' => 'required|unique:users',
             'password' => 'required',
         ]);
 

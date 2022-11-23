@@ -61,17 +61,28 @@
                             <td>{{ $p->society_scheme }}</td>
                             <td>{{ $p->society_faculty }}</td>
                             <td>
-                                <a href="{{ route('pengabdian.edit', ['id' => $p->pengnas_id]) }}"
-                                    class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
+                                @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $p->status == False))
+                                    <a href="{{ route('pengabdian.edit', ['id' => $p->pengnas_id]) }}"
+                                        class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
-                                <form method="POST" action="{{ route('pengabdian.destroy', ['id' => $p->pengnas_id]) }}"
-                                    style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="bg-red-500 px-4 py-1 rounded-lg"
-                                        onclick="return confirm('Delete?')">Hapus</button>
-                                </form>
+                                    <form method="POST" action="{{ route('pengabdian.destroy', ['id' => $p->pengnas_id]) }}"
+                                        style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-500 px-4 py-1 rounded-lg"
+                                            onclick="return confirm('Delete?')">Hapus</button>
+                                    </form>
 
+                                    @if (Auth::user()->role == 'superadmin' && $p->status == False)
+                                        <form method="POST" action="{{ route('pengabdian.verifikasi', ['id' => $p->pengnas_id]) }}"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
+                                                onclick="return confirm('Verifikasi?')">Verifikasi</button>
+                                        </form>
+                                      @endif
+                                @endif
                             </td>
                         </tr>
                         <?php $nomor++; ?>

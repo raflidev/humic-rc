@@ -34,6 +34,15 @@ return new class extends Migration
                 'role' => 'superadmin',
             )
         );
+        DB::table('users')->insert(
+            array(
+                'name' => 'Rafli',
+                'nip' => '123123123',
+                'password' => bcrypt('123123123'),
+                'status' => true,
+                'role' => 'user',
+            )
+        );
     }
 
     /**

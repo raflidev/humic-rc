@@ -14,6 +14,18 @@
             <div class="flex justify-center">
                 <div class="w-full lg:w-3/12 bg-gray-200 rounded-md">
                     <div class="p-10 space-y-5">
+                        @if ($errors->first('wrong'))
+                            <div id="error" class="px-5 bg-red-500 text-white py-3 rounded items-center">
+                                {{ $errors->first('wrong') }}
+                                <div class="float-right" onclick="closePopup()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="w-6 h-6  hover:rounded-full text-white hover:bg-red-800 hover:cursor-pointer">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                            </div>
+                        @endif
                         <div class="flex space-x-4">
                             <img src="{{ URL::asset('images/humic.png') }}" class="w-10" alt=""
                                 srcset="">
@@ -30,13 +42,16 @@
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="NIP" required="">
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-3">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Password</label>
                                 <input type="password" name="password" placeholder="password" id="password"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     required="">
                             </div>
-
+                            <p class="py-3 text-right">
+                                Belum punya akun? <a href="{{ route('register') }}"
+                                    class="underline hover:text-orange-500">Daftar</a>
+                            </p>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                         </form>
@@ -46,6 +61,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function closePopup() {
+            document.getElementById('error').classList.add('hidden');
+        }
+
+        function loading() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('masuk').classList.add('hidden');
+        }
+    </script>
 </body>
 
 </html>

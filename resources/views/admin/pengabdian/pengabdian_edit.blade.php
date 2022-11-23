@@ -67,7 +67,7 @@
                         <div class="mb-6">
                             <?php
                             $dosen = explode('|', $pengabdian->lecturer);
-                            $jumlah = count($dosen);
+                            $jumlah = $dosen[0] != '' ? count($dosen) : 0;
                             $count = 1;
                             ?>
                             <div class="">
@@ -76,27 +76,29 @@
                                     class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="Jumlah Dosen" required="" value="{{ $jumlah }}" readonly>
                             </div>
-                            <div class="bg-slate-400 rounded px-2 py-1">
-                                @foreach ($dosen as $a)
-                                    <div class="my-3 ">
-                                        <label for="nama_dosen{{ $count }}"
-                                            class="block mb-2 text-sm font-medium ">Nama Dosen
-                                            {{ $count }}</label>
-                                        <input type="text" name="nama_dosen{{ $count }}"
-                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                            placeholder="Nama Dosen {{ $count }}" required=""
-                                            value="{{ $a }}">
-                                    </div>
-                                    <?php $count++; ?>
-                                @endforeach
-                            </div>
+                            @if ($jumlah > 0)
+                                <div class="bg-slate-400 rounded px-2 py-1">
+                                    @foreach ($dosen as $a)
+                                        <div class="my-3 ">
+                                            <label for="nama_dosen{{ $count }}"
+                                                class="block mb-2 text-sm font-medium ">Nama Dosen
+                                                {{ $count }}</label>
+                                            <input type="text" name="nama_dosen{{ $count }}"
+                                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                                placeholder="Nama Dosen {{ $count }}" required=""
+                                                value="{{ $a }}">
+                                        </div>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="w-1/2">
                         <div class="mb-6">
                             <?php
                             $mahasiswa = explode('|', $pengabdian->student);
-                            $jumlah = count($mahasiswa);
+                            $jumlah = $mahasiswa[0] != '' ? count($mahasiswa) : 0;
                             $count = 1;
                             ?>
                             <div class="">
@@ -106,20 +108,22 @@
                                     class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="Jumlah Mahasiswa" required="" value="{{ $jumlah }}" readonly>
                             </div>
-                            <div class="bg-slate-400 rounded px-2 py-1">
-                                @foreach ($mahasiswa as $a)
-                                    <div class="my-3 ">
-                                        <label for="nama_mahasiswa{{ $count }}"
-                                            class="block mb-2 text-sm font-medium ">Nama Mahasiswa
-                                            {{ $count }}</label>
-                                        <input type="text" name="nama_mahasiswa{{ $count }}"
-                                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                            placeholder="Nama Mahasiswa {{ $count }}" required=""
-                                            value="{{ $a }}">
-                                    </div>
-                                    <?php $count++; ?>
-                                @endforeach
-                            </div>
+                            @if($jumlah > 0)
+                                <div class="bg-slate-400 rounded px-2 py-1">
+                                    @foreach ($mahasiswa as $a)
+                                        <div class="my-3 ">
+                                            <label for="nama_mahasiswa{{ $count }}"
+                                                class="block mb-2 text-sm font-medium ">Nama Mahasiswa
+                                                {{ $count }}</label>
+                                            <input type="text" name="nama_mahasiswa{{ $count }}"
+                                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                                placeholder="Nama Mahasiswa {{ $count }}" required=""
+                                                value="{{ $a }}">
+                                        </div>
+                                        <?php $count++; ?>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                         <div class="mb-6">
                             <label for="dana" class="block mb-2 text-sm font-medium ">Dana</label>

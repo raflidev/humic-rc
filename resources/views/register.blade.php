@@ -22,31 +22,44 @@
                         <h1 class="text-xl font-semibold text-center">
                             Register
                         </h1>
+
                         <form action="{{ route('register.action') }}" method="POST">
                             @csrf
-                            <div class="mb-6">
+                            <div class="mb-3">
                                 <label for="text" class="block mb-2 text-sm font-medium ">Nama</label>
                                 <input type="text" id="name" name="name"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="" required="">
+                                @if ($errors->first('nama'))
+                                    <div class="text-sm text-red-500">*{{ $errors->first('nama') }}</div>
+                                @endif
                             </div>
-                            <div class="mb-6">
-                                <label for="username" class="block mb-2 text-sm font-medium ">Username</label>
-                                <input type="text" name="username" id="username"
+                            <div class="mb-3">
+                                <label for="nip" class="block mb-2 text-sm font-medium ">NIP</label>
+                                <input type="number" name="nip" id="nip"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="" required="">
+                                @if ($errors->first('nip'))
+                                    <div class="text-sm text-red-500">*{{ $errors->first('nip') }}</div>
+                                @endif
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-3">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Password</label>
                                 <input type="password" name="password" placeholder="password" id="password"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     required="">
+                                @if ($errors->first('password'))
+                                    <div class="text-sm text-red-500">*{{ $errors->first('password') }}</div>
+                                @endif
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-3">
                                 <label for="password" class="block mb-2 text-sm font-medium ">Confirm Password</label>
                                 <input type="password" name="confirmed_password" placeholder="password" id="password"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     required="">
+                                @if ($errors->first('confirmed_password'))
+                                    <div class="text-sm text-red-500">*{{ $errors->first('confirmed_password') }}</div>
+                                @endif
                             </div>
 
                             <button type="submit"
