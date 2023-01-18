@@ -48,6 +48,11 @@ class ResearchController extends Controller
         return view('admin.research.research', ['research' => $research]);
     }
 
+    public function excel_import()
+    {
+        return view('admin.research.research_excel');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
