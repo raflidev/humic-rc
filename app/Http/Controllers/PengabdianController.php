@@ -6,6 +6,7 @@ use App\Models\Pengnas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PengabdianController extends Controller
 {
@@ -17,8 +18,13 @@ class PengabdianController extends Controller
     public function index()
     {
         $data = DB::table('pengnas')->get();
-        $total_pengmas = DB::table('pengnas')->get()->count();
-        return view('pengabdian', ['data' => $data, 'total_pengmas' => $total_pengmas]);
+        $total_pengmas_internal = DB::table('pengnas')->where('fund_type', 'internal')->get()->count();
+        $total_pengmas_eksternal = DB::table('pengnas')->where('fund_type', 'eksternal')->get()->count();
+        $total_pengmas_internal_regular = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'regular')->get()->count();
+        $total_pengmas_internal_mandiri = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'mandiri')->get()->count();
+        $total_pengmas_internal_kolabinternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi internal')->get()->count();
+        $total_pengmas_internal_kolabeksternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi eksternal')->get()->count();
+        return view('pengabdian', ['data' => $data, 'total_pengmas_internal' => $total_pengmas_internal, 'total_pengmas_eksternal' => $total_pengmas_eksternal, 'total_pengmas_internal_regular' => $total_pengmas_internal_regular, 'total_pengmas_internal_mandiri' => $total_pengmas_internal_mandiri, 'total_pengmas_internal_kolabinternal' => $total_pengmas_internal_kolabinternal, 'total_pengmas_internal_kolabeksternal' => $total_pengmas_internal_kolabeksternal]);
     }
 
     /**
@@ -59,6 +65,8 @@ class PengabdianController extends Controller
             'kota' => 'required',
             'skema_masyarakat' => 'required',
             'fakultas_masyarakat' => 'required',
+            'skema_dana' => 'required',
+            'jenis_pendanaan' => 'required',
         ]);
 
         $dataDosen = [];
@@ -98,6 +106,8 @@ class PengabdianController extends Controller
                 'society_scheme' => $request->skema_masyarakat,
                 'society_faculty' => $request->fakultas_masyarakat,
                 'status' => True,
+                'fund_scheme' => $request->skema_dana,
+                'fund_type' => $request->jenis_pendanaan,
             ]);
         } else {
             $pengnas = new Pengnas([
@@ -119,6 +129,8 @@ class PengabdianController extends Controller
                 'society_scheme' => $request->skema_masyarakat,
                 'society_faculty' => $request->fakultas_masyarakat,
                 'status' => False,
+                'dana_skema' => $request->skema_dana,
+                'fund_type' => $request->jenis_pendanaan,
             ]);
         }
 
@@ -173,6 +185,8 @@ class PengabdianController extends Controller
             'kota' => 'required',
             'skema_masyarakat' => 'required',
             'fakultas_masyarakat' => 'required',
+            'skema_dana' => 'required',
+            'jenis_pendanaan' => 'required',
         ]);
 
         $dataDosen = [];
@@ -212,6 +226,8 @@ class PengabdianController extends Controller
             'city' => $request->kota,
             'society_scheme' => $request->skema_masyarakat,
             'society_faculty' => $request->fakultas_masyarakat,
+            'fund_scheme' => $request->skema_dana,
+            'fund_type' => $request->jenis_pendanaan,
         ]);
 
         return redirect()->route('pengabdian.create_index');

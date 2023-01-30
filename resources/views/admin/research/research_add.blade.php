@@ -142,9 +142,20 @@
                         </div>
                         <div class="mb-6">
                             <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
-                            <input type="text" name="jenis_pendanaan"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis Pendanaan" required="" value="{{ old('jenis_pendanaan') }}">
+                            <select name="jenis_pendanaan" id="" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                @empty(!old('jenis_pendanaan'))
+                                    @if(old('jenis_pendanaan') == 'eksternal')
+                                        <option value="eksternal" selected>Eksternal</option>
+                                        <option value="internal">Internal</option>
+                                    @else
+                                        <option value="internal" selected>Internal</option>
+                                        <option value="eksternal">Eksternal</option>
+                                    @endif
+                                @else
+                                    <option value="internal">Internal</option>
+                                    <option value="eksternal">Eksternal</option>
+                                @endempty
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="kelompok_masyarakat" class="block mb-2 text-sm font-medium ">Kelompok

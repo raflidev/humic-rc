@@ -53,25 +53,25 @@
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Regular</div>
                                                 <div class="font-semibold text-2xl">
-                                                    1
+                                                    {{$total_pengmas_internal_regular}}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Dana Mandiri</div>
                                                 <div class="font-semibold text-2xl">
-                                                    0
+                                                    {{$total_pengmas_internal_mandiri}}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Kolaborasi Internal</div>
                                                 <div class="font-semibold text-2xl">
-                                                    4
+                                                    {{$total_pengmas_internal_kolabinternal}}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Kolaborasi Internasional</div>
                                                 <div class="font-semibold text-2xl">
-                                                    0
+                                                    {{$total_pengmas_internal_kolabeksternal}}
                                                 </div>
                                             </div>
                                         </div>
@@ -96,13 +96,13 @@
                                     <div>
                                         <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
                                         <div class="text-2xl font-semibold">
-                                            0
+                                            {{$total_pengmas_eksternal}}
                                         </div>
                                     </div>
                                     <div>
                                         <div class="text-gray-500 text-sm uppercase">Total Pengmas</div>
                                         <div class="text-2xl font-semibold">
-                                            0
+                                            {{$total_pengmas_eksternal}}
                                         </div>
                                     </div>
                                 </div>

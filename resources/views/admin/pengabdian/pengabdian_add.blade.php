@@ -32,6 +32,44 @@
                                 placeholder="Skema" required="" value="{{ old('skema') }}">
                         </div>
                         <div class="mb-6">
+                            <label for="skema_dana" class="block mb-2 text-sm font-medium ">Skema Pendanaan</label>
+                            <select name="skema_dana" id="" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                @empty(!old('skema_dana'))
+                                    @if(old('skema_dana') == 'regular')
+                                        <option value="regular" selected>Regular</option>
+                                    @elseif (old('skema_dana') == 'mandiri')
+                                        <option value="mandiri" selected>Mandiri</option>
+                                    @elseif (old('skema_dana') == 'kolaborasi internal')
+                                        <option value="kolaborasi internal" selected>Kolaborasi Internal</option>
+                                    @elseif (old('skema_dana') == 'kolaborasi internasional')
+                                        <option value="kolaborasi internasional" selected>Kolaborasi Internasional</option>
+                                    @endif
+                                @else
+                                    <option value="regular">Regular</option>
+                                    <option value="mandiri">Mandiri</option>
+                                    <option value="kolaborasi internal">Kolaborasi Internal</option>
+                                    <option value="kolaborasi internasional">kolaborasi internal</option>
+                                @endempty
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
+                            <select name="jenis_pendanaan" id="" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                @empty(!old('jenis_pendanaan'))
+                                    @if(old('jenis_pendanaan') == 'eksternal')
+                                        <option value="eksternal" selected>Eksternal</option>
+                                        <option value="internal">Internal</option>
+                                    @else
+                                        <option value="internal" selected>Internal</option>
+                                        <option value="eksternal">Eksternal</option>
+                                    @endif
+                                @else
+                                    <option value="internal">Internal</option>
+                                    <option value="eksternal">Eksternal</option>
+                                @endempty
+                            </select>
+                        </div>
+                        <div class="mb-6">
                             <label for="fakultas" class="block mb-2 text-sm font-medium ">Fakultas</label>
                             <input type="text" name="fakultas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
@@ -106,7 +144,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="masyarakat_sasar" class="block mb-2 text-sm font-medium ">Masyarakat Sasar</label>
-                            <input type="number" name="masyarakat_sasar"
+                            <input type="text" name="masyarakat_sasar"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Masyarakat Sasar" required="" value="{{ old('masyarakat_sasar') }}">
                         </div>

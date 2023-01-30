@@ -28,5 +28,7 @@ class Pengnas extends Model
         'society_scheme',
         'society_faculty',
         'status',
+        'fund_scheme',
+        'fund_type'
     ];
 }
