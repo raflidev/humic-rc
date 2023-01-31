@@ -25,7 +25,7 @@ Route::get('/penelitian/input/add', [ResearchController::class, 'create'])->name
 Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name('research.store')->middleware('auth');
 // excel
 Route::get('/penelitian/input/import', [ResearchController::class, 'excel_import'])->name('research.excel_import')->middleware('auth');
-// Route::post('/penelitian/input/import', [ResearchController::class, 'excel_import'])->name('research.excel_import')->middleware('auth');
+Route::post('/penelitian/input/import', [ResearchController::class, 'excel_import_post'])->name('research.excel_import_post')->middleware('auth');
 // edit
 Route::get('/penelitian/input/edit/{id}', [ResearchController::class, 'edit'])->name('research.edit')->middleware('auth');
 Route::put('/penelitian/input/edit/{id}', [ResearchController::class, 'update'])->name('research.update')->middleware('auth');
@@ -60,7 +60,9 @@ Route::get('/pengabdian/input/edit/{id}', [PengabdianController::class, 'edit'])
 Route::put('/pengabdian/input/edit/{id}', [PengabdianController::class, 'update'])->name('pengabdian.update')->middleware('auth');
 Route::put('/pengabdian/input/verifikasi/{id}', [PengabdianController::class, 'verifikasi'])->name('pengabdian.verifikasi')->middleware('auth');
 Route::delete('/pengabdian/input/hapus/{id}', [PengabdianController::class, 'destroy'])->name('pengabdian.destroy')->middleware('auth');
-
+// excel
+Route::get('/pengabdian/input/import', [PengabdianController::class, 'excel_import'])->name('pengabdian.excel_import')->middleware('auth');
+Route::post('/pengabdian/input/import', [PengabdianController::class, 'excel_import_post'])->name('pengabdian.excel_import_post')->middleware('auth');
 
 Route::get('/kerjasama', [KerjasamaController::class, 'index'])->name('kerjasama.index');
 Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou')->middleware('auth');

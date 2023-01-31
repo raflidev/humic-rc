@@ -21,13 +21,13 @@
                                     <div>
                                         <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
                                         <div class="text-2xl font-semibold">
-                                            5
+                                            {{$total_data}}
                                         </div>
                                     </div>
                                     <div>
                                         <div class="text-gray-500 text-sm uppercase">Total Pengmas</div>
                                         <div class="text-2xl font-semibold">
-                                            5
+                                            {{$total_data}}
                                         </div>
                                     </div>
                                 </div>

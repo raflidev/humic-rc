@@ -12,6 +12,7 @@
             </div>
             <a href={{ route('pengabdian.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 Pengabdian Masyarakat</a>
+            <a href="{{route('pengabdian.excel_import')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
         </div>
         <div class="pt-10 px-10">
             <table id="example" class="display nowrap" style="width:100%">
@@ -31,9 +32,9 @@
                         <th>Jumlah Mahasiswa</th>
                         <th>Dana</th>
                         <th>Masyarakat Sasar</th>
+                        <th>Alamat Skema Masyarakat</th>
                         <th>Kota</th>
                         <th>Skema Masyarakat</th>
-                        <th>Alamat Skema Masyarakat</th>
                         <th>Fakultas Masyarakat</th>
                         <th>Action</th>
                     </tr>

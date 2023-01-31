@@ -45,15 +45,16 @@
                                     @elseif (old('skema_dana', $pengabdian->fund_scheme) == 'kolaborasi internasional')
                                         <option value="kolaborasi internasional" selected>Kolaborasi Internasional</option>
                                     @endif
+                                    <option value="{{$pengabdian->fund_scheme}}">{{$pengabdian->fund_scheme}}</option>
                                     <option value="regular">Regular</option>
                                     <option value="mandiri">Mandiri</option>
                                     <option value="kolaborasi internal">Kolaborasi Internal</option>
-                                    <option value="kolaborasi internasional">kolaborasi internal</option>
+                                    <option value="kolaborasi internasional">kolaborasi Internasional</option>
                                 @else
                                     <option value="regular">Regular</option>
                                     <option value="mandiri">Mandiri</option>
                                     <option value="kolaborasi internal">Kolaborasi Internal</option>
-                                    <option value="kolaborasi internasional">kolaborasi internal</option>
+                                    <option value="kolaborasi internasional">kolaborasi Internasional</option>
                                 @endempty
                             </select>
                         </div>
@@ -90,7 +91,7 @@
                             <label for="kelompok_keahlian" class="block mb-2 text-sm font-medium ">Kelompok Keahlian</label>
                             <input type="text" name="kelompok_keahlian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kelompok Keahlian" required=""
+                                placeholder="Kelompok Keahlian"
                                 value="{{ old('kelompok_keahlian', $pengabdian->skill_group) }}">
                         </div>
                         <div class="mb-6">
@@ -177,36 +178,36 @@
                             <label for="masyarakat_sasar" class="block mb-2 text-sm font-medium ">Masyarakat Sasar</label>
                             <input type="text" name="masyarakat_sasar"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Masyarakat Sasar" required=""
+                                placeholder="Masyarakat Sasar"
                                 value="{{ old('masyarakat_sasar', $pengabdian->society) }}">
-                        </div>
-                        <div class="mb-6">
-                            <label for="kota" class="block mb-2 text-sm font-medium ">Kota</label>
-                            <input type="text" name="kota"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kota" required="" value="{{ old('kota', $pengabdian->city) }}">
-                        </div>
-                        <div class="mb-6">
-                            <label for="skema_masyarakat" class="block mb-2 text-sm font-medium ">Skema Masyarakat</label>
-                            <input type="text" name="skema_masyarakat"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Skema Masyarakat" required=""
-                                value="{{ old('skema_masyarakat', $pengabdian->society_scheme) }}">
                         </div>
                         <div class="mb-6">
                             <label for="alamat_masyarakat_sasar" class="block mb-2 text-sm font-medium ">Alamat Skema
                                 Masyarakat</label>
                             <input type="text" name="alamat_masyarakat_sasar"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Alamat Skema Masyarakat" required=""
+                                placeholder="Alamat Skema Masyarakat"
                                 value="{{ old('alamat_masyarakat_sasar', $pengabdian->society_address) }}">
+                        </div>
+                        <div class="mb-6">
+                            <label for="kota" class="block mb-2 text-sm font-medium ">Kota</label>
+                            <input type="text" name="kota"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Kota" value="{{ old('kota', $pengabdian->city) }}">
+                        </div>
+                        <div class="mb-6">
+                            <label for="skema_masyarakat" class="block mb-2 text-sm font-medium ">Skema Masyarakat</label>
+                            <input type="text" name="skema_masyarakat"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Skema Masyarakat"
+                                value="{{ old('skema_masyarakat', $pengabdian->society_scheme) }}">
                         </div>
                         <div class="mb-6">
                             <label for="fakultas_masyarakat" class="block mb-2 text-sm font-medium ">Fakultas
                                 Masyarakat</label>
                             <input type="text" name="fakultas_masyarakat"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Fakultas Masyarakat" required=""
+                                placeholder="Fakultas Masyarakat"
                                 value="{{ old('fakultas_masyarakat', $pengabdian->society_faculty) }}">
                         </div>
                         <div class="mb-6 pt-6">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PengmasImport;
 use App\Models\Pengnas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +18,15 @@ class PengabdianController extends Controller
      */
     public function index()
     {
-        $data = DB::table('pengnas')->get();
-        $total_pengmas_internal = DB::table('pengnas')->where('fund_type', 'internal')->get()->count();
-        $total_pengmas_eksternal = DB::table('pengnas')->where('fund_type', 'eksternal')->get()->count();
-        $total_pengmas_internal_regular = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'regular')->get()->count();
-        $total_pengmas_internal_mandiri = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'mandiri')->get()->count();
-        $total_pengmas_internal_kolabinternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi internal')->get()->count();
-        $total_pengmas_internal_kolabeksternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi eksternal')->get()->count();
-        return view('pengabdian', ['data' => $data, 'total_pengmas_internal' => $total_pengmas_internal, 'total_pengmas_eksternal' => $total_pengmas_eksternal, 'total_pengmas_internal_regular' => $total_pengmas_internal_regular, 'total_pengmas_internal_mandiri' => $total_pengmas_internal_mandiri, 'total_pengmas_internal_kolabinternal' => $total_pengmas_internal_kolabinternal, 'total_pengmas_internal_kolabeksternal' => $total_pengmas_internal_kolabeksternal]);
+        $data = DB::table('pengnas')->where('status', true)->get();
+        $total_data = $data->count();
+        $total_pengmas_internal = DB::table('pengnas')->where('fund_type', 'internal')->where('status', true)->get()->count();
+        $total_pengmas_eksternal = DB::table('pengnas')->where('fund_type', 'eksternal')->where('status', true)->get()->count();
+        $total_pengmas_internal_regular = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'regular')->where('status', true)->get()->count();
+        $total_pengmas_internal_mandiri = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'mandiri')->where('status', true)->get()->count();
+        $total_pengmas_internal_kolabinternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi internal')->where('status', true)->get()->count();
+        $total_pengmas_internal_kolabeksternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi eksternal')->where('status', true)->get()->count();
+        return view('pengabdian', ['data' => $data, 'total_data' => $total_data, 'total_pengmas_internal' => $total_pengmas_internal, 'total_pengmas_eksternal' => $total_pengmas_eksternal, 'total_pengmas_internal_regular' => $total_pengmas_internal_regular, 'total_pengmas_internal_mandiri' => $total_pengmas_internal_mandiri, 'total_pengmas_internal_kolabinternal' => $total_pengmas_internal_kolabinternal, 'total_pengmas_internal_kolabeksternal' => $total_pengmas_internal_kolabeksternal]);
     }
 
     /**
@@ -38,9 +40,21 @@ class PengabdianController extends Controller
         return view('admin.pengabdian.pengabdian', ['pengabdian' => $data]);
     }
 
+
     public function create()
     {
         return view('admin.pengabdian.pengabdian_add');
+    }
+
+    public function excel_import()
+    {
+        return view('admin.pengabdian.pengabdian_excel');
+    }
+
+    public function excel_import_post(Request $request)
+    {
+        Excel::import(new PengmasImport, $request->file('File'));
+        return back();
     }
 
     /**
@@ -56,17 +70,9 @@ class PengabdianController extends Controller
             'skema' => 'required',
             'fakultas' => 'required',
             'prodi' => 'required',
-            'kelompok_keahlian' => 'required',
             'judul_abdimas' => 'required',
             'nama_ketua' => 'required',
             'dana' => 'required',
-            'masyarakat_sasar' => 'required',
-            'alamat_masyarakat_sasar' => 'required',
-            'kota' => 'required',
-            'skema_masyarakat' => 'required',
-            'fakultas_masyarakat' => 'required',
-            'skema_dana' => 'required',
-            'jenis_pendanaan' => 'required',
         ]);
 
         $dataDosen = [];
@@ -176,17 +182,9 @@ class PengabdianController extends Controller
             'skema' => 'required',
             'fakultas' => 'required',
             'prodi' => 'required',
-            'kelompok_keahlian' => 'required',
             'judul_abdimas' => 'required',
             'nama_ketua' => 'required',
             'dana' => 'required',
-            'masyarakat_sasar' => 'required',
-            'alamat_masyarakat_sasar' => 'required',
-            'kota' => 'required',
-            'skema_masyarakat' => 'required',
-            'fakultas_masyarakat' => 'required',
-            'skema_dana' => 'required',
-            'jenis_pendanaan' => 'required',
         ]);
 
         $dataDosen = [];

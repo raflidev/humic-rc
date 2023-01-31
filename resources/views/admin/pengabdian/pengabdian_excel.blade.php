@@ -19,7 +19,7 @@
                 Berikut adalah lampiran Template yang dapat anda download untuk mengisi data pada excel, pastikan anda mengisi data dengan benar dan sesuai dengan template yang telah disediakan.
                 <a class="underline font-bold" href="/template_research.xlsx" target="_blank">Download Disini</a>
             </div>
-            <form action="{{route('research.excel_import_post')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('pengabdian.excel_import_post')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="flex space-x-4">

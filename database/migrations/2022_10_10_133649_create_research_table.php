@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer("fund_external");
             $table->integer("fund_total");
             $table->string("research_type");
-            $table->string("year");
+            $table->date("year");
             $table->string("fund_type");
             $table->string("group_society");
             $table->integer("fund_group_society");

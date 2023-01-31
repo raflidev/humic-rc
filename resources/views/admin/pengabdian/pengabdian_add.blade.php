@@ -48,7 +48,7 @@
                                     <option value="regular">Regular</option>
                                     <option value="mandiri">Mandiri</option>
                                     <option value="kolaborasi internal">Kolaborasi Internal</option>
-                                    <option value="kolaborasi internasional">kolaborasi internal</option>
+                                    <option value="kolaborasi internasional">kolaborasi Internasional</option>
                                 @endempty
                             </select>
                         </div>

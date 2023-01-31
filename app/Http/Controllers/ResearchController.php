@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ResearchImport;
 use App\Models\Research;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ResearchController extends Controller
 {
@@ -17,7 +19,7 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        $research = DB::table('research')->get();
+        $research = DB::table('research')->where('status', true)->get();
         $total_dana_internal = DB::table('research')->where('fund_type', 'internal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
         $total_dana_eksternal = DB::table('research')->where('fund_type', 'eksternal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
         $penelitian_internal = DB::table('research')->where("fund_type", 'internal')->count();
@@ -51,6 +53,12 @@ class ResearchController extends Controller
     public function excel_import()
     {
         return view('admin.research.research_excel');
+    }
+
+    public function excel_import_post(Request $request)
+    {
+        Excel::import(new ResearchImport, $request->file('File'));
+        return back();
     }
 
     /**
@@ -256,7 +264,7 @@ class ResearchController extends Controller
             'member' => implode("|", $dataMember),
             'student' => implode("|", $dataMahasiswa),
             'member_partner' => implode("|", $dataMemberPartner),
-            // 'head_partner_name' => $request->nama_ketua_pasangan,
+            'head_partner_name' => $request->nama_ketua_mitra,
             // 'fund_external' => $request->dana_eksternal,
             'fund_external' => $request->total_dana_external,
             'fund_total' => $request->total_dana,

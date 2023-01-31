@@ -85,6 +85,13 @@
                             @endif
                         </div>
                         <div class="mb-6">
+                            <label for="nama_ketua_mitra" class="block mb-2 text-sm font-medium ">Nama Ketua Mitra</label>
+                            <input type="text" name="nama_ketua_mitra"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Nama Ketua" required=""
+                                value="{{ old('nama_ketua_mitra', $research[0]->head_partner_name) }}">
+                        </div>
+                        <div class="mb-6">
                             <?php
                             $anggota_mitra = explode('|', $research[0]->member_partner);
                             $jumlah_mitra = $anggota_mitra[0] != '' ? count($anggota_mitra) : 0;
