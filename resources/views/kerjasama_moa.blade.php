@@ -13,6 +13,7 @@
 
             <a href={{ route('kerjasama.create_moa') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 MOA</a>
+            <a href="{{route('kerjasama.excel_import_moa')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
         </div>
 
 

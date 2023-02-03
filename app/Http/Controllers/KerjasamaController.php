@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MoaImport;
 use App\Models\Moa;
 use App\Models\Mou;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KerjasamaController extends Controller
 {
@@ -53,6 +55,17 @@ class KerjasamaController extends Controller
     public function create_ai()
     {
         return view('admin.kerjasama.kerjasama_ai_add');
+    }
+
+    public function excel_import_moa()
+    {
+        return view('admin.kerjasama.kerjasama_moa_excel');
+    }
+
+    public function excel_import_moa_post(Request $request)
+    {
+        Excel::import(new MoaImport, $request->file('File'));
+        return back();
     }
 
     /**

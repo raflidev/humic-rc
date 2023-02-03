@@ -65,23 +65,30 @@ Route::get('/pengabdian/input/import', [PengabdianController::class, 'excel_impo
 Route::post('/pengabdian/input/import', [PengabdianController::class, 'excel_import_post'])->name('pengabdian.excel_import_post')->middleware('auth');
 
 Route::get('/kerjasama', [KerjasamaController::class, 'index'])->name('kerjasama.index');
-Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou')->middleware('auth');
+// MOA
 Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa')->middleware('auth');
-Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai')->middleware('auth');
-Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->name('kerjasama.create_mou')->middleware('auth');
 Route::get('/kerjasama/moa/add', [KerjasamaController::class, 'create_moa'])->name('kerjasama.create_moa')->middleware('auth');
-Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai')->middleware('auth');
-Route::get('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'edit_mou'])->name('kerjasama.edit_mou')->middleware('auth');
 Route::get('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'edit_moa'])->name('kerjasama.edit_moa')->middleware('auth');
-Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');
-Route::put('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'update_mou'])->name('kerjasama.update_mou')->middleware('auth');
 Route::put('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'update_moa'])->name('kerjasama.update_moa')->middleware('auth');
-Route::put('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'update_ai'])->name('kerjasama.update_ai')->middleware('auth');
-Route::post('/kerjasama/mou/add', [KerjasamaController::class, 'store_mou'])->name('kerjasama.store_mou')->middleware('auth');
 Route::post('/kerjasama/moa/add', [KerjasamaController::class, 'store_moa'])->name('kerjasama.store_moa')->middleware('auth');
-Route::post('/kerjasama/ai/add', [KerjasamaController::class, 'store_ai'])->name('kerjasama.store_ai')->middleware('auth');
-Route::delete('/kerjasama/mou/hapus/{id}', [KerjasamaController::class, 'destroy_mou'])->name('kerjasama.destroy_mou')->middleware('auth');
 Route::delete('/kerjasama/moa/hapus/{id}', [KerjasamaController::class, 'destroy_moa'])->name('kerjasama.destroy_moa')->middleware('auth');
+//excel
+Route::get('/kerjasama/moa/import', [KerjasamaController::class, 'excel_import_moa'])->name('kerjasama.excel_import_moa')->middleware('auth');
+Route::post('/kerjasama/moa/import', [KerjasamaController::class, 'excel_import_moa_post'])->name('kerjasama.excel_import_moa_post')->middleware('auth');
+
+// MOU
+Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou')->middleware('auth');
+Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->name('kerjasama.create_mou')->middleware('auth');
+Route::get('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'edit_mou'])->name('kerjasama.edit_mou')->middleware('auth');
+Route::put('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'update_mou'])->name('kerjasama.update_mou')->middleware('auth');
+Route::post('/kerjasama/mou/add', [KerjasamaController::class, 'store_mou'])->name('kerjasama.store_mou')->middleware('auth');
+Route::delete('/kerjasama/mou/hapus/{id}', [KerjasamaController::class, 'destroy_mou'])->name('kerjasama.destroy_mou')->middleware('auth');
+
+Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai')->middleware('auth');
+Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai')->middleware('auth');
+Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');
+Route::put('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'update_ai'])->name('kerjasama.update_ai')->middleware('auth');
+Route::post('/kerjasama/ai/add', [KerjasamaController::class, 'store_ai'])->name('kerjasama.store_ai')->middleware('auth');
 Route::delete('/kerjasama/ai/hapus/{id}', [KerjasamaController::class, 'destroy_ai'])->name('kerjasama.destroy_ai')->middleware('auth');
 
 Route::get('/ntf', function () {

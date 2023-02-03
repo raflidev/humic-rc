@@ -19,19 +19,19 @@ return new class extends Migration
             $table->string("year");
             $table->string("faculty");
             $table->string("moa_number");
-            $table->string("moa_number_partner");
+            $table->string("moa_number_partner")->nullable();
             $table->string("title");
             $table->string("partner_name");
             $table->string("partner_type");
-            $table->date("date_start");
-            $table->date("date_end");
-            $table->string("duration");
+            $table->date("date_start")->nullable();
+            $table->date("date_end")->nullable();
+            $table->string("duration")->nullable();
             $table->string("lndn");
             $table->string("pnp");
             $table->string("akd");
             $table->string("link");
+            $table->string("activity_real")->nullable();
             $table->string("status");
-            $table->string("activity_real");
             $table->timestamps();
         });
     }
