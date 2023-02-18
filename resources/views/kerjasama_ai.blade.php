@@ -26,32 +26,42 @@
                         <th>Uraian Kegiatan</th>
                         <th>Instansi Mitra</th>
                         <th>Jenis Mitra</th>
-                        <th>Type</th>
                         <th>Tanggal Penandatanganan</th>
                         <th>Status</th>
                         <th>LN/DN</th>
                         <th>Link eviden</th>
                         <th>Kegiatan yang telah terealiasasi</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $nomor = 1; ?>
+                    <?php $nomor3 = 1; ?>
                     @foreach ($data as $r)
                         <tr>
-                            <td>{{ $nomor }}</td>
+                            <td>{{ $nomor3 }}</td>
                             <td>{{ $r->year }}</td>
                             <td>{{ $r->faculty }}</td>
                             <td>{{ $r->telu_number }}</td>
                             <td>{{ $r->partner_number }}</td>
-                            <td>{{ $r->activity }}</td>
+                            <td>{{ $r->title }}</td>
                             <td>{{ $r->partner_name }}</td>
                             <td>{{ $r->partner_type }}</td>
-                            <td>{{ $r->type }}</td>
                             <td>{{ $r->date }}</td>
-                            <td>{{ $r->status }}</td>
+                            <td>{{ $r->status_ai }}</td>
                             <td>{{ $r->lndn }}</td>
                             <td>{{ $r->link }}</td>
                             <td>{{ $r->activity_real }}</td>
+                            <td>
+                                <a href="{{ route('kerjasama.edit_ai', ['id' => $r->ai_id]) }}"
+                                    class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
+
+                                <form method="POST" action="{{ route('kerjasama.destroy_ai', ['id' => $r->ai_id]) }}"
+                                    style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 px-4 py-1 rounded-lg" onclick="return confirm('Delete?')">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                         <?php $nomor3++; ?>
                     @endforeach

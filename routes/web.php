@@ -84,6 +84,10 @@ Route::put('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'update_mou'
 Route::post('/kerjasama/mou/add', [KerjasamaController::class, 'store_mou'])->name('kerjasama.store_mou')->middleware('auth');
 Route::delete('/kerjasama/mou/hapus/{id}', [KerjasamaController::class, 'destroy_mou'])->name('kerjasama.destroy_mou')->middleware('auth');
 
+//excel
+Route::get('/kerjasama/mou/import', [KerjasamaController::class, 'excel_import_mou'])->name('kerjasama.excel_import_mou')->middleware('auth');
+Route::post('/kerjasama/mou/import', [KerjasamaController::class, 'excel_import_mou_post'])->name('kerjasama.excel_import_mou_post')->middleware('auth');
+
 Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai')->middleware('auth');
 Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai')->middleware('auth');
 Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');

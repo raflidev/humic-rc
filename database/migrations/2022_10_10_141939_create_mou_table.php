@@ -16,21 +16,21 @@ return new class extends Migration
         Schema::create('mou', function (Blueprint $table) {
             $table->id("mou_id");
             $table->string("year");
-            $table->string("faculty");
-            $table->string("telu_number");
-            $table->string("title");
-            $table->string("partner_number");
-            $table->string("partner_name");
-            $table->string("partner_type");
-            $table->date("date_start");
-            $table->date("date_end");
-            $table->string("duration");
-            $table->string("status");
+            $table->string("faculty")->nullable();
+            $table->string("telu_number")->nullable();
+            $table->string("title")->nullable();
+            $table->string("partner_number")->nullable();
+            $table->string("partner_name")->nullable();
+            $table->string("partner_type")->nullable();
+            $table->date("date_start")->nullable();
+            $table->date("date_end")->nullable();
+            $table->string("duration")->nullable();
             $table->string("lndn");
             $table->string("pnp");
             $table->string("akd");
-            $table->string("file");
-            $table->string("activity_real");
+            $table->string("file")->nullable();
+            $table->string("activity_real")->nullable();
+            $table->string("status");
             $table->timestamps();
         });
     }
