@@ -136,7 +136,7 @@
                         <div class="mb-6">
                             <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun
                                 Pelaksanaan</label>
-                            <input type="date" name="tahun_pelaksanaan"
+                            <input type="text" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required="" value="{{ old('tahun_pelaksanaan') }}">
                         </div>
@@ -174,10 +174,10 @@
                                 value="{{ old('dana_kelompok_masyarakat') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="brim" class="block mb-2 text-sm font-medium ">BRIM</label>
+                            <label for="brim" class="block mb-2 text-sm font-medium ">BRIN</label>
                             <input type="text" name="brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="BRIM" required="" value="{{ old('brim') }}">
+                                placeholder="BRIN" required="" value="{{ old('brim') }}">
                         </div>
                         <div class="mb-6">
                             <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Kemenristek/BRIN</label>

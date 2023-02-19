@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AiImport;
 use App\Imports\MoaImport;
 use App\Imports\MouImport;
 use App\Models\Ai;
@@ -82,6 +83,19 @@ class KerjasamaController extends Controller
         Excel::import(new MouImport, $request->file('File'));
         return back();
     }
+
+    public function excel_import_ai()
+    {
+        return view('admin.kerjasama.kerjasama_ai_excel');
+    }
+
+    public function excel_import_ai_post(Request $request)
+    {
+        Excel::import(new AiImport, $request->file('File'));
+        return back();
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

@@ -30,7 +30,7 @@ class ResearchImport implements ToModel, WithHeadingRow
             'fund_external' => $row['dana_external'],
             'fund_total' => $row['total_dana'],
             'research_type' => $row['jenis_penelitian'],
-            'year' => Carbon::parse($row['tahun']),
+            'year' => $row['tahun'],
             'fund_type' => $row['jenis_pendanaan'],
             'group_society' => $row['kelompok_masyarakat'],
             'fund_group_society' => $row['dana_kelompok_masyarakat'],

@@ -88,12 +88,18 @@ Route::delete('/kerjasama/mou/hapus/{id}', [KerjasamaController::class, 'destroy
 Route::get('/kerjasama/mou/import', [KerjasamaController::class, 'excel_import_mou'])->name('kerjasama.excel_import_mou')->middleware('auth');
 Route::post('/kerjasama/mou/import', [KerjasamaController::class, 'excel_import_mou_post'])->name('kerjasama.excel_import_mou_post')->middleware('auth');
 
+
 Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai')->middleware('auth');
 Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai')->middleware('auth');
 Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');
 Route::put('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'update_ai'])->name('kerjasama.update_ai')->middleware('auth');
 Route::post('/kerjasama/ai/add', [KerjasamaController::class, 'store_ai'])->name('kerjasama.store_ai')->middleware('auth');
 Route::delete('/kerjasama/ai/hapus/{id}', [KerjasamaController::class, 'destroy_ai'])->name('kerjasama.destroy_ai')->middleware('auth');
+
+// excel
+Route::get('/kerjasama/ai/import', [KerjasamaController::class, 'excel_import_ai'])->name('kerjasama.excel_import_ai')->middleware('auth');
+Route::post('/kerjasama/ai/import', [KerjasamaController::class, 'excel_import_ai_post'])->name('kerjasama.excel_import_ai_post')->middleware('auth');
+
 
 Route::get('/ntf', function () {
     return view('ntf');

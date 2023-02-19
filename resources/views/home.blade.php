@@ -128,15 +128,19 @@
                 </tbody>
             </table>
         </div>
+        <div>
+            <?php foreach ($grafik as $value) {
+                echo '"' . $value->fund_total . '",';
+            } ?>
+        </div>
     @endsection
 
     @section('scripts')
         <script>
             const labels = [
-                '2019',
-                '2020',
-                '2021',
-                '2022',
+                <?php foreach ($grafik as $value) {
+                    echo '"' . $value->year . '",';
+                } ?>
             ];
 
             const data = {
@@ -146,7 +150,9 @@
                     backgroundColor: 'rgba(255, 159, 64, 0.8)',
                     borderColor: '#fff',
                     color: 'rgba(255, 159, 64, 0.2)',
-                    data: [3, 350000000000, 5, 2],
+                    data: [<?php foreach ($grafik as $value) {
+                echo '"' . $value->fund_total . '",';
+            } ?>],
                 }]
             };
 

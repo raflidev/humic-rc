@@ -3,9 +3,11 @@
 namespace App\Imports;
 
 use App\Models\Ai;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class AiImport implements ToModel
+class AiImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -15,20 +17,19 @@ class AiImport implements ToModel
     public function model(array $row)
     {
         return new Ai([
-            "year",
-            "faculty",
-            "telu_number",
-            "partner_number",
-            "activity",
-            "partner_name",
-            "partner_type",
-            "type",
-            "date",
-            "status",
-            "lndn",
-            "link",
-            "file",
-            "activity_real",
+            "year" => $row['tahun'],
+            "faculty" => $row['fakultas'],
+            "telu_number" => $row['no_telu'],
+            "title" => $row['uraian_kegiatan'],
+            "partner_number" => $row['no_mitra'],
+            "partner_name" => $row['instansi_mitra'],
+            "partner_type" => $row['jenis'],
+            "date" => Carbon::parse($row['tgl_penandatanganan']),
+            "status_ai" => $row['status'],
+            "lndn" => $row['dn_ln'],
+            "link" => $row['link_eviden'],
+            "activity_real" => $row['kegiatan'],
+            'status' => false,
         ]);
     }
 }
