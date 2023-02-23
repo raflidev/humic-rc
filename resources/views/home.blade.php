@@ -128,11 +128,6 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <?php foreach ($grafik as $value) {
-                echo '"' . $value->fund_total . '",';
-            } ?>
-        </div>
     @endsection
 
     @section('scripts')

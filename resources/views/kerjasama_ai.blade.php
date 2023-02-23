@@ -48,7 +48,7 @@
                             <td>{{ $r->partner_name }}</td>
                             <td>{{ $r->partner_type }}</td>
                             <td>{{ $r->date }}</td>
-                            <td>{{ $r->status_ai }}</td>
+                            <td>{{ $r->status_real }}</td>
                             <td>{{ $r->lndn }}</td>
                             <td>{{ $r->link }}</td>
                             <td>{{ $r->activity_real }}</td>
@@ -62,6 +62,15 @@
                                     @method('DELETE')
                                     <button class="bg-red-500 px-4 py-1 rounded-lg" onclick="return confirm('Delete?')">Hapus</button>
                                 </form>
+                                @if (Auth::user()->role == 'superadmin' && $r->status == False)
+                                        <form method="POST" action="{{ route('kerjasama.verifikasi_ai', ['id' => $r->ai_id]) }}"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
+                                                onclick="return confirm('Verifikasi?')">Verifikasi</button>
+                                        </form>
+                                      @endif
                             </td>
                         </tr>
                         <?php $nomor3++; ?>

@@ -57,7 +57,7 @@
                             <td>{{ $r->date_start }}</td>
                             <td>{{ $r->date_end }}</td>
                             <td>{{ $r->duration }}</td>
-                            <td>{{ $r->status }}</td>
+                            <td>{{ $r->status_real }}</td>
                             <td>{{ $r->lndn }}</td>
                             <td>{{ $r->pnp }}</td>
                             <td>{{ $r->akd }}</td>
@@ -74,6 +74,15 @@
                                     <button class="bg-red-500 px-4 py-1 rounded-lg"
                                         onclick="return confirm('Delete?')">Hapus</button>
                                 </form>
+                                @if (Auth::user()->role == 'superadmin' && $r->status == False)
+                                        <form method="POST" action="{{ route('kerjasama.verifikasi_moa', ['id' => $r->moa_id]) }}"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
+                                                onclick="return confirm('Verifikasi?')">Verifikasi</button>
+                                        </form>
+                                      @endif
                             </td>
                         </tr>
                         <?php $nomor++; ?>

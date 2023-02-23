@@ -22,25 +22,25 @@
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
                                             <div class="font-semibold text-2xl">
-                                                2
+                                                {{ $dl_mitra }}
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">MOU</div>
                                             <div class="font-semibold text-2xl">
-                                                2
+                                                {{ $dl_mou }}
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">MOA</div>
                                             <div class="font-semibold text-2xl">
-                                                5
+                                                {{ $dl_moa }}
                                             </div>
                                         </div>
                                         <div>
                                             <div class="text-gray-500 text-sm uppercase">IA</div>
                                             <div class="font-semibold text-2xl">
-                                                8
+                                                {{ $dl_ai }}
                                             </div>
                                         </div>
                                     </div>
@@ -67,25 +67,25 @@
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">Total Mitra</div>
                                                 <div class="font-semibold text-2xl">
-                                                    3
+                                                    {{ $ln_mitra }}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">MOU</div>
                                                 <div class="font-semibold text-2xl">
-                                                    1
+                                                    {{ $ln_mou }}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">MOA</div>
                                                 <div class="font-semibold text-2xl">
-                                                    5
+                                                    {{ $ln_moa }}
                                                 </div>
                                             </div>
                                             <div>
                                                 <div class="text-gray-500 text-sm uppercase">IA</div>
                                                 <div class="font-semibold text-2xl">
-                                                    4
+                                                    {{ $ln_ai }}
                                                 </div>
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                     backgroundColor: 'rgba(255, 159, 64, 0.8)',
                     borderColor: '#fff',
                     color: 'rgba(255, 159, 64, 0.2)',
-                    data: [17 ,13],
+                    data: [{{ $grafik[0] }}, {{ $grafik[1] }}],
                 }]
             };
 

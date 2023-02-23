@@ -20,7 +20,7 @@ class Ai extends Model
         "partner_name",
         "partner_type",
         "date",
-        "status_ai",
+        'status_real',
         "status",
         "lndn",
         "link",

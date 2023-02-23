@@ -19,13 +19,13 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        $research = DB::table('research')->where('status', true)->get();
-        $total_dana_internal = DB::table('research')->where('status', true)->where('fund_type', 'internal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
-        $total_dana_eksternal = DB::table('research')->where('status', true)->where('fund_type', 'eksternal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
-        $penelitian_internal = DB::table('research')->where('status', true)->where("fund_type", 'internal')->count();
-        $penelitian_eksternal = DB::table('research')->where('status', true)->where("fund_type", 'eksternal')->count();
+        $research = DB::table('research')->whereNotNull('year')->where('status', true)->get();
+        $total_dana_internal = DB::table('research')->whereNotNull('year')->where('status', true)->where('fund_type', 'internal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
+        $total_dana_eksternal = DB::table('research')->whereNotNull('year')->where('status', true)->where('fund_type', 'eksternal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
+        $penelitian_internal = DB::table('research')->whereNotNull('year')->where('status', true)->where("fund_type", 'internal')->count();
+        $penelitian_eksternal = DB::table('research')->whereNotNull('year')->where('status', true)->where("fund_type", 'eksternal')->count();
         // get data
-        $grafik = DB::table('research')->select('year', DB::raw('SUM(fund_total) as fund_total'))->where('status', true)->where('year', ">=", Carbon::now()->year - 2)->groupBy('year')->get();
+        $grafik = DB::table('research')->select('year', DB::raw('SUM(fund_total) as fund_total'))->whereNotNull('year')->where('status', true)->where('year', ">=", Carbon::now()->year - 2)->groupBy('year')->get();
         return view('home', ['research' => $research, 'internal' => $total_dana_internal, 'external' => $total_dana_eksternal, 'penelitian_internal' => $penelitian_internal, 'penelitian_eksternal' => $penelitian_eksternal, 'grafik' => $grafik]);
     }
 

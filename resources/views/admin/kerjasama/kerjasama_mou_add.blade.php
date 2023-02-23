@@ -41,32 +41,32 @@
                             <label for="nomormitra" class="block mb-2 text-sm font-medium ">Nomor Mitra</label>
                             <input type="text" name="nomormitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nomor Mitra" required="" value="{{ old('nomormitra') }}">
+                                placeholder="Nomor Mitra" value="{{ old('nomormitra') }}">
                         </div>
                         <div class="mb-6">
                             <label for="title" class="block mb-2 text-sm font-medium ">Judul/Kegiatan</label>
                             <input type="text" name="title"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Judul/Kegiatan" required="" value="{{ old('title') }}">
+                                placeholder="Judul/Kegiatan" value="{{ old('title') }}">
                         </div>
                         <div class="mb-6">
                             <label for="instansiMitra" class="block mb-2 text-sm font-medium ">Instansi Mitra</label>
                             <input type="text" name="instansiMitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Instansi Mitra" required="" value="{{ old('instansiMitra') }}">
+                                placeholder="Instansi Mitra" value="{{ old('instansiMitra') }}">
                         </div>
                         <div class="mb-6">
                             <label for="jenisMitra" class="block mb-2 text-sm font-medium ">Jenis Mitra</label>
                             <input type="text" name="jenisMitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Jenis Mitra" required="" value="{{ old('jenisMitra') }}">
+                                placeholder="Jenis Mitra" value="{{ old('jenisMitra') }}">
                         </div>
                         <div class="mb-6">
                             <label for="tanggalPengesahan" class="block mb-2 text-sm font-medium ">Tanggal
                                 Pengesahan</label>
                             <input type="date" name="tanggalPengesahan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Pengesahan" required="" value="{{ old('tanggalPengesahan') }}">
+                                placeholder="Tanggal Pengesahan" value="{{ old('tanggalPengesahan') }}">
                         </div>
 
                     </div>
@@ -76,13 +76,13 @@
                             <label for="tanggalBerakhir" class="block mb-2 text-sm font-medium ">Tanggal Berakhir</label>
                             <input type="date" name="tanggalBerakhir"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Berakhir" required="" value="{{ old('tanggalBerakhir') }}">
+                                placeholder="Tanggal Berakhir" value="{{ old('tanggalBerakhir') }}">
                         </div>
                         <div class="mb-6">
                             <label for="durasi" class="block mb-2 text-sm font-medium ">Durasi</label>
                             <input type="number" name="durasi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Durasi" required="" value="{{ old('durasi') }}">
+                                placeholder="Durasi" value="{{ old('durasi') }}">
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
@@ -126,7 +126,7 @@
                                 Terealisasi</label>
                             <input type="text" name="aktifitas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kegiatan yang Telah Terealisasi" required=""
+                                placeholder="Kegiatan yang Telah Terealisasi"
                                 value="{{ old('aktifitas') }}">
                         </div>
                         <div class="mb-6">

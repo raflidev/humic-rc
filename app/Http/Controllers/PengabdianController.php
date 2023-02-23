@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\PengmasImport;
 use App\Models\Pengnas;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,15 +19,17 @@ class PengabdianController extends Controller
      */
     public function index()
     {
-        $data = DB::table('pengnas')->where('status', true)->get();
+        $data = DB::table('pengnas')->whereNotNull('faculty')->where('status', true)->get();
         $total_data = $data->count();
-        $total_pengmas_internal = DB::table('pengnas')->where('fund_type', 'internal')->where('status', true)->get()->count();
-        $total_pengmas_eksternal = DB::table('pengnas')->where('fund_type', 'eksternal')->where('status', true)->get()->count();
-        $total_pengmas_internal_regular = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'regular')->where('status', true)->get()->count();
-        $total_pengmas_internal_mandiri = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'mandiri')->where('status', true)->get()->count();
-        $total_pengmas_internal_kolabinternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi internal')->where('status', true)->get()->count();
-        $total_pengmas_internal_kolabeksternal = DB::table('pengnas')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi eksternal')->where('status', true)->get()->count();
-        return view('pengabdian', ['data' => $data, 'total_data' => $total_data, 'total_pengmas_internal' => $total_pengmas_internal, 'total_pengmas_eksternal' => $total_pengmas_eksternal, 'total_pengmas_internal_regular' => $total_pengmas_internal_regular, 'total_pengmas_internal_mandiri' => $total_pengmas_internal_mandiri, 'total_pengmas_internal_kolabinternal' => $total_pengmas_internal_kolabinternal, 'total_pengmas_internal_kolabeksternal' => $total_pengmas_internal_kolabeksternal]);
+        $total_pengmas_internal = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'internal')->where('status', true)->get()->count();
+        $total_pengmas_eksternal = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'eksternal')->where('status', true)->get()->count();
+        $total_pengmas_internal_regular = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'internal')->where('fund_scheme', 'regular')->where('status', true)->get()->count();
+        $total_pengmas_internal_mandiri = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'internal')->where('fund_scheme', 'mandiri')->where('status', true)->get()->count();
+        $total_pengmas_internal_kolabinternal = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi internal')->where('status', true)->get()->count();
+        $total_pengmas_internal_kolabeksternal = DB::table('pengnas')->whereNotNull('faculty')->where('fund_type', 'internal')->where('fund_scheme', 'kolaborasi eksternal')->where('status', true)->get()->count();
+        // grafik
+        $grafik = DB::table('pengnas')->select('faculty', DB::raw('SUM(fund) as fund'))->whereNotNull('faculty')->where('status', true)->groupBy('faculty')->get();
+        return view('pengabdian', ['data' => $data, 'total_data' => $total_data, 'total_pengmas_internal' => $total_pengmas_internal, 'total_pengmas_eksternal' => $total_pengmas_eksternal, 'total_pengmas_internal_regular' => $total_pengmas_internal_regular, 'total_pengmas_internal_mandiri' => $total_pengmas_internal_mandiri, 'total_pengmas_internal_kolabinternal' => $total_pengmas_internal_kolabinternal, 'total_pengmas_internal_kolabeksternal' => $total_pengmas_internal_kolabeksternal, 'grafik' => $grafik]);
     }
 
     /**

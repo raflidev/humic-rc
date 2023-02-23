@@ -21,7 +21,42 @@ class KerjasamaController extends Controller
      */
     public function index()
     {
-        return view('kerjasama');
+        $dl_ai = DB::table('ai')->where('status', true)->where('lndn', 'Dalam Negeri')->get()->count();
+        $dl_moa = DB::table('moa')->where('status', true)->where('lndn', 'Dalam Negeri')->get()->count();
+        $dl_mou = DB::table('mou')->where('status', true)->where('lndn', 'Dalam Negeri')->get()->count();
+        // get unique mitra
+        $dl_mitra_ai = DB::table('ai')->where('status', true)->where('lndn', 'Dalam Negeri')->distinct()->get(['partner_name']);
+        $dl_mitra_moa = DB::table('moa')->where('status', true)->where('lndn', 'Dalam Negeri')->distinct()->get(['partner_name']);
+        $dl_mitra_mou = DB::table('mou')->where('status', true)->where('lndn', 'Dalam Negeri')->distinct()->get(['partner_name']);
+        // join table ai, mou, moa
+        $dl_mitra = $dl_mitra_ai->merge($dl_mitra_moa)->merge($dl_mitra_mou)->unique('partner_name')->count();
+
+
+        $ln_ai = DB::table('ai')->where('status', true)->where('lndn', 'Luar Negeri')->get()->count();
+        $ln_moa = DB::table('moa')->where('status', true)->where('lndn', 'Luar Negeri')->get()->count();
+        $ln_mou = DB::table('mou')->where('status', true)->where('lndn', 'Luar Negeri')->get()->count();
+        // get unique mitra
+        $ln_mitra_ai = DB::table('ai')->where('status', true)->where('lndn', 'Luar Negeri')->distinct()->get(['partner_name']);
+        $ln_mitra_moa = DB::table('moa')->where('status', true)->where('lndn', 'Luar Negeri')->distinct()->get(['partner_name']);
+        $ln_mitra_mou = DB::table('mou')->where('status', true)->where('lndn', 'Luar Negeri')->distinct()->get(['partner_name']);
+        // join table ai, mou, moa
+        $ln_mitra = $ln_mitra_ai->merge($ln_mitra_moa)->merge($ln_mitra_mou)->unique('partner_name')->count();
+
+
+        $grafik = [strval($dl_ai + $dl_moa + $dl_ai), strval($ln_ai + $ln_moa + $ln_mou)];
+
+
+        return view('kerjasama', [
+            'dl_ai' => $dl_ai,
+            'dl_moa' => $dl_moa,
+            'dl_mou' => $dl_mou,
+            'ln_ai' => $ln_ai,
+            'ln_moa' => $ln_moa,
+            'ln_mou' => $ln_mou,
+            'dl_mitra' => $dl_mitra,
+            'ln_mitra' => $ln_mitra,
+            'grafik' => $grafik
+        ]);
     }
 
     public function index_mou()
@@ -135,12 +170,13 @@ class KerjasamaController extends Controller
             'date_start' => $request->tanggalPengesahan,
             'date_end' => $request->tanggalBerakhir,
             'duration' => $request->durasi,
-            'status' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'pnp' => $request->pnp,
             'akd' => $request->akd,
             'file' => $request->filemou,
             'activity_real' => $request->aktifitas,
+            'status' => false,
         ]);
 
         return redirect()->route('kerjasama.mou');
@@ -177,12 +213,13 @@ class KerjasamaController extends Controller
             'date_start' => $request->tanggalPengesahan,
             'date_end' => $request->tanggalBerakhir,
             'duration' => $request->durasi,
-            'status' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'pnp' => $request->pnp,
             'akd' => $request->akd,
             'link' => $request->link,
             'activity_real' => $request->aktifitas,
+            'status' => false
         ]);
 
         $moa->save();
@@ -215,11 +252,11 @@ class KerjasamaController extends Controller
             'partner_name' => $request->instansiMitra,
             'partner_type' => $request->jenisMitra,
             'date' => $request->tanggalPenandatangan,
-            'status_ai' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'link' => $request->link,
             'activity_real' => $request->aktifitas,
-            'status' => 'false'
+            'status' => false
         ]);
 
         $ai->save();
@@ -283,7 +320,7 @@ class KerjasamaController extends Controller
             'date_start' => $request->tanggalPengesahan,
             'date_end' => $request->tanggalBerakhir,
             'duration' => $request->durasi,
-            'status' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'pnp' => $request->pnp,
             'akd' => $request->akd,
@@ -307,7 +344,7 @@ class KerjasamaController extends Controller
             'date_start' => $request->tanggalPengesahan,
             'date_end' => $request->tanggalBerakhir,
             'duration' => $request->durasi,
-            'status' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'pnp' => $request->pnp,
             'akd' => $request->akd,
@@ -329,13 +366,34 @@ class KerjasamaController extends Controller
             'partner_name' => $request->instansiMitra,
             'partner_type' => $request->jenisMitra,
             'date' => $request->tanggalPenandatangan,
-            'status_ai' => $request->status,
+            'status_real' => $request->status,
             'lndn' => $request->lndn,
             'link' => $request->link,
             'activity_real' => $request->aktifitas,
             'status' => 'false'
         ]);
 
+        return redirect()->route('kerjasama.ai');
+    }
+
+    public function verifikasi_moa($id)
+    {
+        $moa = Moa::where('moa_id', $id);
+        $moa->update(['status' => true]);
+        return redirect()->route('kerjasama.moa');
+    }
+
+    public function verifikasi_mou($id)
+    {
+        $mou = Mou::where('mou_id', $id);
+        $mou->update(['status' => true]);
+        return redirect()->route('kerjasama.mou');
+    }
+
+    public function verifikasi_ai($id)
+    {
+        $ai = Ai::where('ai_id', $id);
+        $ai->update(['status' => true]);
         return redirect()->route('kerjasama.ai');
     }
 

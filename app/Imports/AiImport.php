@@ -25,7 +25,7 @@ class AiImport implements ToModel, WithHeadingRow
             "partner_name" => $row['instansi_mitra'],
             "partner_type" => $row['jenis'],
             "date" => Carbon::parse($row['tgl_penandatanganan']),
-            "status_ai" => $row['status'],
+            "status_real" => $row['status'],
             "lndn" => $row['dn_ln'],
             "link" => $row['link_eviden'],
             "activity_real" => $row['kegiatan'],

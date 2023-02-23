@@ -22,6 +22,7 @@ class Mou extends Model
         'date_start',
         'date_end',
         'duration',
+        'status_real',
         'status',
         'lndn',
         'pnp',

@@ -162,7 +162,7 @@
                             <td>{{ $r->skill_group }}</td>
                             <td>{{ $r->title_abdimas }}</td>
                             <td>{{ $r->head }}</td>
-                            <td>{{ $r->fund }}</td>
+                            <td>Rp. {{ number_format($r->fund) }}</td>
                             <td>{{ $r->society }}</td>
                             <td>{{ $r->society_address }}</td>
                             <td>{{ $r->city }}</td>
@@ -179,8 +179,9 @@
     @section('scripts')
         <script>
             const labels = [
-                'Fakultas Informatika',
-                'Fakultas Elektro',
+                <?php foreach ($grafik as $value) {
+                    echo '"' . $value->faculty . '",';
+                } ?>
             ];
 
             const data = {
@@ -190,7 +191,9 @@
                     backgroundColor: 'rgba(255, 159, 64, 0.8)',
                     borderColor: '#fff',
                     color: 'rgba(255, 159, 64, 0.2)',
-                    data: [9900000,6900000],
+                    data: [<?php foreach ($grafik as $value) {
+                echo '"' . $value->fund . '",';
+            } ?>],
                 }]
             };
 

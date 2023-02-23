@@ -28,7 +28,7 @@ class MoaImport implements ToModel, WithHeadingRow
             'date_start' => Carbon::parse($row['tanggal_pengesahan']),
             'date_end' => Carbon::parse($row['tanggal_berakhir']),
             'duration' => $row['durasi'],
-            'status' => $row['status'],
+            'status_real' => $row['status'],
             'lndn' => $row['ln_dn'],
             'pnp' => $row['p_np'],
             'akd' => $row['akd_nonakd'],

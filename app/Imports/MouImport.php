@@ -26,12 +26,13 @@ class MouImport implements ToModel, WithHeadingRow
             'date_start' => $row['tanggal_pengesahan'],
             'date_end' => $row['tanggal_berakhir'],
             'duration' => $row['durasi'],
-            'status' => $row['status'],
+            'status_real' => $row['status'],
             'lndn' => $row['ln_dn'],
             'pnp' => $row['p_np'],
             'akd' => $row['akd_nonakd'],
             'file' => $row['file_mou'],
             'activity_real' => $row['kegiatan'],
+            'status' => false
         ]);
     }
 }

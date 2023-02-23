@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string("akd");
             $table->string("file")->nullable();
             $table->string("activity_real")->nullable();
-            $table->string("status");
+            $table->string("status_real")->nullable();
+            $table->boolean("status");
             $table->timestamps();
         });
     }

@@ -43,14 +43,14 @@
                             <label for="nomormitra" class="block mb-2 text-sm font-medium ">Nomor Mitra</label>
                             <input type="text" name="nomormitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nomor Mitra" required=""
+                                placeholder="Nomor Mitra"
                                 value="{{ old('nomormitra', $data->partner_number) }}">
                         </div>
                         <div class="mb-6">
                             <label for="title" class="block mb-2 text-sm font-medium ">Judul/Kegiatan</label>
                             <input type="text" name="title"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Judul/Kegiatan" required="" value="{{ old('title', $data->title) }}">
+                                placeholder="Judul/Kegiatan" value="{{ old('title', $data->title) }}">
                         </div>
                         <div class="mb-6">
                             <label for="instansiMitra" class="block mb-2 text-sm font-medium ">Instansi Mitra</label>
@@ -71,7 +71,7 @@
                                 Pengesahan</label>
                             <input type="date" name="tanggalPengesahan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Pengesahan" required=""
+                                placeholder="Tanggal Pengesahan"
                                 value="{{ old('tanggalPengesahan', $data->date_start) }}">
                         </div>
 
@@ -82,14 +82,14 @@
                             <label for="tanggalBerakhir" class="block mb-2 text-sm font-medium ">Tanggal Berakhir</label>
                             <input type="date" name="tanggalBerakhir"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Tanggal Berakhir" required=""
+                                placeholder="Tanggal Berakhir"
                                 value="{{ old('tanggalBerakhir', $data->date_end) }}">
                         </div>
                         <div class="mb-6">
                             <label for="durasi" class="block mb-2 text-sm font-medium ">Durasi</label>
                             <input type="number" name="durasi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Durasi" required="" value="{{ old('durasi', $data->duration) }}">
+                                placeholder="Durasi" value="{{ old('durasi', $data->duration) }}">
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
@@ -133,7 +133,7 @@
                                 Terealisasi</label>
                             <input type="text" name="aktifitas"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Kegiatan yang Telah Terealisasi" required=""
+                                placeholder="Kegiatan yang Telah Terealisasi"
                                 value="{{ old('aktifitas', $data->activity_real) }}">
                         </div>
                         <div class="mb-6">

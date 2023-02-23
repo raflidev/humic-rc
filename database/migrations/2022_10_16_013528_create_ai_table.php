@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string("partner_name");
             $table->string("partner_type");
             $table->date("date")->nullable();
-            $table->string("status_ai");
             $table->string("lndn");
             $table->string("link")->nullable();
             $table->string("activity_real")->nullable();
-            $table->string("status");
+            $table->string("status_real")->nullable();
+            $table->boolean("status");
             $table->timestamps();
         });
     }
