@@ -106,14 +106,14 @@ class UserController extends Controller
         ]);
 
         $user->save();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function verifikasi($id)
     {
         $user = User::find($id);
         $user->update(['status' => true]);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Berhasil Verifikasi Data');
     }
 
     /**
@@ -154,7 +154,7 @@ class UserController extends Controller
             'nip' => $request->nip,
             'password' => bcrypt($request->password),
         ]);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Berhasil Mengubah Data');
     }
 
     /**
@@ -167,7 +167,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id);
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Berhasil Hapus Data');
     }
 
     public function logout(Request $request)
@@ -175,6 +175,6 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('research.index');
+        return redirect()->route('research.index')->with('success', 'Berhasil Logout');
     }
 }

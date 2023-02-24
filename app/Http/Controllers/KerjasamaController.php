@@ -78,6 +78,27 @@ class KerjasamaController extends Controller
         return view('kerjasama_ai', ['data' => $data]);
     }
 
+    public function data_ai()
+    {
+        $data = DB::table('ai')->get();
+        // dd($data);
+        return view('kerjasama_data_ai', ['data' => $data]);
+    }
+
+    public function data_moa()
+    {
+        $data = DB::table('moa')->get();
+        // dd($data);
+        return view('kerjasama_data_moa', ['data' => $data]);
+    }
+
+    public function data_mou()
+    {
+        $data = DB::table('mou')->get();
+        // dd($data);
+        return view('kerjasama_data_mou', ['data' => $data]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -105,7 +126,7 @@ class KerjasamaController extends Controller
     public function excel_import_moa_post(Request $request)
     {
         Excel::import(new MoaImport, $request->file('File'));
-        return back();
+        return redirect()->route('kerjasama.moa')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function excel_import_mou()
@@ -116,7 +137,7 @@ class KerjasamaController extends Controller
     public function excel_import_mou_post(Request $request)
     {
         Excel::import(new MouImport, $request->file('File'));
-        return back();
+        return redirect()->route('kerjasama.mou')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function excel_import_ai()
@@ -127,7 +148,7 @@ class KerjasamaController extends Controller
     public function excel_import_ai_post(Request $request)
     {
         Excel::import(new AiImport, $request->file('File'));
-        return back();
+        return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Menambahkan Data');
     }
 
 
@@ -179,7 +200,7 @@ class KerjasamaController extends Controller
             'status' => false,
         ]);
 
-        return redirect()->route('kerjasama.mou');
+        return redirect()->route('kerjasama.mou')->with('success', 'Berhasil Menambahkan Data');
     }
     public function store_moa(Request $request)
     {
@@ -224,7 +245,7 @@ class KerjasamaController extends Controller
 
         $moa->save();
 
-        return redirect()->route('kerjasama.moa');
+        return redirect()->route('kerjasama.moa')->with('success', 'Berhasil Menambahkan Data');
     }
     public function store_ai(Request $request)
     {
@@ -261,7 +282,7 @@ class KerjasamaController extends Controller
 
         $ai->save();
 
-        return redirect()->route('kerjasama.ai');
+        return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -327,7 +348,7 @@ class KerjasamaController extends Controller
             'link' => $request->link,
             'activity_real' => $request->aktifitas,
         ]);
-        return redirect()->route('kerjasama.moa');
+        return redirect()->route('kerjasama.moa')->with('success', 'Berhasil Update Data');
     }
 
     public function update_mou(Request $request, $id)
@@ -351,7 +372,7 @@ class KerjasamaController extends Controller
             'file' => $request->filemou,
             'activity_real' => $request->aktifitas,
         ]);
-        return redirect()->route('kerjasama.mou');
+        return redirect()->route('kerjasama.mou')->with('success', 'Berhasil Update Data');
     }
 
     public function update_ai(Request $request, $id)
@@ -373,28 +394,28 @@ class KerjasamaController extends Controller
             'status' => 'false'
         ]);
 
-        return redirect()->route('kerjasama.ai');
+        return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Update Data');
     }
 
     public function verifikasi_moa($id)
     {
         $moa = Moa::where('moa_id', $id);
         $moa->update(['status' => true]);
-        return redirect()->route('kerjasama.moa');
+        return redirect()->route('kerjasama.moa')->with('success', 'Berhasil Verfikasi Data');
     }
 
     public function verifikasi_mou($id)
     {
         $mou = Mou::where('mou_id', $id);
         $mou->update(['status' => true]);
-        return redirect()->route('kerjasama.mou');
+        return redirect()->route('kerjasama.mou')->with('success', 'Berhasil Verfikasi Data');
     }
 
     public function verifikasi_ai($id)
     {
         $ai = Ai::where('ai_id', $id);
         $ai->update(['status' => true]);
-        return redirect()->route('kerjasama.ai');
+        return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Verfikasi Data');
     }
 
     /**
@@ -407,18 +428,18 @@ class KerjasamaController extends Controller
     {
         $moa = Moa::where('moa_id', $id);
         $moa->delete();
-        return redirect()->route('kerjasama.moa');
+        return redirect()->route('kerjasama.moa')->with('success', 'Berhasil Hapus Data');
     }
     public function destroy_mou($id)
     {
         $mou = Mou::where('mou_id', $id);
         $mou->delete();
-        return redirect()->route('kerjasama.mou');
+        return redirect()->route('kerjasama.mou')->with('success', 'Berhasil Hapus Data');
     }
     public function destroy_ai($id)
     {
         $ai = Ai::where('ai_id', $id);
         $ai->delete();
-        return redirect()->route('kerjasama.ai');
+        return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Hapus Data');
     }
 }

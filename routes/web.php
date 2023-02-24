@@ -67,6 +67,7 @@ Route::post('/pengabdian/input/import', [PengabdianController::class, 'excel_imp
 Route::get('/kerjasama', [KerjasamaController::class, 'index'])->name('kerjasama.index');
 // MOA
 Route::get('/kerjasama/moa', [KerjasamaController::class, 'index_moa'])->name('kerjasama.moa')->middleware('auth');
+Route::get('/kerjasama/data/moa', [KerjasamaController::class, 'data_moa'])->name('kerjasama.data_moa');
 Route::get('/kerjasama/moa/add', [KerjasamaController::class, 'create_moa'])->name('kerjasama.create_moa')->middleware('auth');
 Route::get('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'edit_moa'])->name('kerjasama.edit_moa')->middleware('auth');
 Route::put('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'update_moa'])->name('kerjasama.update_moa')->middleware('auth');
@@ -79,6 +80,7 @@ Route::post('/kerjasama/moa/import', [KerjasamaController::class, 'excel_import_
 
 // MOU
 Route::get('/kerjasama/mou', [KerjasamaController::class, 'index_mou'])->name('kerjasama.mou')->middleware('auth');
+Route::get('/kerjasama/data/mou', [KerjasamaController::class, 'data_mou'])->name('kerjasama.data_mou');
 Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->name('kerjasama.create_mou')->middleware('auth');
 Route::get('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'edit_mou'])->name('kerjasama.edit_mou')->middleware('auth');
 Route::put('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'update_mou'])->name('kerjasama.update_mou')->middleware('auth');
@@ -92,6 +94,7 @@ Route::post('/kerjasama/mou/import', [KerjasamaController::class, 'excel_import_
 
 
 Route::get('/kerjasama/ai', [KerjasamaController::class, 'index_ai'])->name('kerjasama.ai')->middleware('auth');
+Route::get('/kerjasama/data/ai', [KerjasamaController::class, 'data_ai'])->name('kerjasama.data_ai');
 Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name('kerjasama.create_ai')->middleware('auth');
 Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');
 Route::put('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'update_ai'])->name('kerjasama.update_ai')->middleware('auth');

@@ -114,9 +114,9 @@
             </div>
         </div>
         <div class="pt-10 px-16">
-            <a href="{{ route('kerjasama.moa') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data MOA</a>
-            <a href="{{ route('kerjasama.mou') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data MOU</a>
-            <a href="{{ route('kerjasama.ai') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data AI</a>
+            <a href="{{ route('kerjasama.data_moa') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data MOA</a>
+            <a href="{{ route('kerjasama.data_mou') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data MOU</a>
+            <a href="{{ route('kerjasama.data_ai') }}" class="py-2 px-4 bg-yellow-400 rounded hover:bg-yellow-500">Data AI</a>
         </div>
     @endsection
 

@@ -20,7 +20,7 @@
                         <div class="text-sm font-semibold uppercase">Pengabdian Masyarakat</div>
                     </a>
                     <a href="{{ route('kerjasama.index') }}"
-                        class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('kerjasama.index') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
+                        class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('kerjasama.index') || Route::is('kerjasama.data_ai') || Route::is('kerjasama.data_mou') || Route::is('kerjasama.data_moa') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
                         <div class="w-5 text-center">
                             <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                         </div>
@@ -63,28 +63,28 @@
                                     <div class="text-sm font-semibold uppercase">Input Penelitian</div>
                                 </a>
                                 <a href="{{ route('pengabdian.create_index') }}"
-                                    class="flex space-x-3 {{ Route::is('pengabdian.create_index') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    class="flex space-x-3 {{ Route::is('pengabdian.create_index') || Route::is('pengabdian.create') || Route::is('pengabdian.edit') || Route::is('pengabdian.excel_import')  ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-people-carry hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Pengabdian Masyarakat</div>
                                 </a>
                                 <a href="{{ route('kerjasama.moa') }}"
-                                    class="flex space-x-3 {{ Route::is('kerjasama.moa') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    class="flex space-x-3 {{ Route::is('kerjasama.moa') || Route::is('kerjasama.create_moa') || Route::is('kerjasama.edit_moa') || Route::is('kerjasama.excel_import_moa') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Kerja Sama - MOA</div>
                                 </a>
                                 <a href="{{ route('kerjasama.mou') }}"
-                                    class="flex space-x-3 {{ Route::is('kerjasama.mou') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    class="flex space-x-3 {{ Route::is('kerjasama.mou') || Route::is('kerjasama.create_mou') || Route::is('kerjasama.edit_mou') || Route::is('kerjasama.excel_import_mou') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Kerja Sama - MOU</div>
                                 </a>
                                 <a href="{{ route('kerjasama.ai') }}"
-                                    class="flex space-x-3 {{ Route::is('kerjasama.ai') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    class="flex space-x-3 {{ Route::is('kerjasama.ai') || Route::is('kerjasama.create_ai') || Route::is('kerjasama.edit_ai') || Route::is('kerjasama.excel_import_ai') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
                                     <div class="w-5 text-center">
                                         <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                                     </div>

@@ -4,6 +4,12 @@
     @include('layout.sidebar')
     <div class="w-10/12" id="sidebar">
         <div class="bg-slate-700 px-16 py-10 text-white">
+            @if (Session::has('success'))
+                <div id="success"
+                    class="w-full px-5 bg-green-500 text-white py-3 rounded my-4 items-center">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard</h1>

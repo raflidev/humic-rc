@@ -60,7 +60,7 @@ class ResearchController extends Controller
     public function excel_import_post(Request $request)
     {
         Excel::import(new ResearchImport, $request->file('File'));
-        return back();
+        return redirect()->route('research.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -173,7 +173,7 @@ class ResearchController extends Controller
 
         $research->save();
 
-        return redirect()->route('research.create_index');
+        return redirect()->route('research.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -283,7 +283,7 @@ class ResearchController extends Controller
             'description' => $request->keterangan,
         ]);
 
-        return redirect()->route('research.create_index');
+        return redirect()->route('research.create_index')->with('success', 'Berhasil Update Data');;
     }
 
     public function verifikasi($id)
@@ -302,6 +302,6 @@ class ResearchController extends Controller
     {
         $research = Research::where('research_id', $id);
         $research->delete();
-        return redirect()->route('research.create_index');
+        return redirect()->route('research.create_index')->with('success', 'Berhasil Hapus Data');;
     }
 }

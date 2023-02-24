@@ -57,7 +57,7 @@ class PengabdianController extends Controller
     public function excel_import_post(Request $request)
     {
         Excel::import(new PengmasImport, $request->file('File'));
-        return back();
+        return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -145,7 +145,7 @@ class PengabdianController extends Controller
 
         $pengnas->save();
 
-        return redirect()->route('pengabdian.create_index');
+        return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**
@@ -231,7 +231,7 @@ class PengabdianController extends Controller
             'fund_type' => $request->jenis_pendanaan,
         ]);
 
-        return redirect()->route('pengabdian.create_index');
+        return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Update Data');
     }
 
     public function verifikasi($id)
@@ -251,6 +251,6 @@ class PengabdianController extends Controller
     {
         $pengnas = Pengnas::where('pengnas_id', $id);
         $pengnas->delete();
-        return redirect()->route('pengabdian.create_index');
+        return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Hapus Data');
     }
 }
