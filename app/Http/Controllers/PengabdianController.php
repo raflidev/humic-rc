@@ -39,7 +39,12 @@ class PengabdianController extends Controller
      */
     public function create_index()
     {
-        $data = DB::table('pengnas')->get();
+        if (Auth::user()->role == "user") {
+            $name = "%" . Auth::user()->name . "%";
+            $data = DB::table('pengnas')->where("head", 'like', "$name")->orWhere('lecturer', 'like', "$name")->get();
+        } else {
+            $data = DB::table('pengnas')->get();
+        }
         return view('admin.pengabdian.pengabdian', ['pengabdian' => $data]);
     }
 

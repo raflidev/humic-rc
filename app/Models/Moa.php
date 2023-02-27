@@ -12,6 +12,7 @@ class Moa extends Model
     protected $table = 'moa';
 
     protected $fillable = [
+        'user_id',
         'year',
         'faculty',
         'moa_number',

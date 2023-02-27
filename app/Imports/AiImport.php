@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Ai;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -17,6 +18,7 @@ class AiImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Ai([
+            'user_id' => Auth::user()->id,
             "year" => $row['tahun'],
             "faculty" => $row['fakultas'],
             "telu_number" => $row['no_telu'],

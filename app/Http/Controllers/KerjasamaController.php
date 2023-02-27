@@ -9,6 +9,7 @@ use App\Models\Ai;
 use App\Models\Moa;
 use App\Models\Mou;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -61,41 +62,49 @@ class KerjasamaController extends Controller
 
     public function index_mou()
     {
-        $data = DB::table('mou')->get();
+        if (Auth::user()->role == "user") {
+            $data = DB::table('mou')->where('user_id', Auth::user()->id)->get();
+        } else {
+            $data = DB::table('mou')->get();
+        }
         return view('kerjasama_mou', ['data' => $data]);
     }
 
     public function index_moa()
     {
-        $data = DB::table('moa')->get();
+        if (Auth::user()->role == "user") {
+            $data = DB::table('moa')->where('user_id', Auth::user()->id)->get();
+        } else {
+            $data = DB::table('moa')->get();
+        }
         return view('kerjasama_moa', ['data' => $data]);
     }
 
     public function index_ai()
     {
-        $data = DB::table('ai')->get();
-        // dd($data);
+        if (Auth::user()->role == "user") {
+            $data = DB::table('ai')->where('user_id', Auth::user()->id)->get();
+        } else {
+            $data = DB::table('ai')->get();
+        }
         return view('kerjasama_ai', ['data' => $data]);
     }
 
     public function data_ai()
     {
         $data = DB::table('ai')->get();
-        // dd($data);
         return view('kerjasama_data_ai', ['data' => $data]);
     }
 
     public function data_moa()
     {
         $data = DB::table('moa')->get();
-        // dd($data);
         return view('kerjasama_data_moa', ['data' => $data]);
     }
 
     public function data_mou()
     {
         $data = DB::table('mou')->get();
-        // dd($data);
         return view('kerjasama_data_mou', ['data' => $data]);
     }
 
@@ -181,6 +190,7 @@ class KerjasamaController extends Controller
         ]);
 
         DB::table('mou')->insert([
+            'user_id' => Auth::user()->id,
             'year' => $request->tahun,
             'faculty' => $request->fakultas,
             'telu_number' => $request->telunumber,
@@ -224,6 +234,7 @@ class KerjasamaController extends Controller
         ]);
 
         $moa = new Moa([
+            'user_id' => Auth::user()->id,
             'year' => $request->tahun,
             'faculty' => $request->fakultas,
             'moa_number' => $request->moanumber,
@@ -265,6 +276,7 @@ class KerjasamaController extends Controller
         ]);
 
         $ai = new Ai([
+            'user_id' => Auth::user()->id,
             'year' => $request->tahun,
             'faculty' => $request->fakultas,
             'telu_number' => $request->telunumber,

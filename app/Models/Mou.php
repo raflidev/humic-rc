@@ -12,6 +12,7 @@ class Mou extends Model
     protected $table = 'mou';
 
     protected $fillable = [
+        'user_id',
         'year',
         'faculty',
         'telu_number',

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('ai', function (Blueprint $table) {
             $table->id("ai_id");
+            $table->string('user_id');
             $table->string("year");
             $table->string("faculty");
             $table->string("telu_number");

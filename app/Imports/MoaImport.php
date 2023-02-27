@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Moa;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -19,6 +20,7 @@ class MoaImport implements ToModel, WithHeadingRow
         // dd($row['fakultas']);
         return new Moa([
             'year' => strval($row['tahun']),
+            'user_id' => Auth::user()->id,
             'faculty' => $row['fakultas'],
             'moa_number' => $row['nomor_moa'],
             'moa_number_partner' => $row['nomor_moa_mitra'],

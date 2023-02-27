@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('moa', function (Blueprint $table) {
             $table->id("moa_id");
+            $table->string('user_id');
             $table->string("year");
             $table->string("faculty");
             $table->string("moa_number");

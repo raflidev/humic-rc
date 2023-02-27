@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\Research;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -18,6 +19,7 @@ class ResearchImport implements ToModel, WithHeadingRow
     {
         // dd($row);
         return new Research([
+            'user_id' => Auth::user()->id,
             'faculty' => $row['fakultas'],
             'study_program' => $row['prodi'],
             'research_title' => $row['judul_penelitian'],

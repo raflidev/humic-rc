@@ -45,7 +45,7 @@ class ResearchController extends Controller
     {
         if (Auth::user()->role == "user") {
             $name = "%" . Auth::user()->name . "%";
-            $research = DB::table('research')->where("head_name", 'like', "$name")->orWhere('member', 'like', "$name")->get();
+            $research = DB::table('research')->where("head_name", 'like', "$name")->orWhere('user_id', Auth::user()->id)->orWhere('member', 'like', "$name")->get();
         } else {
             $research = DB::table('research')->get();
         }
@@ -122,6 +122,7 @@ class ResearchController extends Controller
         if (Auth::user()->role == 'user') {
             $research = new Research([
                 'faculty' => $request->fakultas,
+                'user_id' => Auth::user()->id,
                 'study_program' => $request->prodi,
                 'research_title' => $request->judul_penelitian,
                 'skill_group' => $request->kelompok_keahlian,
@@ -144,9 +145,12 @@ class ResearchController extends Controller
                 'description' => $request->keterangan,
                 'status' => False,
             ]);
+
+            // dd($research);
         } else {
             $research = new Research([
                 'faculty' => $request->fakultas,
+                'user_id' => Auth::user()->id,
                 'study_program' => $request->prodi,
                 'research_title' => $request->judul_penelitian,
                 'skill_group' => $request->kelompok_keahlian,
@@ -167,7 +171,7 @@ class ResearchController extends Controller
                 'date_end' => $request->tanggal_kontrak_end,
                 'contract_number' => $request->nomor_kontrak,
                 'description' => $request->keterangan,
-                'status' => '1',
+                'status' => true,
             ]);
         }
 

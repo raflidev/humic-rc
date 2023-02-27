@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Mou;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -16,6 +17,7 @@ class MouImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Mou([
+            'user_id' => Auth::user()->id,
             'year' => $row['tahun'],
             'faculty' => $row['fakultas'],
             'telu_number' => $row['nomor_telu'],

@@ -12,6 +12,7 @@ class Ai extends Model
     protected $table = 'ai';
 
     protected $fillable = [
+        'user_id',
         "year",
         "faculty",
         "telu_number",
