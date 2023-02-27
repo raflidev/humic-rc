@@ -85,21 +85,25 @@
                         </div>
                         <div class="mb-6">
                             <label for="durasi" class="block mb-2 text-sm font-medium ">Durasi</label>
-                            <input type="text" name="durasi"
+                            <input type="number" name="durasi"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Durasi" required="" value="{{ old('durasi', $data->duration) }}">
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
-                            <input type="text" name="status"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Status" required="" value="{{ old('status', $data->status) }}">
+                            <select name="status" id="" {{ old('status', $data->status_real) }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->status_real}}">{{$data->status_real}}</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="lndn" class="block mb-2 text-sm font-medium ">Luar Negeri / Dalam
                                 Negeri</label>
                             <select name="lndn" id="" {{ old('lndn', $data->lndn) }}
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->lndn}}">{{$data->lndn}}</option>
                                 <option value="Luar Negeri">Luar Negeri</option>
                                 <option value="Dalam Negeri">Dalam Negeri</option>
                             </select>
@@ -108,6 +112,7 @@
                             <label for="pnp" class="block mb-2 text-sm font-medium ">Profit / Non Profit</label>
                             <select name="pnp" id="" {{ old('pnp', $data->pnp) }}
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->pnp}}">{{$data->pnp}}</option>
                                 <option value="Profit">Profit</option>
                                 <option value="Non Profit">Non Profit</option>
                             </select>
@@ -116,6 +121,7 @@
                             <label for="akd" class="block mb-2 text-sm font-medium ">Akademik / Non</label>
                             <select name="akd" id="" {{ old('akd', $data->akd) }}
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->akd}}">{{$data->akd}}</option>
                                 <option value="Akademik">Akademik</option>
                                 <option value="Non Akademik">Non Akademik</option>
                             </select>

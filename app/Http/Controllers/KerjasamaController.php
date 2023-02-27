@@ -403,7 +403,7 @@ class KerjasamaController extends Controller
             'lndn' => $request->lndn,
             'link' => $request->link,
             'activity_real' => $request->aktifitas,
-            'status' => 'false'
+            'status' => false
         ]);
 
         return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Update Data');

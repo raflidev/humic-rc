@@ -21,7 +21,7 @@
                     <div class="w-1/2">
                         <div class="mb-6">
                             <label for="tahun" class="block mb-2 text-sm font-medium ">Tahun</label>
-                            <input type="text" name="tahun"
+                            <input type="number" name="tahun"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun" required="" value="{{ old('tahun') }}">
                         </div>

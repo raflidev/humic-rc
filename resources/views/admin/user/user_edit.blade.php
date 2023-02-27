@@ -18,6 +18,11 @@
             <form action="{{ route('user.update', ['id' => $user[0]->id]) }}" method="post">
                 @csrf
                 @method('PUT')
+                @if(Route::is('user.edit_admin'))
+                    <input type="text" name="tipe" hidden value="superadmin">
+                @else
+                    <input type="text" name="tipe" hidden value="user">
+                @endif
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
@@ -28,7 +33,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="nip" class="block mb-2 text-sm font-medium ">nip</label>
-                            <input type="text" name="nip"
+                            <input type="number" name="nip"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="nip" required="" value="{{ old('nip', $user[0]->nip) }}">
                         </div>

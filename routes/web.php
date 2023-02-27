@@ -50,6 +50,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 
 // CRUD ADMIN
 Route::get('/admin/input', [UserController::class, 'index_admin'])->name('user.index_admin')->middleware('auth', 'superadmin');
+Route::get('/admin/input/add', [UserController::class, 'create_admin'])->name('user.create_admin')->middleware('auth', 'superadmin');
+Route::get('/admin/input/edit/{id}', [UserController::class, 'edit_admin'])->name('user.edit_admin')->middleware('auth', 'superadmin');
 
 // CRUD PENGNAS
 Route::get('/pengabdian', [PengabdianController::class, 'index'])->name('pengabdian.index');
@@ -116,3 +118,7 @@ Route::post('/login', [UserController::class, 'login'])->name('login.action');
 
 Route::get('/register', [UserController::class, 'register_index'])->name('register');;
 Route::post('/register', [UserController::class, 'register'])->name('register.action');
+
+// Profile
+Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
+Route::put('/user/profile/{id}', [UserController::class, 'profile_post'])->name('user.profile_post')->middleware('auth');

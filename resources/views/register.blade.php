@@ -27,7 +27,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="text" class="block mb-2 text-sm font-medium ">Nama</label>
-                                <input type="text" id="name" name="name"
+                                <input type="text" id="name" name="name" placeholder="Nama"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="" required="">
                                 @if ($errors->first('nama'))
@@ -36,7 +36,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="nip" class="block mb-2 text-sm font-medium ">NIP</label>
-                                <input type="number" name="nip" id="nip"
+                                <input type="number" name="nip" id="nip" placeholder="NIP"
                                     class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="" required="">
                                 @if ($errors->first('nip'))

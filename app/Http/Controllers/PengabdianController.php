@@ -41,7 +41,7 @@ class PengabdianController extends Controller
     {
         if (Auth::user()->role == "user") {
             $name = "%" . Auth::user()->name . "%";
-            $data = DB::table('pengnas')->where("head", 'like', "$name")->orWhere('lecturer', 'like', "$name")->get();
+            $data = DB::table('pengnas')->where("head", 'like', "$name")->orWhere('user_id', Auth::user()->id)->orWhere('lecturer', 'like', "$name")->get();
         } else {
             $data = DB::table('pengnas')->get();
         }
@@ -103,6 +103,7 @@ class PengabdianController extends Controller
         if (Auth::user()->role == "superadmin") {
             $pengnas = new Pengnas([
                 'period' => $request->periode,
+                'user_id' => Auth::user()->id,
                 'scheme' => $request->skema,
                 'faculty' => $request->fakultas,
                 'study_program' => $request->prodi,
@@ -126,6 +127,7 @@ class PengabdianController extends Controller
         } else {
             $pengnas = new Pengnas([
                 'period' => $request->periode,
+                'user_id' => Auth::user()->id,
                 'scheme' => $request->skema,
                 'faculty' => $request->fakultas,
                 'study_program' => $request->prodi,

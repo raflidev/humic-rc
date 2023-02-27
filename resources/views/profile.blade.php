@@ -4,6 +4,12 @@
     @include('layout.sidebar')
     <div class="w-10/12" id="sidebar">
         <div class="bg-slate-700 px-16 py-10 text-white">
+            @if (Session::has('success'))
+                <div id="success"
+                    class="w-full px-5 bg-green-500 text-white py-3 rounded my-4 items-center">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard</h1>
@@ -15,26 +21,22 @@
                     <p class="">{{ $err }}</p>
                 @endforeach
             @endif
-            <form action="{{ route('user.store') }}" method="post">
+            <form action="{{ route('user.profile_post', ['id' => $user[0]->id]) }}" method="post">
                 @csrf
-                @if(Route::is('user.create_admin'))
-                    <input type="text" name="tipe" hidden value="superadmin">
-                @else
-                    <input type="text" name="tipe" hidden value="user">
-                @endif
+                @method('PUT')
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
                             <label for="nama" class="block mb-2 text-sm font-medium ">Nama</label>
                             <input type="text" name="nama"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama" required="" value="{{ old('nama') }}">
+                                placeholder="Nama" required="" value="{{ old('nama', $user[0]->name) }}">
                         </div>
                         <div class="mb-6">
                             <label for="nip" class="block mb-2 text-sm font-medium ">nip</label>
-                            <input type="number" name="nip"
+                            <input type="text" name="nip"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="nip" required="" value="{{ old('nip') }}">
+                                placeholder="nip" required="" value="{{ old('nip', $user[0]->nip) }}">
                         </div>
                         <div class="mb-6">
                             <label for="password" class="block mb-2 text-sm font-medium ">Password</label>

@@ -86,9 +86,11 @@
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
-                            <input type="text" name="status"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Status" required="" value="{{ old('status') }}">
+                            <select name="status" id="" {{ old('status') }}
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
                         </div>
                         <div class="mb-6">
                             <label for="lndn" class="block mb-2 text-sm font-medium ">Luar Negeri / Dalam

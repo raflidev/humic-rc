@@ -54,7 +54,7 @@
                                 <div class="w-5/6">
                                     <label for="jumlah_anggota" class="block mb-2 text-sm font-medium ">Jumlah
                                         Anggota</label>
-                                    <input type="text" id="jumlah_anggota" name="jumlah_anggota"
+                                    <input type="number" id="jumlah_anggota" name="jumlah_anggota"
                                         class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                         placeholder="Jumlah Anggota" required="" value="{{ old('jumlah_anggota') }}">
                                 </div>
@@ -77,7 +77,7 @@
                                 <div class="w-5/6">
                                     <label for="jumlah_anggota_mitra" class="block mb-2 text-sm font-medium ">Jumlah Anggota
                                         Mitra</label>
-                                    <input type="text" id="jumlah_anggota_mitra" name="jumlah_anggota_mitra"
+                                    <input type="number" id="jumlah_anggota_mitra" name="jumlah_anggota_mitra"
                                         class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                         placeholder="Jumlah Anggota Mitra" required=""
                                         value="{{ old('jumlah_anggota_mitra') }}">
@@ -96,7 +96,7 @@
                                 <div class="w-5/6">
                                     <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
                                         Mahasiswa</label>
-                                    <input type="text" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
+                                    <input type="number" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
                                         class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                         placeholder="Jumlah Mahasiswa" required=""
                                         value="{{ old('jumlah_mahasiswa') }}">
@@ -136,7 +136,7 @@
                         <div class="mb-6">
                             <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun
                                 Pelaksanaan</label>
-                            <input type="text" name="tahun_pelaksanaan"
+                            <input type="number" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required="" value="{{ old('tahun_pelaksanaan') }}">
                         </div>
@@ -174,16 +174,16 @@
                                 value="{{ old('dana_kelompok_masyarakat') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="brim" class="block mb-2 text-sm font-medium ">BRIN</label>
+                            <label for="brim" class="block mb-2 text-sm font-medium ">Pemberi Dana</label>
                             <input type="text" name="brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="BRIN" required="" value="{{ old('brim') }}">
+                                placeholder="Pemberi Dana" required="" value="{{ old('brim') }}">
                         </div>
                         <div class="mb-6">
-                            <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Kemenristek/BRIN</label>
+                            <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Pemberi Dana</label>
                             <input type="number" name="dana_brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Dana Kemenristek/BRIN" required="" value="{{ old('dana_brim') }}">
+                                placeholder="Dana Pemberi Dana" required="" value="{{ old('dana_brim') }}">
                         </div>
                         <div class="mb-6">
                             <label for="tanggal_kontrak_start" class="block mb-2 text-sm font-medium ">Awal Tanggal

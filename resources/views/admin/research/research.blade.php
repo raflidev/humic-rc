@@ -38,12 +38,15 @@
                         <th>Jenis Pendanaan</th>
                         <th>Kelompok Masyarakat</th>
                         <th>Dana Kelompok Masyarakat</th>
-                        <th>Kemenristek/BRIN</th>
-                        <th>Dana Kemenristek/BRIN</th>
+                        <th>Pemberi Dana</th>
+                        <th>Dana Pemberi Dana</th>
                         <th>Tanggal Kontrak</th>
                         <th>Nomor Kontrak</th>
                         <th>Keterangan</th>
                         <th>Action</th>
+                        @if (Auth::user()->role == 'user')
+                            <th>Status</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -91,6 +94,15 @@
                                       @endif
                                     @endif
                               </td>
+                              @if (Auth::user()->role == 'user')
+                              <td>
+                                    @if ($r->status == True)
+                                        <span class="bg-green-500 px-4 py-1 rounded-lg text-white">Terverifikasi</span>
+                                    @else
+                                        <span class="bg-red-500 px-4 py-1 rounded-lg text-white">Belum Terverifikasi</span>
+                                    @endif
+                              </td>
+                              @endif
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach

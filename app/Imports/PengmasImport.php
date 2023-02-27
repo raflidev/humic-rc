@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Pengnas;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -18,6 +19,7 @@ class PengmasImport implements ToModel, WithHeadingRow
 
         // dd($row);
         return new Pengnas([
+            'user_id' => Auth::user()->id,
             'period' => strval($row['periode']),
             'scheme' => $row['skema'],
             'faculty' => $row['fakultas'],

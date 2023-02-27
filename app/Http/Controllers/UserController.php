@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -83,6 +84,11 @@ class UserController extends Controller
         return view('admin.user.user_add');
     }
 
+    public function create_admin()
+    {
+        return view('admin.user.user_add');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -97,23 +103,44 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = new User([
-            'name' => $request->nama,
-            'nip' => $request->nip,
-            'password' => bcrypt($request->password),
-            'status' => true,
-            'role' => 'user',
-        ]);
+        // dd($request->tipe);
+
+        if ($request->tipe == "superadmin") {
+            $user = new User([
+                'name' => $request->nama,
+                'nip' => $request->nip,
+                'password' => bcrypt($request->password),
+                'status' => true,
+                'role' => 'superadmin',
+            ]);
+        } else {
+            $user = new User([
+                'name' => $request->nama,
+                'nip' => $request->nip,
+                'password' => bcrypt($request->password),
+                'status' => true,
+                'role' => 'user',
+            ]);
+        }
 
         $user->save();
-        return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan Data');
+        if ($request->tipe == "superadmin") {
+            return redirect()->route('user.index_admin')->with('success', 'Berhasil Menambahkan Data');
+        } else {
+            return redirect()->route('user.index')->with('success', 'Berhasil Menambahkan Data');
+        }
     }
 
-    public function verifikasi($id)
+    public function verifikasi(Request $request, $id)
     {
         $user = User::find($id);
         $user->update(['status' => true]);
-        return redirect()->route('user.index')->with('success', 'Berhasil Verifikasi Data');
+
+        if ($request->tipe == "superadmin") {
+            return redirect()->route('user.index_admin')->with('success', 'Berhasil Verifikasi Data');
+        } else {
+            return redirect()->route('user.index')->with('success', 'Berhasil Verifikasi Data');
+        }
     }
 
     /**
@@ -139,6 +166,18 @@ class UserController extends Controller
         return view('admin.user.user_edit', ['user' => $user]);
     }
 
+    public function edit_admin($id)
+    {
+        $user = DB::table('users')->where('id', $id)->get();
+        return view('admin.user.user_edit', ['user' => $user]);
+    }
+
+    public function profile()
+    {
+        $user = DB::table('users')->where('id', Auth::user()->id)->get();
+        return view('profile', ['user' => $user]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -154,7 +193,22 @@ class UserController extends Controller
             'nip' => $request->nip,
             'password' => bcrypt($request->password),
         ]);
-        return redirect()->route('user.index')->with('success', 'Berhasil Mengubah Data');
+        if ($request->tipe == "superadmin") {
+            return redirect()->route('user.index_admin')->with('success', 'Berhasil Mengubah Data');
+        } else {
+            return redirect()->route('user.index')->with('success', 'Berhasil Mengubah Data');
+        }
+    }
+
+    public function profile_post(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->nama,
+            'nip' => $request->nip,
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('user.profile')->with('success', 'Berhasil Mengubah Data');
     }
 
     /**
@@ -163,11 +217,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $user = User::where('id', $id);
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'Berhasil Hapus Data');
+        if ($request->tipe == "superadmin") {
+            return redirect()->route('user.index_admin')->with('success', 'Berhasil Hapus Data');
+        } else {
+            return redirect()->route('user.index')->with('success', 'Berhasil Hapus Data');
+        }
     }
 
     public function logout(Request $request)

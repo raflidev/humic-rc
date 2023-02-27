@@ -75,8 +75,9 @@
                         </div>
                         <div class="mb-6">
                             <label for="status" class="block mb-2 text-sm font-medium ">Status</label>
-                            <select name="status" id="" {{ old('status', $data->status_ai) }}
+                            <select name="status" id="" {{ old('status', $data->status_real) }}
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->status_real}}">{{$data->status_real}}</option>
                                 <option value="Aktif">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
                             </select>
@@ -86,6 +87,7 @@
                                 Negeri</label>
                             <select name="lndn" id="" {{ old('lndn', $data->lndn) }}
                             class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="{{$data->lndn}}">{{$data->lndn}}</option>
                                 <option value="Luar Negeri">Luar Negeri</option>
                                 <option value="Dalam Negeri">Dalam Negeri</option>
                             </select>

@@ -10,8 +10,13 @@
                     @include('layout.navbar')
                 </div>
             </div>
+            @if(Route::is('user.index_admin'))
+            <a href={{ route('user.create_admin') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
+                Admin</a>
+            @else
             <a href={{ route('user.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 User</a>
+            @endif
 
         </div>
 
@@ -35,13 +40,22 @@
                             <td>{{ $r->nip }}</td>
                             <td>{{ $r->password }}</td>
                             <td>
+                                @if(Route::is('user.index_admin'))
+                                <a href="{{ route('user.edit_admin', ['id' => $r->id]) }}"
+                                    class="bg-yellow-500 px-4 py-1 rounded-lg text-white">Edit</a>
+                                @else
                                 <a href="{{ route('user.edit', ['id' => $r->id]) }}"
                                     class="bg-yellow-500 px-4 py-1 rounded-lg text-white">Edit</a>
-
+                                @endif
                                 <form method="POST" action="{{ route('user.destroy', ['id' => $r->id]) }}"
                                     style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
+                                    @if(Route::is('user.index_admin'))
+                                        <input type="text" name="tipe" hidden value="superadmin">
+                                    @else
+                                        <input type="text" name="tipe" hidden value="user">
+                                    @endif
                                     <button class="bg-red-500 px-4 py-1 rounded-lg text-white"
                                         onclick="return confirm('Delete?')">Hapus</button>
                                 </form>
@@ -50,6 +64,11 @@
                                         style="display: inline-block;">
                                         @csrf
                                         @method('PUT')
+                                        @if(Route::is('user.index_admin'))
+                                            <input type="text" name="tipe" hidden value="superadmin">
+                                        @else
+                                            <input type="text" name="tipe" hidden value="user">
+                                        @endif
                                         <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
                                             onclick="return confirm('Verifikasi?')">Verifikasi</button>
                                     </form>

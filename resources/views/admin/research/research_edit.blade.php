@@ -181,7 +181,7 @@
                         <div class="mb-6">
                             <label for="tahun_pelaksanaan" class="block mb-2 text-sm font-medium ">Tahun
                                 Pelaksanaan</label>
-                            <input type="text" name="tahun_pelaksanaan"
+                            <input type="number" name="tahun_pelaksanaan"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required=""
                                 value="{{ old('tahun_pelaksanaan', $research[0]->year) }}">
@@ -220,16 +220,16 @@
                                 value="{{ old('dana_kelompok_masyarakat', $research[0]->fund_group_society) }}">
                         </div>
                         <div class="mb-6">
-                            <label for="brim" class="block mb-2 text-sm font-medium ">BRIN</label>
+                            <label for="brim" class="block mb-2 text-sm font-medium ">Pemberi Dana</label>
                             <input type="text" name="brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="BRIN" required="" value="{{ old('brim', $research[0]->brim) }}">
+                                placeholder="Pemberi Dana" required="" value="{{ old('brim', $research[0]->brim) }}">
                         </div>
                         <div class="mb-6">
-                            <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Kemenristek/BRIN</label>
+                            <label for="dana_brim" class="block mb-2 text-sm font-medium ">Dana Pemberi Dana</label>
                             <input type="number" name="dana_brim"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Dana Kemenristek/BRIN" required=""
+                                placeholder="Dana Pemberi Dana" required=""
                                 value="{{ old('dana_brim', $research[0]->fund_brim) }}">
                         </div>
                         <div class="mb-6">
