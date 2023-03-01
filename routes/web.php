@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KerjasamaController;
+use App\Http\Controllers\NtfController;
 use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\UserController;
@@ -109,9 +110,15 @@ Route::get('/kerjasama/ai/import', [KerjasamaController::class, 'excel_import_ai
 Route::post('/kerjasama/ai/import', [KerjasamaController::class, 'excel_import_ai_post'])->name('kerjasama.excel_import_ai_post')->middleware('auth');
 
 
-Route::get('/ntf', function () {
-    return view('ntf');
-})->name('ntf');
+// NTF
+Route::get('/ntf', [NtfController::class, 'show'])->name('ntf');
+Route::get('/ntf/input', [NtfController::class, 'index'])->name('ntf.index')->middleware('auth', 'superadmin');
+Route::get('/ntf/input/add', [NtfController::class, 'create'])->name('ntf.create')->middleware('auth', 'superadmin');
+Route::post('/ntf/input/add', [NtfController::class, 'store'])->name('ntf.store')->middleware('auth', 'superadmin');
+Route::get('/ntf/edit/{id}', [NtfController::class, 'edit'])->name('ntf.edit')->middleware('auth', 'superadmin');
+Route::put('/ntf/edit/{id}', [NtfController::class, 'update'])->name('ntf.update')->middleware('auth', 'superadmin');
+Route::delete('/ntf/hapus/{id}', [NtfController::class, 'destroy'])->name('ntf.destroy')->middleware('auth', 'superadmin');
+
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login.action');

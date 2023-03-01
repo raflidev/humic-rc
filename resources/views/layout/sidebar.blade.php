@@ -90,6 +90,13 @@
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Kerja Sama - AI</div>
                                 </a>
+                                <a href="{{ route('ntf.index') }}"
+                                    class="flex space-x-3 {{ Route::is('ntf.index') || Route::is('ntf.create') || Route::is('ntf.edit') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    <div class="w-5 text-center">
+                                        <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
+                                    </div>
+                                    <div class="text-sm font-semibold uppercase">Input NTF</div>
+                                </a>
                             </div>
                         </div>
                     @endif
