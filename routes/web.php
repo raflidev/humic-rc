@@ -4,6 +4,7 @@ use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\NtfController;
 use App\Http\Controllers\PengabdianController;
 use App\Http\Controllers\ResearchController;
+use App\Http\Controllers\TargetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // CRUD PENELITIAN
-Route::get('/', [ResearchController::class, 'index'])->name('research.index');
+Route::get('/', [TargetController::class, 'index'])->name('target.index');
+Route::get('/target/input', [TargetController::class, 'index_admin'])->name('target.index_admin');
+Route::get('/target/input/add', [TargetController::class, 'create'])->name('target.create');
+Route::post('/target/input/add', [TargetController::class, 'store'])->name('target.store');
+Route::get('/target/input/edit/{id}', [TargetController::class, 'edit'])->name('target.edit');
+Route::put('/target/input/edit/{id}', [TargetController::class, 'update'])->name('target.update');
+Route::delete('/target/input/hapus/{id}', [TargetController::class, 'destroy'])->name('target.destroy');
+
+Route::get('/penelitian', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');
 // add
 Route::get('/penelitian/input/add', [ResearchController::class, 'create'])->name('research.create')->middleware('auth');

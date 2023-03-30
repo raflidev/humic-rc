@@ -128,38 +128,7 @@
                 </tbody>
             </table>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @section('scripts')
-        <script>
-            const labels = [
-                <?php foreach ($grafik as $value) {
-                    echo '"' . $value->year . '",';
-                } ?>
-            ];
 
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Dana pertahun',
-                    backgroundColor: 'rgba(255, 159, 64, 0.8)',
-                    borderColor: '#fff',
-                    color: 'rgba(255, 159, 64, 0.2)',
-                    data: [<?php foreach ($grafik as $value) {
-                echo '"' . $value->fund_total . '",';
-            } ?>],
-                }]
-            };
-
-            const config = {
-                type: 'bar',
-                data: data,
-                options: {}
-            };
-
-            new Chart(
-                document.getElementById('myChartTest'),
-                config
-            );
-        </script>
-    @endsection

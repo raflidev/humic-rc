@@ -612,6 +612,9 @@ video {
 .h-6 {
   height: 1.5rem;
 }
+.min-h-screen {
+  min-height: 100vh;
+}
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -864,6 +867,9 @@ video {
 }
 .pt-6 {
   padding-top: 1.5rem;
+}
+.pb-20 {
+  padding-bottom: 5rem;
 }
 .text-center {
   text-align: center;

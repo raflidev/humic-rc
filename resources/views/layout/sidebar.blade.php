@@ -1,10 +1,17 @@
-    <div class="w-2/12 bg-gray-50" id="sidebar">
+    <div class="w-2/12 bg-gray-50 min-h-screen" id="sidebar">
         <div class="px-5">
             <div class="font-semibold text-md mt-4 pb-6 uppercase">RC HUMIC</div>
             <hr>
             <div class="mt-6">
                 <div class="text-sm uppercase font-semibold text-slate-500">Data RC HUMIC</div>
                 <div class="space-y-3 mt-5">
+                    <a href='{{ route('target.index') }}'
+                        class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('target.index') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
+                        <div class="w-5 text-center">
+                            <i class="fas fa-bullseye hover:text-white text-slate-400"></i>
+                        </div>
+                        <div class="text-sm font-semibold uppercase">Target</div>
+                    </a>
                     <a href='{{ route('research.index') }}'
                         class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('research.index') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
                         <div class="w-5 text-center">
@@ -54,6 +61,14 @@
                                         <i class="fas fa-user hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Admin</div>
+                                </a>
+                                <a href="{{ route('target.index_admin') }}"
+                                    class="flex space-x-3 {{ Route::is('target.index_admin') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    <div class="w-5 text-center">
+                                        <i class="fas fa-bullseye hover:text-white text-slate-400"></i>
+                                    </div>
+                                    <div class="text-sm font-semibold uppercase">Input Target</div>
+                                </a>
                                 </a>
                                 <a href="{{ route('research.create_index') }}"
                                     class="flex space-x-3 {{ Route::is('research.create_index') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
