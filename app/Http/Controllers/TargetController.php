@@ -48,9 +48,6 @@ class TargetController extends Controller
             'sumber' => $request->sumber,
             'indikator' => $request->indikator,
             'target' => $request->target,
-            'capaian' => $request->capaian,
-            'gap' => $request->gap,
-            'kesimpulan' => $request->kesimpulan,
             'keterangan' => $request->keterangan,
         ]);
 

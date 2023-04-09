@@ -16,7 +16,34 @@
                     @include('layout.navbar')
                 </div>
             </div>
-            <a href={{ route('target.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah Target</a>
+
+            <div class="pb-4">
+                <h1 class="font-semibold uppercase">Data</h1>
+                <div><span class="font-semibold">Tahun:</span> {{$awal->tahun}}</div>
+                <div><span class="font-semibold">Sumber:</span> {{$awal->sumber}}</div>
+                <div><span class="font-semibold">Indikator:</span> {{$awal->indikator}}</div>
+            </div>
+
+            <form action="{{ route('isitarget.store', ['id' => $awal->id]) }}" method="post">
+                @csrf
+                <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <div class="mb-6">
+                            <label for="Capaian" class="block mb-2 text-sm font-medium ">Capaian</label>
+                            <select name="id_subjek" id="" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                @foreach($penelitian as $p):
+                                <option value="penelitian_{{$p->research_title}}">{{$p->research_title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <button type="submit"
+                                class="w-full bg-blue-500 hover:bg-blue-700 p-2.5 rounded-lg">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
 
         </div>
 
@@ -25,13 +52,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tahun</th>
-                        <th>Sumber</th>
-                        <th>Indikator</th>
-                        <th>Target</th>
-                        <th>Capaian</th>
-                        <th>Gap</th>
-                        <th>Keterangan</th>
+                        <th>Id Subjek</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -40,31 +61,19 @@
                     @foreach ($data as $r)
                         <tr>
                             <td>{{ $nomor }}</td>
-                            <td>{{ $r->tahun }}</td>
-                            <td>{{ $r->sumber }}</td>
-                            <td>{{ $r->indikator }}</td>
-                            <td>{{ $r->target }}</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>{{ $r->keterangan }}</td>
+                            <td>{{ $r->id_subjek }}</td>
                             <td>
                                 @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
-                                  <a href="{{ route('isitarget.index', ['id' => $r->id]) }}"
-                                    class="bg-green-500 px-4 py-1 rounded-lg">Isi Target</a>
-                                  @endif
-
-                                  <a href="{{ route('target.edit', ['id' => $r->id]) }}"
-                                      class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
                                   <form method="POST"
-                                      action="{{ route('target.destroy', ['id' => $r->id]) }}"
+                                      action="{{ route('isitarget.destroy', ['id' => $r->id_target, 'id_delete' => $r->id ]) }}"
                                       style="display: inline-block;">
                                       @csrf
                                       @method('DELETE')
                                       <button class="bg-red-500 px-4 py-1 rounded-lg"
                                           onclick="return confirm('Delete?')">Hapus</button>
                                   </form>
-
+                                @endif
                                  
                             </td>
                         </tr>

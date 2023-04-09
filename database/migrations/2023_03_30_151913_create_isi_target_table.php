@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('target', function (Blueprint $table) {
+        Schema::create('isi_target', function (Blueprint $table) {
             $table->id();
-            $table->string("tahun");
-            $table->string("sumber");
-            $table->string("indikator");
-            $table->integer("target");
-            $table->string("keterangan");
+            $table->string("id_target");
+            $table->string('id_subjek');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('target');
+        Schema::dropIfExists('isi_target');
     }
 };

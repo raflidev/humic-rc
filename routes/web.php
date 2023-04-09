@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IsiTargetController;
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\NtfController;
 use App\Http\Controllers\PengabdianController;
@@ -27,6 +28,10 @@ Route::post('/target/input/add', [TargetController::class, 'store'])->name('targ
 Route::get('/target/input/edit/{id}', [TargetController::class, 'edit'])->name('target.edit');
 Route::put('/target/input/edit/{id}', [TargetController::class, 'update'])->name('target.update');
 Route::delete('/target/input/hapus/{id}', [TargetController::class, 'destroy'])->name('target.destroy');
+
+Route::get('/target/{id}/add', [IsiTargetController::class, 'index'])->name('isitarget.index');
+Route::post('/target/{id}/add', [IsiTargetController::class, 'store'])->name('isitarget.store');
+Route::delete('/target/{id}/hapus/{id_delete}', [IsiTargetController::class, 'destroy'])->name('isitarget.destroy');
 
 Route::get('/penelitian', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');

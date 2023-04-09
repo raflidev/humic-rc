@@ -24,7 +24,6 @@
                         <th>Target</th>
                         <th>Capaian</th>
                         <th>Gap</th>
-                        <th>Kesimpulan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,9 +35,8 @@
                             <td>{{ $r->sumber }}</td>
                             <td>{{ $r->indikator }}</td>
                             <td>{{ $r->target }}</td>
-                            {{-- <td>{{ $r->capaian }}</td>
-                            <td>{{ $r->gap }}</td> --}}
-                            <td>{{ $r->kesimpulan }}</td>
+                            <td>0</td>
+                            <td>0</td>
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach

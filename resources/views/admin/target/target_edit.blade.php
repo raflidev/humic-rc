@@ -49,16 +49,9 @@
 
                         <div class="mb-6">
                             <label for="target" class="block mb-2 text-sm font-medium ">Target</label>
-                            <input type="text" name="target"
+                            <input type="number" name="target"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="target" required="" value="{{ old('target', $data->target ) }}">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="capaian" class="block mb-2 text-sm font-medium ">Capaian</label>
-                            <input type="text" name="capaian"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="capaian" required="" value="{{ old('capaian', $data->capaian ) }}">
                         </div>
 
                         <div class="mb-6">

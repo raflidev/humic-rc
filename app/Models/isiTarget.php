@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Target extends Model
+class isiTarget extends Model
 {
     use HasFactory;
-    protected $table = 'target';
+
+    protected $table = "isi_target";
 
     protected $fillable = [
-        "tahun",
-        "sumber",
-        "indikator",
-        "target",
-        "keterangan",
+        "id_target",
+        "id_subjek",
     ];
 }
