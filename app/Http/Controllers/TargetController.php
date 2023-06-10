@@ -16,13 +16,34 @@ class TargetController extends Controller
     public function index()
     {
         $data = DB::table('target')->get();
-        return view('target', ['data' => $data]);
+        // count data isi_target per id_target
+
+        $count = DB::table('isi_target')
+            ->select('id_target', DB::raw('count(*) as total'))
+            ->groupBy('id_target')
+            ->get();
+        $count2 = [];
+        foreach ($count as $key => $value) {
+            $count2[$value->id_target] = $value->total;
+        }
+        $count = $count2;
+
+        return view('target', ['data' => $data, 'count' => $count]);
     }
 
     public function index_admin()
     {
         $data = DB::table('target')->get();
-        return view('admin.target.target', ['data' => $data]);
+        $count = DB::table('isi_target')
+            ->select('id_target', DB::raw('count(*) as total'))
+            ->groupBy('id_target')
+            ->get();
+        $count2 = [];
+        foreach ($count as $key => $value) {
+            $count2[$value->id_target] = $value->total;
+        }
+        $count = $count2;
+        return view('admin.target.target', ['data' => $data, 'count' => $count]);
     }
 
     /**
@@ -91,9 +112,6 @@ class TargetController extends Controller
             'sumber' => $request->sumber,
             'indikator' => $request->indikator,
             'target' => $request->target,
-            'capaian' => $request->capaian,
-            'gap' => $request->gap,
-            'kesimpulan' => $request->kesimpulan,
             'keterangan' => $request->keterangan,
         ]);
 

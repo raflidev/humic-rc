@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('isi_target', function (Blueprint $table) {
             $table->id();
             $table->string("id_target");
+            $table->string("subjek");
             $table->string('id_subjek');
             $table->timestamps();
         });

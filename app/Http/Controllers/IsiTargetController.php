@@ -19,9 +19,11 @@ class IsiTargetController extends Controller
         $data = DB::table('target')
             ->join('isi_target', 'target.id', '=', 'isi_target.id_target')
             ->select('isi_target.*')
+            ->where('target.id', $id)
             ->get();
-        // dd($data);
+
         $awal = DB::table('target')->where('id', $id)->get();
+
         $penelitian = DB::table('research')->get();
         $pengnas = DB::table('pengnas')->get();
         $moa = DB::table('moa')->get();
@@ -50,8 +52,10 @@ class IsiTargetController extends Controller
     {
         DB::table('isi_target')->insert([
             'id_target' => $id,
+            'subjek' => $request->subjek,
             'id_subjek' => $request->id_subjek,
         ]);
+
 
         return redirect()->route('isitarget.index', $id)->with('success', 'Berhasil Menambahkan Data');
     }

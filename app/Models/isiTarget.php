@@ -13,6 +13,7 @@ class isiTarget extends Model
 
     protected $fillable = [
         "id_target",
+        "subjek",
         "id_subjek",
     ];
 }

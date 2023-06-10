@@ -24,6 +24,7 @@
                         <th>Target</th>
                         <th>Capaian</th>
                         <th>Gap</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,8 +36,17 @@
                             <td>{{ $r->sumber }}</td>
                             <td>{{ $r->indikator }}</td>
                             <td>{{ $r->target }}</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td>{{ $count[$r->id] }}</td>
+                            @if($count[$r->id] - $r->target > 0)
+                                <td>+{{ $count[$r->id] - $r->target }}</td>
+                            @else
+                                <td>{{ $count[$r->id] - $r->target }}</td>
+                            @endif
+                            @if($count[$r->id] - $r->target > 0)
+                                <td>Telah Tercapai</td>
+                            @else
+                                <td>Belum Tercapai</td>
+                            @endif
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach
