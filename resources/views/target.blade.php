@@ -36,13 +36,9 @@
                             <td>{{ $r->sumber }}</td>
                             <td>{{ $r->indikator }}</td>
                             <td>{{ $r->target }}</td>
-                            <td>{{ $count[$r->id] }}</td>
-                            @if($count[$r->id] - $r->target > 0)
-                                <td>+{{ $count[$r->id] - $r->target }}</td>
-                            @else
-                                <td>{{ $count[$r->id] - $r->target }}</td>
-                            @endif
-                            @if($count[$r->id] - $r->target > 0)
+                            <td>{{ $r->capaian }}</td>
+                            <td>{{ $r->capaian - $r->target }}</td>
+                            @if($r->capaian - $r->target > 0)
                                 <td>Telah Tercapai</td>
                             @else
                                 <td>Belum Tercapai</td>

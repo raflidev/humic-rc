@@ -15,6 +15,7 @@ class Target extends Model
         "sumber",
         "indikator",
         "target",
+        "capaian",
         "keterangan",
     ];
 }

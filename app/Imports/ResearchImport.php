@@ -36,7 +36,7 @@ class ResearchImport implements ToModel, WithHeadingRow
             'fund_type' => $row['jenis_pendanaan'],
             'group_society' => $row['kelompok_masyarakat'],
             'fund_group_society' => $row['dana_kelompok_masyarakat'],
-            'brim' => $row['brin'],
+            'brim' => $row['pemberi_dana'],
             'fund_brim' => $row['dana_brin'],
             'date_start' =>  Carbon::parse($row['tanggal_mulai_kontrak']),
             'date_end' =>  Carbon::parse($row['tanggal_selesai_kontrak']),

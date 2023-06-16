@@ -74,7 +74,7 @@
         <div class="-mt-20 px-16">
             <div class="flex ">
                 <div class="w-4/6">
-                    <canvas class="bg-gray-300 bg-opacity-90 p-5 rounded-md" id="myChartTest"></canvas>
+                    <canvas class="bg-gray-300 bg-opacity-90 p-5 rounded-md" id="penelitian"></canvas>
                 </div>
             </div>
         </div>
@@ -129,6 +129,44 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+
+    const labels = ['Dana 3 Tahun terakhir'];
+
+                const data = {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Dana Nasional',
+                            backgroundColor: 'rgba(255, 159, 64, 0.8)',
+                            borderColor: '#fff',
+                            color: 'rgba(255, 159, 64, 0.2)',
+                            data: [<?= $internal ?>],
+                        },
+                        {
+                            label: 'Dana Internasional',
+                            backgroundColor: 'rgba(54, 162, 235, 0.8)',
+                            borderColor: '#fff',
+                            color: 'rgba(54, 162, 235, 0.2)',
+                            data: [<?= $external ?>],
+                        }
+                    ]
+                };
+
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {}
+                };
+
+                new Chart(
+                    document.getElementById('penelitian'),
+                    config
+                );
+</script>
 @endsection
 
 

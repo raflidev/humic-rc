@@ -44,12 +44,8 @@
                             <td>{{ $r->sumber }}</td>
                             <td>{{ $r->indikator }}</td>
                             <td>{{ $r->target }}</td>
-                            <td>{{ $count[$r->id] }}</td>
-                            @if($count[$r->id] - $r->target > 0)
-                                <td>+{{ $count[$r->id] - $r->target }}</td>
-                            @else
-                                <td>{{ $count[$r->id] - $r->target }}</td>
-                            @endif
+                            <td>{{ $r->capaian }}</td>
+                            <td>{{ $r->capaian - $r->target }}</td>
                             <td>{{ $r->keterangan }}</td>
                             <td>
                                 @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
@@ -68,8 +64,6 @@
                                       <button class="bg-red-500 px-4 py-1 rounded-lg"
                                           onclick="return confirm('Delete?')">Hapus</button>
                                   </form>
-
-
                             </td>
                         </tr>
                         <?php $nomor++; ?>

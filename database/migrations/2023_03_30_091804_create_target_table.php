@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("sumber");
             $table->string("indikator");
             $table->integer("target");
+            $table->integer("capaian");
             $table->string("keterangan");
             $table->timestamps();
         });

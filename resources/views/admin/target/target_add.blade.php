@@ -53,7 +53,7 @@
                                 placeholder="target" required="" value="{{ old('target') }}">
                         </div>
 
-                        
+
 
                         <div class="mb-6">
                             <label for="keterangan" class="block mb-2 text-sm font-medium ">Keterangan</label>
@@ -61,7 +61,7 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="keterangan" required="" value="{{ old('keterangan') }}">
                         </div>
-                       
+
                         <div class="mb-6">
                             <button type="submit"
                                 class="w-full bg-blue-500 hover:bg-blue-700 p-2.5 rounded-lg">Submit</button>

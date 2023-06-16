@@ -70,8 +70,8 @@ class TargetController extends Controller
             'indikator' => $request->indikator,
             'target' => $request->target,
             'keterangan' => $request->keterangan,
+            'capaian' => 0,
         ]);
-
         return redirect()->route('target.index_admin')->with('success', 'Berhasil Menambahkan Data');
     }
 
