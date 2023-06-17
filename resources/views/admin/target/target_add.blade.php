@@ -44,16 +44,12 @@
                     </div>
 
                     <div class="w-1/2">
-
-
                         <div class="mb-6">
                             <label for="target" class="block mb-2 text-sm font-medium ">Target</label>
                             <input type="number" name="target"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="target" required="" value="{{ old('target') }}">
                         </div>
-
-
 
                         <div class="mb-6">
                             <label for="keterangan" class="block mb-2 text-sm font-medium ">Keterangan</label>

@@ -4,6 +4,7 @@ use App\Http\Controllers\IsiTargetController;
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\NtfController;
 use App\Http\Controllers\PengabdianController;
+use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\UserController;
@@ -133,6 +134,16 @@ Route::get('/ntf/edit/{id}', [NtfController::class, 'edit'])->name('ntf.edit')->
 Route::put('/ntf/edit/{id}', [NtfController::class, 'update'])->name('ntf.update')->middleware('auth', 'superadmin');
 Route::delete('/ntf/hapus/{id}', [NtfController::class, 'destroy'])->name('ntf.destroy')->middleware('auth', 'superadmin');
 
+
+// Publikasi
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index')->middleware('auth');
+Route::get('/publikasi/input', [PublikasiController::class, 'create_index'])->name('publikasi.create_index')->middleware('auth');
+Route::get('/publikasi/input/add', [PublikasiController::class, 'create'])->name('publikasi.create')->middleware('auth');
+Route::post('/publikasi/input/add', [PublikasiController::class, 'store'])->name('publikasi.store')->middleware('auth');
+Route::get('/publikasi/input/edit/{id}', [PublikasiController::class, 'edit'])->name('publikasi.edit')->middleware('auth');
+Route::put('/publikasi/input/edit/{id}', [PublikasiController::class, 'update'])->name('publikasi.update')->middleware('auth');
+Route::put('/publikasi/input/verifikasi/{id}', [PublikasiController::class, 'verifikasi'])->name('publikasi.verifikasi')->middleware('auth');
+Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy')->middleware('auth');
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login.action');
