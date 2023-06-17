@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HkiController;
 use App\Http\Controllers\IsiTargetController;
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\NtfController;
@@ -144,6 +145,17 @@ Route::get('/publikasi/input/edit/{id}', [PublikasiController::class, 'edit'])->
 Route::put('/publikasi/input/edit/{id}', [PublikasiController::class, 'update'])->name('publikasi.update')->middleware('auth');
 Route::put('/publikasi/input/verifikasi/{id}', [PublikasiController::class, 'verifikasi'])->name('publikasi.verifikasi')->middleware('auth');
 Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy')->middleware('auth');
+
+// HKI
+Route::get('/hki', [HkiController::class, 'index'])->name('hki.index');
+Route::get('/hki/input', [HkiController::class, 'create_index'])->name('hki.create_index')->middleware('auth');
+Route::get('/hki/input/add', [HkiController::class, 'create'])->name('hki.create')->middleware('auth');
+Route::post('/hki/input/add', [HkiController::class, 'store'])->name('hki.store')->middleware('auth');
+Route::get('/hki/input/edit/{id}', [HkiController::class, 'edit'])->name('hki.edit')->middleware('auth');
+Route::put('/hki/input/edit/{id}', [HkiController::class, 'update'])->name('hki.update')->middleware('auth');
+Route::put('/hki/input/verifikasi/{id}', [HkiController::class, 'verifikasi'])->name('hki.verifikasi')->middleware('auth');
+Route::delete('/hki/input/hapus/{id}', [HkiController::class, 'destroy'])->name('hki.destroy')->middleware('auth');
+
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('login.action');

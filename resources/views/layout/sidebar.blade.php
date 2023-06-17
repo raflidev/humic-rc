@@ -1,5 +1,5 @@
     <div class="w-2/12 bg-gray-50 min-h-screen" id="sidebar">
-        <div class="px-5">
+        <div class="px-5 pb-10">
             <div class="font-semibold text-md mt-4 pb-6 uppercase">RC HUMIC</div>
             <hr>
             <div class="mt-6">
@@ -25,6 +25,13 @@
                             <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
                         </div>
                         <div class="text-sm font-semibold uppercase">Publikasi</div>
+                    </a>
+                    <a href="{{ route('hki.index') }}"
+                        class="flex space-x-3 {{ Route::is('hki.index')  ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                        <div class="w-5 text-center">
+                            <i class="fas fa-network-wired hover:text-white text-slate-400"></i>
+                        </div>
+                        <div class="text-sm font-semibold uppercase">HKI</div>
                     </a>
                     <a href="{{ route('pengabdian.index') }}"
                         class="flex space-x-3 items-center hover:bg-slate-500 {{ Route::is('pengabdian.index') ? 'bg-slate-500 text-white' : '' }} hover:text-white rounded p-2">
@@ -90,6 +97,13 @@
                                         <i class="fas fa-database hover:text-white text-slate-400"></i>
                                     </div>
                                     <div class="text-sm font-semibold uppercase">Input Publikasi</div>
+                                </a>
+                                <a href="{{ route('hki.create_index') }}"
+                                    class="flex space-x-3 {{ Route::is('hki.create_index') ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
+                                    <div class="w-5 text-center">
+                                        <i class="fas fa-database hover:text-white text-slate-400"></i>
+                                    </div>
+                                    <div class="text-sm font-semibold uppercase">Input HKI</div>
                                 </a>
                                 <a href="{{ route('pengabdian.create_index') }}"
                                     class="flex space-x-3 {{ Route::is('pengabdian.create_index') || Route::is('pengabdian.create') || Route::is('pengabdian.edit') || Route::is('pengabdian.excel_import')  ? 'bg-slate-500 text-white' : '' }} items-center hover:bg-slate-500 hover:text-white rounded p-2">
