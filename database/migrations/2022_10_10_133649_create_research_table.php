@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("faculty");
             $table->string("study_program");
             $table->string("research_title");
+            $table->string("tkt");
             $table->string("skill_group");
             $table->string("head_name");
             $table->string("head_partner_name")->nullable();

@@ -14,6 +14,7 @@ class Research extends Model
         'user_id',
         'study_program',
         'research_title',
+        'tkt',
         'skill_group',
         'head_name',
         'head_partner_name',

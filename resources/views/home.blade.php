@@ -86,6 +86,7 @@
                         <th>Fakultas</th>
                         <th>Prodi</th>
                         <th>Judul Penelitian</th>
+                        <th>TKT</th>
                         <th>Kelompok Keahlian</th>
                         <th>Nama Ketua</th>
                         <th>Total Dana</th>
@@ -109,6 +110,7 @@
                             <td>{{ $r->faculty }}</td>
                             <td>{{ $r->study_program }}</td>
                             <td>{{ $r->research_title }}</td>
+                            <td>{{ $r->tkt }}</td>
                             <td>{{ $r->skill_group }}</td>
                             <td>{{ $r->head_name }}</td>
                             <td>{{ $r->fund_total }}</td>

@@ -40,6 +40,12 @@
                                 value="{{ old('judul_penelitian', $research[0]->research_title) }}">
                         </div>
                         <div class="mb-6">
+                            <label for="tkt" class="block mb-2 text-sm font-medium ">TKT</label>
+                            <input type="number" name="tkt"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="TKT" required="" value="{{ old('tkt', $research[0]->tkt) }}">
+                        </div>
+                        <div class="mb-6">
                             <label for="kelompok_keahlian" class="block mb-2 text-sm font-medium ">Kelompok Keahlian</label>
                             <input type="text" name="kelompok_keahlian"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "

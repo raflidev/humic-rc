@@ -23,6 +23,7 @@ class ResearchImport implements ToModel, WithHeadingRow
             'faculty' => $row['fakultas'],
             'study_program' => $row['prodi'],
             'research_title' => $row['judul_penelitian'],
+            'tkt' => $row['tkt'],
             'skill_group' => $row['kelompok_keahlian'],
             'head_name' => $row['nama_ketua'],
             'member' => $row['anggota'],
