@@ -5,6 +5,7 @@ use App\Http\Controllers\IsiTargetController;
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\NtfController;
 use App\Http\Controllers\PengabdianController;
+use App\Http\Controllers\PicController;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\TargetController;
@@ -34,6 +35,10 @@ Route::delete('/target/input/hapus/{id}', [TargetController::class, 'destroy'])-
 Route::get('/target/{id}/add', [IsiTargetController::class, 'index'])->name('isitarget.index');
 Route::post('/target/{id}/add', [IsiTargetController::class, 'store'])->name('isitarget.store');
 Route::delete('/target/{id}/hapus/{id_delete}', [IsiTargetController::class, 'destroy'])->name('isitarget.destroy');
+
+Route::get('/target/{id}/pic', [PicController::class, 'index'])->name('pic.index');
+Route::post('/target/{id}/pic', [PicController::class, 'store'])->name('pic.store');
+Route::delete('/target/{id}/pic/hapus/{id_delete}', [PicController::class, 'destroy'])->name('pic.destroy');
 
 Route::get('/penelitian', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');

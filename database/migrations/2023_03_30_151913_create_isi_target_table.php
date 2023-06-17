@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("id_target");
             $table->string("subjek");
             $table->string('id_subjek');
+            $table->string("judul");
+            $table->string("ketua");
             $table->string("fakultas");
             $table->string("prodi");
             $table->string("kelompok_keahlian");
