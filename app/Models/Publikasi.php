@@ -23,5 +23,6 @@ class Publikasi extends Model
         "quartile",
         "indexed",
         "link_makalah",
+        "status",
     ];
 }

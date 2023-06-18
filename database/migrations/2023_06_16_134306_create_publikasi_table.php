@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('quartile');
             $table->string('indexed');
             $table->string('link_makalah');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

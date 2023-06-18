@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PublikasiImport;
 use App\Models\Publikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PublikasiController extends Controller
 {
@@ -14,7 +17,7 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-        $data = Publikasi::all();
+        $data = Publikasi::all()->where('status', 1);
         return view('publikasi', ['data' => $data]);
     }
 
@@ -85,6 +88,11 @@ class PublikasiController extends Controller
         $data->quartile = $request->quartile;
         $data->indexed = $request->indexed;
         $data->link_makalah = $request->link_makalah;
+        if (Auth::user()->role == 'user') {
+            $data->status = 0;
+        } else {
+            $data->status = 1;
+        }
         $data->save();
 
         return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Menambahkan Data');
@@ -167,6 +175,25 @@ class PublikasiController extends Controller
         $data->save();
 
         return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Mengubah Data');
+    }
+
+    public function verifikasi($id)
+    {
+        $data = Publikasi::where('id', $id)->firstOrFail();
+        $data->status = 1;
+        $data->save();
+        return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Verifikasi Data');
+    }
+
+    public function excel_import()
+    {
+        return view('admin.publikasi.publikasi_excel');
+    }
+
+    public function excel_import_post(Request $request)
+    {
+        Excel::import(new PublikasiImport, $request->file('File'));
+        return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
     /**

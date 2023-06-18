@@ -151,6 +151,11 @@ Route::put('/publikasi/input/edit/{id}', [PublikasiController::class, 'update'])
 Route::put('/publikasi/input/verifikasi/{id}', [PublikasiController::class, 'verifikasi'])->name('publikasi.verifikasi')->middleware('auth');
 Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy')->middleware('auth');
 
+// excel
+Route::get('/publikasi/input/import', [PublikasiController::class, 'excel_import'])->name('publikasi.excel_import')->middleware('auth');
+Route::post('/publikasi/input/import', [PublikasiController::class, 'excel_import_post'])->name('publikasi.excel_import_post')->middleware('auth');
+
+
 // HKI
 Route::get('/hki', [HkiController::class, 'index'])->name('hki.index');
 Route::get('/hki/input', [HkiController::class, 'create_index'])->name('hki.create_index')->middleware('auth');

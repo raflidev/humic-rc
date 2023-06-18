@@ -39,6 +39,9 @@
                         <th>Link eviden</th>
                         <th>Kegiatan yang telah terealiasasi</th>
                         <th>Action</th>
+                        @if (Auth::user()->role == 'user')
+                            <th>Status</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -78,6 +81,15 @@
                                         </form>
                                       @endif
                             </td>
+                            @if (Auth::user()->role == 'user')
+                              <td>
+                                    @if ($r->status == True)
+                                        <span class="bg-green-500 px-4 py-1 rounded-lg text-white">Terverifikasi</span>
+                                    @else
+                                        <span class="bg-red-500 px-4 py-1 rounded-lg text-white">Belum Terverifikasi</span>
+                                    @endif
+                              </td>
+                              @endif
                         </tr>
                         <?php $nomor3++; ?>
                     @endforeach
