@@ -17,7 +17,7 @@
             @endif
             <div class="w-1/2 p-3 bg-green-500 mb-6 text-sm rounded">
                 Berikut adalah lampiran Template yang dapat anda download untuk mengisi data pada excel, pastikan anda mengisi data dengan benar dan sesuai dengan template yang telah disediakan.
-                <a class="underline font-bold" href="/template_research.xlsx" target="_blank">Download Disini</a>
+                <a class="underline font-bold" href="/template_publikasi.xlsx" target="_blank">Download Disini</a>
             </div>
             <form action="{{route('publikasi.excel_import_post')}}" method="post" enctype="multipart/form-data">
                 @csrf

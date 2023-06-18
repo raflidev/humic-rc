@@ -48,25 +48,24 @@
                             <td>{{ $r->capaian - $r->target }}</td>
                             <td>{{ $r->keterangan }}</td>
                             <td>
-                                @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
-                                  <a href="{{ route('isitarget.index', ['id' => $r->id]) }}"
-                                    class="bg-green-500 px-4 py-1 rounded-lg">Isi Target</a>
+                                <a href="{{ route('isitarget.index', ['id' => $r->id]) }}"
+                                class="bg-green-500 px-4 py-1 rounded-lg">Isi Target</a>
+                                @if (Auth::user()->role == 'superadmin')
+                                <a href="{{ route('pic.index', ['id' => $r->id]) }}"
+                                class="bg-green-500 px-4 py-1 rounded-lg">Isi PIC</a>
 
-                                  <a href="{{ route('pic.index', ['id' => $r->id]) }}"
-                                    class="bg-green-500 px-4 py-1 rounded-lg">Isi PIC</a>
-                                  @endif
+                                <a href="{{ route('target.edit', ['id' => $r->id]) }}"
+                                    class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
-                                  <a href="{{ route('target.edit', ['id' => $r->id]) }}"
-                                      class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
-
-                                  <form method="POST"
-                                      action="{{ route('target.destroy', ['id' => $r->id]) }}"
-                                      style="display: inline-block;">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button class="bg-red-500 px-4 py-1 rounded-lg"
-                                          onclick="return confirm('Delete?')">Hapus</button>
-                                  </form>
+                                <form method="POST"
+                                    action="{{ route('target.destroy', ['id' => $r->id]) }}"
+                                    style="display: inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-500 px-4 py-1 rounded-lg"
+                                        onclick="return confirm('Delete?')">Hapus</button>
+                                </form>
+                                @endif
                             </td>
                         </tr>
                         <?php $nomor++; ?>

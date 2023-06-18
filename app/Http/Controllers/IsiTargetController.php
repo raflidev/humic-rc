@@ -24,11 +24,11 @@ class IsiTargetController extends Controller
 
         $awal = DB::table('target')->where('id', $id)->get();
 
-        $penelitian = DB::table('research')->get();
-        $pengnas = DB::table('pengnas')->get();
-        $moa = DB::table('moa')->get();
-        $mou = DB::table('mou')->get();
-        $ai = DB::table('ai')->get();
+        $penelitian = DB::table('research')->where('status', true)->get();
+        $pengnas = DB::table('pengnas')->where('status', true)->get();
+        $moa = DB::table('moa')->where('status', true)->get();
+        $mou = DB::table('mou')->where('status', true)->get();
+        $ai = DB::table('ai')->where('status', true)->get();
         return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'pengnas' => $pengnas, 'moa' => $moa, 'mou' => $mou, 'ai' => $ai]);
     }
 

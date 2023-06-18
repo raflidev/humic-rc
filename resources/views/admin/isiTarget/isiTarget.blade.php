@@ -84,17 +84,15 @@
                             <td>{{ $r->skema }}</td>
                             <td>{{ $r->total_bantuan }}</td>
                             <td>
-                                @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
-
                                   <form method="POST"
-                                      action="{{ route('isitarget.destroy', ['id' => $r->id_target, 'id_delete' => $r->id ]) }}"
+                                      action="{{ route('isitarget.destroy',
+                                      ['id' => $r->id_target, 'id_delete' => $r->id ]) }}"
                                       style="display: inline-block;">
                                       @csrf
                                       @method('DELETE')
                                       <button class="bg-red-500 px-4 py-1 rounded-lg text-white"
                                           onclick="return confirm('Delete?')">Hapus</button>
                                   </form>
-                                @endif
 
                             </td>
                         </tr>

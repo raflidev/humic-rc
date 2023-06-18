@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Target;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TargetController extends Controller
@@ -16,34 +17,22 @@ class TargetController extends Controller
     public function index()
     {
         $data = DB::table('target')->get();
-        // count data isi_target per id_target
-
-        $count = DB::table('isi_target')
-            ->select('id_target', DB::raw('count(*) as total'))
-            ->groupBy('id_target')
-            ->get();
-        $count2 = [];
-        foreach ($count as $key => $value) {
-            $count2[$value->id_target] = $value->total;
-        }
-        $count = $count2;
-
-        return view('target', ['data' => $data, 'count' => $count]);
+        return view('target', ['data' => $data]);
     }
 
     public function index_admin()
     {
-        $data = DB::table('target')->get();
-        $count = DB::table('isi_target')
-            ->select('id_target', DB::raw('count(*) as total'))
-            ->groupBy('id_target')
-            ->get();
-        $count2 = [];
-        foreach ($count as $key => $value) {
-            $count2[$value->id_target] = $value->total;
+        if (Auth::user()->role == 'superadmin') {
+            $data = DB::table('target')->get();
+        } else {
+            $data = DB::table('pic')
+                ->join('target', 'pic.id', '=', 'target.id')
+                ->where('pic.id_user', Auth::user()->id)
+                ->select('target.id', 'target.tahun', 'target.sumber', 'target.indikator', 'pic.target', 'target.keterangan', 'target.capaian')
+                ->get();
         }
-        $count = $count2;
-        return view('admin.target.target', ['data' => $data, 'count' => $count]);
+
+        return view('admin.target.target', ['data' => $data]);
     }
 
     /**
