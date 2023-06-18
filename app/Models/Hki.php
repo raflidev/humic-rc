@@ -18,5 +18,6 @@ class Hki extends Model
         'partner',
         'jenis',
         'status',
+        'status_post',
     ];
 }

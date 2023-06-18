@@ -71,6 +71,15 @@
                                       <button class="bg-red-500 px-4 py-1 rounded-lg"
                                           onclick="return confirm('Delete?')">Hapus</button>
                                   </form>
+                                  @if (Auth::user()->role == 'superadmin' && $r->status == False)
+                                        <form method="POST" action="{{ route('publikasi.verifikasi', ['id' => $r->id]) }}"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
+                                                onclick="return confirm('Verifikasi?')">Verifikasi</button>
+                                        </form>
+                                      @endif
                             </td>
                             @if (Auth::user()->role == 'user')
                               <td>

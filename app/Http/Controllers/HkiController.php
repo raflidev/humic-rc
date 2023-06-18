@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\HkiImport;
 use App\Models\Hki;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HkiController extends Controller
 {
@@ -14,7 +17,7 @@ class HkiController extends Controller
      */
     public function index()
     {
-        $data = Hki::all();
+        $data = Hki::all()->where('status_post', true);
         return view('hki', ['data' => $data]);
     }
 
@@ -74,6 +77,11 @@ class HkiController extends Controller
         $data->member = implode("|", $dataMember);
         $data->partner = implode("|", $dataMemberPartner);
         $data->status = $request->status;
+        if (Auth::user()->role == 'user') {
+            $data->status_post = false;
+        } else {
+            $data->status_post = true;
+        }
         $data->save();
 
         return redirect()->route('hki.create_index')->with('success', 'Data HKI Berhasil Ditambahkan!');
@@ -146,6 +154,25 @@ class HkiController extends Controller
         $data->save();
 
         return redirect()->route('hki.create_index')->with('success', 'Data HKI Berhasil Diubah!');
+    }
+
+    public function excel_import()
+    {
+        return view('admin.hki.hki_excel');
+    }
+
+    public function excel_import_post(Request $request)
+    {
+        Excel::import(new HkiImport, $request->file('File'));
+        return redirect()->route('hki.create_index')->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function verifikasi($id)
+    {
+        $data = Hki::where('id', $id)->firstOrFail();
+        $data->status_post = 1;
+        $data->save();
+        return redirect()->route('hki.create_index')->with('success', 'Berhasil Verifikasi Data');
     }
 
     /**

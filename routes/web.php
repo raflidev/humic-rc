@@ -165,6 +165,9 @@ Route::get('/hki/input/edit/{id}', [HkiController::class, 'edit'])->name('hki.ed
 Route::put('/hki/input/edit/{id}', [HkiController::class, 'update'])->name('hki.update')->middleware('auth');
 Route::put('/hki/input/verifikasi/{id}', [HkiController::class, 'verifikasi'])->name('hki.verifikasi')->middleware('auth');
 Route::delete('/hki/input/hapus/{id}', [HkiController::class, 'destroy'])->name('hki.destroy')->middleware('auth');
+// excel
+Route::get('/hki/input/import', [HkiController::class, 'excel_import'])->name('hki.excel_import')->middleware('auth');
+Route::post('/hki/input/import', [HkiController::class, 'excel_import_post'])->name('hki.excel_import_post')->middleware('auth');
 
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');

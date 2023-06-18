@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('partner');
             $table->string('jenis');
             $table->string('status');
+            $table->boolean('status_post');
             $table->timestamps();
         });
     }

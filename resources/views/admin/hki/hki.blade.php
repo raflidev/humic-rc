@@ -17,6 +17,7 @@
                 </div>
             </div>
             <a href={{ route('hki.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah HKI</a>
+            <a href="{{route('hki.excel_import')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
 
         </div>
 
@@ -32,6 +33,9 @@
                         <th>Jenis</th>
                         <th>Status</th>
                         <th>Action</th>
+                        @if (Auth::user()->role == 'user')
+                            <th>Status Post</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +61,25 @@
                                       <button class="bg-red-500 px-4 py-1 rounded-lg"
                                           onclick="return confirm('Delete?')">Hapus</button>
                                   </form>
+                                  @if (Auth::user()->role == 'superadmin' && $r->status_post == False)
+                                        <form method="POST" action="{{ route('hki.verifikasi', ['id' => $r->id]) }}"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="bg-green-500 px-4 py-1 rounded-lg text-white"
+                                                onclick="return confirm('Verifikasi?')">Verifikasi</button>
+                                        </form>
+                                      @endif
                             </td>
+                            @if (Auth::user()->role == 'user')
+                              <td>
+                                    @if ($r->status_post == True)
+                                        <span class="bg-green-500 px-4 py-1 rounded-lg text-white">Terverifikasi</span>
+                                    @else
+                                        <span class="bg-red-500 px-4 py-1 rounded-lg text-white">Belum Terverifikasi</span>
+                                    @endif
+                              </td>
+                              @endif
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach
