@@ -49,9 +49,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tahun</th>
-                        <th>Sumber</th>
-                        <th>Indikator</th>
+                        <th>Nama</th>
                         <th>Target</th>
                         <th>Action</th>
                     </tr>
@@ -61,9 +59,7 @@
                     @foreach ($data as $r)
                         <tr>
                             <td>{{ $nomor }}</td>
-                            <td>{{ $r->tahun }}</td>
-                            <td>{{ $r->sumber }}</td>
-                            <td>{{ $r->indikator }}</td>
+                            <td>{{ $r->name }}</td>
                             <td>{{ $r->target }}</td>
                             <td>
                                 @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\isiTarget;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class IsiTargetController extends Controller
@@ -24,12 +25,14 @@ class IsiTargetController extends Controller
 
         $awal = DB::table('target')->where('id', $id)->get();
 
-        $penelitian = DB::table('research')->where('status', true)->get();
-        $pengnas = DB::table('pengnas')->where('status', true)->get();
-        $moa = DB::table('moa')->where('status', true)->get();
-        $mou = DB::table('mou')->where('status', true)->get();
-        $ai = DB::table('ai')->where('status', true)->get();
-        return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'pengnas' => $pengnas, 'moa' => $moa, 'mou' => $mou, 'ai' => $ai]);
+        $penelitian = (Auth::user()->role == "superadmin" ? DB::table('research')->where('status', true)->get() : DB::table('research')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $pengnas = (Auth::user()->role == "superadmin" ? DB::table('pengnas')->where('status', true)->get() : DB::table('pengnas')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $moa = (Auth::user()->role == "superadmin" ? DB::table('moa')->where('status', true)->get() : DB::table('moa')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $mou = (Auth::user()->role == "superadmin" ? DB::table('mou')->where('status', true)->get() : DB::table('mou')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $ai = (Auth::user()->role == "superadmin" ? DB::table('ai')->where('status', true)->get() : DB::table('ai')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $publikasi = (Auth::user()->role == "superadmin" ? DB::table('publikasi')->where('status', true)->get() : DB::table('publikasi')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        $hki = (Auth::user()->role == "superadmin" ? DB::table('hki')->where('status', true)->get() : DB::table('hki')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'pengnas' => $pengnas, 'moa' => $moa, 'mou' => $mou, 'ai' => $ai, 'publikasi' => $publikasi, 'hki' => $hki, 'id' => $id]);
     }
 
     /**
@@ -100,6 +103,28 @@ class IsiTargetController extends Controller
             $judul = ($db[0]->title == null ? '-' : $db[0]->title);
             $ketua = "-";
             $fakultas = ($db[0]->faculty == null ? '-' : $db[0]->faculty);
+            $kelompok_keahlian = "-";
+            $total_bantuan = "-";
+            $skema = "-";
+        }
+
+        if ($request->subjek == "Publikasi") {
+            $db = DB::table('publikasi')->where('id', $request->id_subjek)->get();
+            $prodi = "-";
+            $judul = ($db[0]->judul == null ? '-' : $db[0]->judul);
+            $ketua = ($db[0]->member == null ? '-' : $db[0]->member);
+            $fakultas = "-";
+            $kelompok_keahlian = "-";
+            $total_bantuan = "-";
+            $skema = "-";
+        }
+
+        if ($request->subjek == "HKI") {
+            $db = DB::table('hki')->where('id', $request->id_subjek)->get();
+            $prodi = "-";
+            $judul = ($db[0]->judul == null ? '-' : $db[0]->judul);
+            $ketua = ($db[0]->member == null ? '-' : $db[0]->member);
+            $fakultas = "-";
             $kelompok_keahlian = "-";
             $total_bantuan = "-";
             $skema = "-";

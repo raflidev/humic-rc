@@ -19,7 +19,7 @@ class PicController extends Controller
             ->join('target', 'pic.id_target', '=', 'target.id')
             ->join('users', 'pic.id_user', '=', 'users.id')
             ->where('pic.id_target', $id)
-            ->select('pic.*', 'target.tahun', 'target.sumber', 'target.indikator')
+            ->select('pic.*', 'target.tahun', 'target.sumber', 'target.indikator', 'users.name')
             ->get();
         // dd($data);
         $awal = DB::table('target')->where('id', $id)->get();

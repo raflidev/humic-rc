@@ -142,7 +142,7 @@ Route::delete('/ntf/hapus/{id}', [NtfController::class, 'destroy'])->name('ntf.d
 
 
 // Publikasi
-Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index')->middleware('auth');
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi.index');
 Route::get('/publikasi/input', [PublikasiController::class, 'create_index'])->name('publikasi.create_index')->middleware('auth');
 Route::get('/publikasi/input/add', [PublikasiController::class, 'create'])->name('publikasi.create')->middleware('auth');
 Route::post('/publikasi/input/add', [PublikasiController::class, 'store'])->name('publikasi.store')->middleware('auth');

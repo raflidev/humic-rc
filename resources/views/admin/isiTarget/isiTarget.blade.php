@@ -30,6 +30,8 @@
                                 <option value="MOA">MOA</option>
                                 <option value="MOU">MOU</option>
                                 <option value="IA">IA</option>
+                                <option value="Publikasi">Publikasi</option>
+                                <option value="HKI">HKI</option>
                             </select>
                         </div>
                         <div class="mb-6" id="capaian">
@@ -111,6 +113,8 @@
             let mou = {!! json_encode($mou) !!};
             let moa = {!! json_encode($moa) !!};
             let ai = {!! json_encode($ai) !!};
+            let publikasi = {!! json_encode($publikasi) !!};
+            let hki = {!! json_encode($hki) !!};
 
             $(document).ready(function() {
                 $('#capaian').hide()
@@ -163,6 +167,26 @@
                         $.each(data, function(index, value) {
                             if (value.ai_id != null) {
                                 $('#capaian_val').append('<option value="' + value.ai_id + '">' + value.telu_number + ' | ' + value.partner_name + '</option>');
+                            }
+                        });
+                    }
+
+                    if(value == "Publikasi"){
+                        var data = publikasi;
+                        $('#capaian_val').empty();
+                        $.each(data, function(index, value) {
+                            if (value.id != null) {
+                                $('#capaian_val').append('<option value="' + value.id + '">' + value.judul + ' | ' + value.quartile + ' ' + value.tahun + '</option>');
+                            }
+                        });
+                    }
+
+                    if(value == "HKI"){
+                        var data = hki;
+                        $('#capaian_val').empty();
+                        $.each(data, function(index, value) {
+                            if (value.id != null) {
+                                $('#capaian_val').append('<option value="' + value.id + '">' + value.judul + ' | ' + value.tahun + '</option>');
                             }
                         });
                     }

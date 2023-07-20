@@ -26,7 +26,7 @@ class TargetController extends Controller
             $data = DB::table('target')->get();
         } else {
             $data = DB::table('pic')
-                ->join('target', 'pic.id', '=', 'target.id')
+                ->join('target', 'pic.id_target', '=', 'target.id')
                 ->where('pic.id_user', Auth::user()->id)
                 ->select('target.id', 'target.tahun', 'target.sumber', 'target.indikator', 'pic.target', 'target.keterangan', 'target.capaian')
                 ->get();

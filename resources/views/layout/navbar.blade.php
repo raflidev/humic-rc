@@ -6,7 +6,7 @@
 @auth
     @if (Auth::user())
         <div class="flex space-x-3 items-center">
-            <a href="profile" class="hover:underline mr-4">
+            <a href="{{route('user.profile')}}" class="hover:underline mr-4">
                 Halo, {{ Auth::user()->name }}
             </a>
             <div class="rounded-md bg-blue-500 hover:bg-blue-700 px-5 py-2">

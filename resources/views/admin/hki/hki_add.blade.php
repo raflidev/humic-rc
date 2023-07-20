@@ -69,8 +69,12 @@
                         <div class="mb-6">
                             <label for="jenis" class="block mb-2 text-sm font-medium ">Jenis</label>
                             <select name="jenis" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="MEREK">MEREK</option>
                                 <option value="HAK CIPTA">HAK CIPTA</option>
                                 <option value="DESAIN INDUSTRI">DESAIN INDUSTRI</option>
+                                <option value="PATEN SEDERHANA">PATEN SEDERHANA</option>
+                                <option value="RAHASIA DAGANG">RAHASIA DAGANG</option>
+                                <option value="DESAIN TATA LETAK SIRKUIT TERPADU">DESAIN TATA LETAK SIRKUIT TERPADU</option>
                             </select>
                         </div>
                         <div class="mb-6">
