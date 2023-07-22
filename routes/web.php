@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 // CRUD PENELITIAN
 Route::get('/', [TargetController::class, 'index'])->name('target.index');
 Route::get('/target/input', [TargetController::class, 'index_admin'])->name('target.index_admin');
+Route::get('/target/input/laporan', [TargetController::class, 'laporan'])->name('target.laporan');
 Route::get('/target/input/add', [TargetController::class, 'create'])->name('target.create');
 Route::post('/target/input/add', [TargetController::class, 'store'])->name('target.store');
 Route::get('/target/input/edit/{id}', [TargetController::class, 'edit'])->name('target.edit');

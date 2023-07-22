@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Target;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +20,13 @@ class TargetController extends Controller
     {
         $data = DB::table('target')->get();
         return view('target', ['data' => $data]);
+    }
+
+    public function laporan()
+    {
+        $data = DB::table('target')->get();
+        $pdf = FacadePdf::loadView('admin.target.laporan', ['data' => $data]);
+        return $pdf->stream();
     }
 
     public function index_admin()

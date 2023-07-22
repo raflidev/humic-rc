@@ -17,6 +17,7 @@
                 </div>
             </div>
             <a href={{ route('target.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah Target</a>
+            <a href={{ route('target.laporan') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
 
         </div>
 
