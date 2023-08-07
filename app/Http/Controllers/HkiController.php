@@ -23,7 +23,7 @@ class HkiController extends Controller
 
     public function create_index()
     {
-        $data = Hki::all();
+        $data = Hki::where('user_id', Auth::user()->id)->get();
         return view('admin.hki.hki', ['data' => $data]);
     }
 

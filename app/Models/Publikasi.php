@@ -14,6 +14,7 @@ class Publikasi extends Model
     protected $fillable = [
         "jenis_publikasi",
         "judul",
+        "user_id",
         "member",
         "partner",
         "nama_jurnal",

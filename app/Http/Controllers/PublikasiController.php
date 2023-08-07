@@ -162,6 +162,7 @@ class PublikasiController extends Controller
 
         $data = Publikasi::where('id', $id)->firstOrFail();
         $data->jenis_publikasi = $request->jenis_publikasi;
+        $data->user_id = Auth::user()->id;
         $data->judul = $request->judul;
         $data->member = implode("|", $dataMember);
         $data->partner = implode("|", $dataMemberPartner);

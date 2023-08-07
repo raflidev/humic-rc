@@ -20,6 +20,7 @@ class HkiImport implements ToModel, WithHeadingRow
         return new Hki([
             'tahun' => $row['tahun'],
             'judul' => $row['judul'],
+            'user_id' => Auth::user()->id,
             'member' => $row['member'],
             'partner' => $row['partner'],
             'jenis' => $row['jenis'],

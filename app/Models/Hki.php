@@ -15,6 +15,7 @@ class Hki extends Model
         'tahun',
         'judul',
         'member',
+        'user_id',
         'partner',
         'jenis',
         'status',

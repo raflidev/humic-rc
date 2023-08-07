@@ -27,6 +27,7 @@ class PublikasiImport implements ToModel, WithHeadingRow
             "volume" => $row['volume'],
             "tahun" => $row['tahun'],
             "quartile" => $row['quartile'],
+            "user_id" => Auth::user()->id,
             "indexed" => $row['indexed'],
             "link_makalah" => $row['link_makalah'],
             'status' => False,
