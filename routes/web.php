@@ -49,6 +49,7 @@ Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name
 // member
 Route::get('/penelitian/input/member/{id}', [ResearchController::class, 'member'])->name('research.member')->middleware('auth');
 Route::post('/penelitian/input/member/{id}', [ResearchController::class, 'member_store'])->name('research.member_store')->middleware('auth');
+Route::delete('/penelitian/input/member/{id}', [ResearchController::class, 'member_destroy'])->name('research.member_destroy')->middleware('auth');
 // excel
 Route::get('/penelitian/input/import', [ResearchController::class, 'excel_import'])->name('research.excel_import')->middleware('auth');
 Route::post('/penelitian/input/import', [ResearchController::class, 'excel_import_post'])->name('research.excel_import_post')->middleware('auth');

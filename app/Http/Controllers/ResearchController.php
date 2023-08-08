@@ -365,7 +365,7 @@ class ResearchController extends Controller
             ->join('users', 'member_penelitian.user_id', '=', 'users.id')
             ->join('research', 'member_penelitian.penelitian_id', '=', 'research.research_id')
             ->where('penelitian_id', $id)
-            ->select('users.name', 'research.research_title', 'research.faculty', 'research.tkt')
+            ->select('users.name', 'research.research_title', 'research.status', 'research.faculty', 'research.tkt', 'member_penelitian.id')
             ->get();
         return view('admin.research.research_member', ['user' => $user, 'id' => $id, 'research' => $research]);
     }
@@ -374,10 +374,18 @@ class ResearchController extends Controller
     {
         $member = member_penelitian::create([
             'penelitian_id' => $id,
-            'user_id' => $request->member,
+            'user_id' => $request->user_id,
         ]);
+
 
         $member->save();
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function member_destroy($id)
+    {
+        $member = member_penelitian::where('id', $id);
+        $member->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
 }

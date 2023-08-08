@@ -73,9 +73,9 @@
                             <td>{{ $r->contract_number }}</td>
                             <td>{{ $r->description }}</td>
                             <td>
+                                <a href="{{ route('research.member', ['id' => $r->research_id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
                                   @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
-                                    <a href="{{ route('research.member', ['id' => $r->research_id]) }}"
-                                        class="bg-green-500 px-4 py-1 rounded-lg">Tambah Member</a>
 
                                     <a href="{{ route('research.edit', ['id' => $r->research_id]) }}"
                                         class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>

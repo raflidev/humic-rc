@@ -4,6 +4,12 @@
     @include('layout.sidebar')
     <div class="w-10/12" id="sidebar">
         <div class="bg-slate-700 px-16 py-10 text-white">
+            @if (Session::has('success'))
+                <div id="success"
+                    class="w-full px-5 bg-green-500 text-white py-3 rounded my-4 items-center">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
             <div class="pb-10" id="navbar">
                 <div class="flex justify-between items-center">
                     <h1 class="font-semibold uppercase">Dashboard</h1>
@@ -12,16 +18,18 @@
             </div>
             @if ($errors->any())
                 @foreach ($errors->all() as $err)
-                    <p class="">{{ $err }}</p>
+                    <p class="w-full px-5 bg-red-500 text-white py-3 rounded my-4 items-center">{{ $err }}</p>
                 @endforeach
             @endif
+
+            @if(Auth::user()->role == "superadmin" || $research[0]->status == false)
             <form action="{{ route('research.member_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
-                            <label for="member" class="block mb-2 text-sm font-medium ">Member</label>
-                            <select name="member" id="member"
+                            <label for="user_id" class="block mb-2 text-sm font-medium ">Member</label>
+                            <select name="user_id" id="user_id"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 required="">
                                 <option value="">Pilih Member</option>
@@ -38,6 +46,7 @@
                     </div>
                 </div>
             </form>
+            @endif
 
         </div>
         <div class="pt-10 px-10">
@@ -49,9 +58,6 @@
                         <th>TKT</th>
                         <th>Judul Penelitian</th>
                         <th>Action</th>
-                        @if (Auth::user()->role == 'user')
-                            <th>Status</th>
-                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -63,10 +69,10 @@
                             <td>{{ $r->tkt }}</td>
                             <td>{{ $r->faculty }}</td>
                             <td>
-                                  @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
+                                  @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user'))
 
                                     <form method="POST"
-                                        action="{{ route('research.destroy', ['id' => 1]) }}"
+                                        action="{{ route('research.member_destroy', ['id' => $r->id]) }}"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
@@ -75,15 +81,6 @@
                                     </form>
                                     @endif
                               </td>
-                              @if (Auth::user()->role == 'user')
-                              <td>
-                                    @if ($r->status == True)
-                                        <span class="bg-green-500 px-4 py-1 rounded-lg text-white">Terverifikasi</span>
-                                    @else
-                                        <span class="bg-red-500 px-4 py-1 rounded-lg text-white">Belum Terverifikasi</span>
-                                    @endif
-                              </td>
-                              @endif
                         </tr>
                         <?php $nomor++; ?>
                     @endforeach

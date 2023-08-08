@@ -25,14 +25,15 @@ class IsiTargetController extends Controller
 
         $awal = DB::table('target')->where('id', $id)->get();
 
-        $penelitian = (Auth::user()->role == "superadmin" ? DB::table('research')->where('status', true)->get() : DB::table('research')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $pengnas = (Auth::user()->role == "superadmin" ? DB::table('pengnas')->where('status', true)->get() : DB::table('pengnas')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $moa = (Auth::user()->role == "superadmin" ? DB::table('moa')->where('status', true)->get() : DB::table('moa')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $mou = (Auth::user()->role == "superadmin" ? DB::table('mou')->where('status', true)->get() : DB::table('mou')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $ai = (Auth::user()->role == "superadmin" ? DB::table('ai')->where('status', true)->get() : DB::table('ai')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $publikasi = (Auth::user()->role == "superadmin" ? DB::table('publikasi')->where('status', true)->get() : DB::table('publikasi')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        $hki = (Auth::user()->role == "superadmin" ? DB::table('hki')->where('status', true)->get() : DB::table('hki')->where('user_id', Auth::user()->id)->where('status', true)->get());
-        return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'pengnas' => $pengnas, 'moa' => $moa, 'mou' => $mou, 'ai' => $ai, 'publikasi' => $publikasi, 'hki' => $hki, 'id' => $id]);
+        $penelitian = (Auth::user()->role == "superadmin" ? DB::table('research')->where('status', true)->get() : DB::table('research')->join('member_penelitian', 'research.research_id', '=', 'member_penelitian.penelitian_id')->where('member_penelitian.user_id', Auth::user()->id)->where('research.status', true)->get());
+        // $pengnas = (Auth::user()->role == "superadmin" ? DB::table('pengnas')->where('status', true)->get() : DB::table('pengnas')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // $moa = (Auth::user()->role == "superadmin" ? DB::table('moa')->where('status', true)->get() : DB::table('moa')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // $mou = (Auth::user()->role == "superadmin" ? DB::table('mou')->where('status', true)->get() : DB::table('mou')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // $ai = (Auth::user()->role == "superadmin" ? DB::table('ai')->where('status', true)->get() : DB::table('ai')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // $publikasi = (Auth::user()->role == "superadmin" ? DB::table('publikasi')->where('status', true)->get() : DB::table('publikasi')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // $hki = (Auth::user()->role == "superadmin" ? DB::table('hki')->where('status', true)->get() : DB::table('hki')->where('user_id', Auth::user()->id)->where('status', true)->get());
+        // return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'pengnas' => $pengnas, 'moa' => $moa, 'mou' => $mou, 'ai' => $ai, 'publikasi' => $publikasi, 'hki' => $hki, 'id' => $id]);
+        return view('admin.isiTarget.isiTarget', ['data' => $data, 'awal' => $awal[0], 'penelitian' => $penelitian, 'id' => $id]);
     }
 
     /**
