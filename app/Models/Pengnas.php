@@ -11,7 +11,6 @@ class Pengnas extends Model
 
     protected $fillable = [
         'period',
-        'user_id',
         'scheme',
         'faculty',
         'study_program',

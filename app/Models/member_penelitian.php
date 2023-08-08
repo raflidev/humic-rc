@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hki extends Model
+class member_penelitian extends Model
 {
     use HasFactory;
 
-    protected $table = 'hki';
+    protected $table = "member_penelitian";
 
     protected $fillable = [
-        'tahun',
-        'judul',
-        'member',
-        'partner',
-        'jenis',
-        'status',
-        'status_post',
+        "user_id",
+        "penelitian_id",
     ];
 }

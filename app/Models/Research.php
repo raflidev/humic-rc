@@ -11,7 +11,6 @@ class Research extends Model
 
     protected $fillable = [
         'faculty',
-        'user_id',
         'study_program',
         'research_title',
         'tkt',
