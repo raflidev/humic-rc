@@ -46,6 +46,9 @@ Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->na
 // add
 Route::get('/penelitian/input/add', [ResearchController::class, 'create'])->name('research.create')->middleware('auth');
 Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name('research.store')->middleware('auth');
+// member
+Route::get('/penelitian/input/member/{id}', [ResearchController::class, 'member'])->name('research.member')->middleware('auth');
+Route::post('/penelitian/input/member/{id}', [ResearchController::class, 'member_store'])->name('research.member_store')->middleware('auth');
 // excel
 Route::get('/penelitian/input/import', [ResearchController::class, 'excel_import'])->name('research.excel_import')->middleware('auth');
 Route::post('/penelitian/input/import', [ResearchController::class, 'excel_import_post'])->name('research.excel_import_post')->middleware('auth');

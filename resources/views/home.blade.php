@@ -112,7 +112,7 @@
                             <td>{{ $r->research_title }}</td>
                             <td>{{ $r->tkt }}</td>
                             <td>{{ $r->skill_group }}</td>
-                            <td>{{ $r->head_name }}</td>
+                            <td>{{ $r->ketua }}</td>
                             <td>{{ $r->fund_total }}</td>
                             <td>{{ $r->research_type }}</td>
                             <td>{{ $r->year }}</td>

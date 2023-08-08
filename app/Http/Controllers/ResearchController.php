@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Imports\ResearchImport;
+use App\Models\member_penelitian;
 use App\Models\Research;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,13 +21,45 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        $research = DB::table('research')->whereNotNull('year')->where('status', true)->get();
-        $total_dana_internal = DB::table('research')->whereNotNull('year')->where('status', true)->where('fund_type', 'internal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
-        $total_dana_eksternal = DB::table('research')->whereNotNull('year')->where('status', true)->where('fund_type', 'eksternal')->where('year', ">=", Carbon::now()->year - 2)->sum('fund_total');
-        $penelitian_internal = DB::table('research')->whereNotNull('year')->where('status', true)->where("fund_type", 'internal')->count();
-        $penelitian_eksternal = DB::table('research')->whereNotNull('year')->where('status', true)->where("fund_type", 'eksternal')->count();
+        $research = DB::table('research')
+            ->whereNotNull('year')
+            ->join('users', 'users.id', '=', 'research.head_name')
+            ->select('research.*', 'users.name as ketua')
+            ->where('research.status', true)
+            ->get();
+
+        $total_dana_internal = DB::table('research')
+            ->whereNotNull('year')
+            ->where('status', true)
+            ->where('fund_type', 'internal')
+            ->where('year', ">=", Carbon::now()->year - 2)
+            ->sum('fund_total');
+
+        $total_dana_eksternal = DB::table('research')
+            ->whereNotNull('year')
+            ->where('status', true)
+            ->where('fund_type', 'eksternal')
+            ->where('year', ">=", Carbon::now()->year - 2)
+            ->sum('fund_total');
+        $penelitian_internal = DB::table('research')
+            ->whereNotNull('year')
+            ->where('status', true)
+            ->where("fund_type", 'internal')
+            ->count();
+        $penelitian_eksternal = DB::table('research')
+            ->whereNotNull('year')
+            ->where('status', true)
+            ->where("fund_type", 'eksternal')
+            ->count();
+
         // get data
-        $grafik = DB::table('research')->select('year', DB::raw('SUM(fund_total) as fund_total'))->whereNotNull('year')->where('status', true)->where('year', ">=", Carbon::now()->year - 2)->groupBy('year')->get();
+        $grafik = DB::table('research')
+            ->select('year', DB::raw('SUM(fund_total) as fund_total'))
+            ->whereNotNull('year')
+            ->where('status', true)
+            ->where('year', ">=", Carbon::now()->year - 2)
+            ->groupBy('year')
+            ->get();
         return view('home', ['research' => $research, 'internal' => $total_dana_internal, 'external' => $total_dana_eksternal, 'penelitian_internal' => $penelitian_internal, 'penelitian_eksternal' => $penelitian_eksternal, 'grafik' => $grafik]);
     }
 
@@ -37,17 +71,25 @@ class ResearchController extends Controller
 
     public function create()
     {
-        $research = DB::table('research')->get();
-        return view('admin.research.research_add', ['research' => $research]);
+        $user = User::where('role', 'user')->get();
+        return view('admin.research.research_add', ['user' => $user]);
     }
 
     public function create_index()
     {
         if (Auth::user()->role == "user") {
-            $name = "%" . Auth::user()->name . "%";
-            $research = DB::table('research')->where("head_name", 'like', "$name")->orWhere('user_id', Auth::user()->id)->orWhere('member', 'like', "$name")->get();
+            $research = DB::table('research')
+                ->join('member_penelitian', 'research.research_id', '=', 'member_penelitian.penelitian_id')
+                ->join('users', 'users.id', '=', 'research.head_name')
+                ->select('research.*', 'users.name as ketua')
+                ->where('member_penelitian.user_id', Auth::user()->id)
+                ->orWhere('research.head_name', Auth::user()->id)
+                ->get();
         } else {
-            $research = DB::table('research')->get();
+            $research = DB::table('research')
+                ->join('users', 'users.id', '=', 'research.head_name')
+                ->select('research.*', 'users.name as ketua')
+                ->get();
         }
         return view('admin.research.research', ['research' => $research]);
     }
@@ -314,5 +356,28 @@ class ResearchController extends Controller
         $research = Research::where('research_id', $id);
         $research->delete();
         return redirect()->route('research.create_index')->with('success', 'Berhasil Hapus Data');;
+    }
+
+    public function member($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $research = DB::table('member_penelitian')
+            ->join('users', 'member_penelitian.user_id', '=', 'users.id')
+            ->join('research', 'member_penelitian.penelitian_id', '=', 'research.research_id')
+            ->where('penelitian_id', $id)
+            ->select('users.name', 'research.research_title', 'research.faculty', 'research.tkt')
+            ->get();
+        return view('admin.research.research_member', ['user' => $user, 'id' => $id, 'research' => $research]);
+    }
+
+    public function member_store(Request $request, $id)
+    {
+        $member = member_penelitian::create([
+            'penelitian_id' => $id,
+            'user_id' => $request->member,
+        ]);
+
+        $member->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
     }
 }

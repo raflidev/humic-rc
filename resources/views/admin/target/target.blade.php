@@ -16,7 +16,9 @@
                     @include('layout.navbar')
                 </div>
             </div>
+            @if(Auth::user()->role == "superadmin")
             <a href={{ route('target.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah Target</a>
+            @endif
             <a href={{ route('target.laporan') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
 
         </div>

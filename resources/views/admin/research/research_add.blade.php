@@ -51,27 +51,19 @@
                         </div>
                         <div class="mb-6">
                             <label for="nama_ketua" class="block mb-2 text-sm font-medium ">Nama Ketua</label>
-                            <input type="text" name="nama_ketua"
+                            {{-- <input type="text" name="nama_ketua"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
+                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}"> --}}
+                                <select name="nama_ketua" id="nama_ketua"
+                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                required="">
+                                <option value="">Pilih Ketua</option>
+                                @foreach ($user as $f)
+                                    <option value="{{ $f->id }}">{{ $f->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_anggota" class="block mb-2 text-sm font-medium ">Jumlah
-                                        Anggota</label>
-                                    <input type="number" id="jumlah_anggota" name="jumlah_anggota"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Anggota" required="" value="{{ old('jumlah_anggota') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonAnggota"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="anggota" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
+
                         <div class="mb-6">
                             <label for="nama_ketua_mitra" class="block mb-2 text-sm font-medium ">Nama Ketua Mitra</label>
                             <input type="text" name="nama_ketua_mitra"
@@ -260,28 +252,6 @@
                 config
             );
 
-            document.getElementById('buttonAnggota').addEventListener('click', (event) => {
-                event.preventDefault();
-                var container = document.getElementById('anggota');
-                container.classList.remove('hidden');
-                var count = container.childElementCount;
-                if (count > 0) {
-                    container.innerHTML = "";
-                }
-                var jumlah = document.getElementById('jumlah_anggota').value
-                if (jumlah == 0) {
-                    container.classList.add('hidden');
-                }
-                for (let i = 1; i <= jumlah; i++) {
-                    container.innerHTML +=
-                        `<div class="mb-6 px-2">
-                            <label for="nama_anggota${i}" class="block text-sm font-medium">Nama Anggota ${i}</label>
-                            <input type="text" name="nama_anggota${i}"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Anggota ${i}" required="" value="{{ old('nama_anggota${i}') }}">
-                        </div>`;
-                }
-            });
 
             document.getElementById('buttonAnggotaMitra').addEventListener('click', (event) => {
                 event.preventDefault();

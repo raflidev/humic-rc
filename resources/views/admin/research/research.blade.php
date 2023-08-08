@@ -60,7 +60,7 @@
                             <td>{{ $r->research_title }}</td>
                             <td>{{ $r->tkt }}</td>
                             <td>{{ $r->skill_group }}</td>
-                            <td>{{ $r->head_name }}</td>
+                            <td>{{ $r->ketua }}</td>
                             <td>{{ $r->fund_total }}</td>
                             <td>{{ $r->research_type }}</td>
                             <td>{{ $r->year }}</td>
@@ -74,6 +74,9 @@
                             <td>{{ $r->description }}</td>
                             <td>
                                   @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
+                                    <a href="{{ route('research.member', ['id' => $r->research_id]) }}"
+                                        class="bg-green-500 px-4 py-1 rounded-lg">Tambah Member</a>
+
                                     <a href="{{ route('research.edit', ['id' => $r->research_id]) }}"
                                         class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
