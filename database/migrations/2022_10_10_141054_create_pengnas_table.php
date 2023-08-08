@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('pengnas', function (Blueprint $table) {
             $table->id("pengnas_id");
-            $table->string("user_id");
             $table->string("period");
             $table->string("scheme");
             $table->string("faculty");
