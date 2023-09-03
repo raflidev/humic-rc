@@ -60,6 +60,8 @@
                             <td>{{ $r->indexed }}</td>
                             <td>{{ $r->link_makalah }}</td>
                             <td>
+                                <a href="{{ route('publikasi.member', ['id' => $r->id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
                                   <a href="{{ route('publikasi.edit', ['id' => $r->id]) }}"
                                       class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 

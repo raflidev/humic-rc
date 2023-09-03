@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string("research_title");
             $table->string("tkt");
             $table->string("skill_group");
-            $table->string("head_name");
-            $table->string("head_partner_name")->nullable();
-            $table->string("member_partner")->nullable();
-            $table->text("member")->nullable();
-            $table->text("student")->nullable();
+            // $table->string("head_name");
+            // $table->string("head_partner_name")->nullable();
+            // $table->string("member_partner")->nullable();
+            // $table->text("member")->nullable();
+            // $table->text("student")->nullable();
             $table->bigInteger("fund_external")->nullable();
             $table->bigInteger("fund_total")->nullable();
             $table->string("research_type")->nullable();

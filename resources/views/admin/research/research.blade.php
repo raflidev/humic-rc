@@ -32,7 +32,7 @@
                         <th>Judul Penelitian</th>
                         <th>TKT</th>
                         <th>Kelompok Keahlian</th>
-                        <th>Nama Ketua</th>
+                        {{-- <th>Nama Ketua</th> --}}
                         <th>Total Dana</th>
                         <th>Jenis/Skema Penelitian</th>
                         <th>Tahun Pelaksanaan</th>
@@ -60,7 +60,7 @@
                             <td>{{ $r->research_title }}</td>
                             <td>{{ $r->tkt }}</td>
                             <td>{{ $r->skill_group }}</td>
-                            <td>{{ $r->ketua }}</td>
+                            {{-- <td>{{ $r->ketua }}</td> --}}
                             <td>{{ $r->fund_total }}</td>
                             <td>{{ $r->research_type }}</td>
                             <td>{{ $r->year }}</td>

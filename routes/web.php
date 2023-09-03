@@ -155,6 +155,10 @@ Route::get('/publikasi/input/edit/{id}', [PublikasiController::class, 'edit'])->
 Route::put('/publikasi/input/edit/{id}', [PublikasiController::class, 'update'])->name('publikasi.update')->middleware('auth');
 Route::put('/publikasi/input/verifikasi/{id}', [PublikasiController::class, 'verifikasi'])->name('publikasi.verifikasi')->middleware('auth');
 Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy')->middleware('auth');
+// member
+Route::get('/publikasi/input/member/{id}', [PublikasiController::class, 'member'])->name('publikasi.member')->middleware('auth');
+Route::post('/publikasi/input/member/{id}', [PublikasiController::class, 'member_store'])->name('publikasi.member_store')->middleware('auth');
+Route::delete('/publikasi/input/member/{id}', [PublikasiController::class, 'member_destroy'])->name('publikasi.member_destroy')->middleware('auth');
 
 // excel
 Route::get('/publikasi/input/import', [PublikasiController::class, 'excel_import'])->name('publikasi.excel_import')->middleware('auth');

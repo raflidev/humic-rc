@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ResearchImport;
 use App\Models\member_penelitian;
+use App\Models\member_publikasi;
 use App\Models\Research;
 use App\Models\User;
 use Carbon\Carbon;
@@ -21,12 +22,19 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        $research = DB::table('research')
-            ->whereNotNull('year')
-            ->join('users', 'users.id', '=', 'research.head_name')
-            ->select('research.*', 'users.name as ketua')
+        // $research = DB::table('research')
+        //     ->whereNotNull('year')
+        //     ->join('users', 'users.id', '=', 'research.head_name')
+        //     ->select('research.*', 'users.name as ketua')
+        //     ->where('research.status', true)
+        //     ->get();
+        $research = Research::join('member_penelitian', 'member_penelitian.penelitian_id', '=', 'research.research_id')
+            ->select('research.*')
             ->where('research.status', true)
+            ->where('member_penelitian.user_id', Auth::user()->id)
             ->get();
+
+
 
         $total_dana_internal = DB::table('research')
             ->whereNotNull('year')
@@ -77,20 +85,21 @@ class ResearchController extends Controller
 
     public function create_index()
     {
+        $research = Research::query();
         if (Auth::user()->role == "user") {
             $research = DB::table('research')
                 ->join('member_penelitian', 'research.research_id', '=', 'member_penelitian.penelitian_id')
-                ->join('users', 'users.id', '=', 'research.head_name')
-                ->select('research.*', 'users.name as ketua')
-                ->where('member_penelitian.user_id', Auth::user()->id)
-                ->orWhere('research.head_name', Auth::user()->id)
-                ->get();
+                // ->join('users', 'users.id', '=', 'research.head_name')
+                // ->select('research.*', 'users.name as ketua')
+                ->select('research.*')
+                ->where('member_penelitian.user_id', Auth::user()->id);
         } else {
             $research = DB::table('research')
-                ->join('users', 'users.id', '=', 'research.head_name')
-                ->select('research.*', 'users.name as ketua')
-                ->get();
+                // ->join('users', 'users.id', '=', 'research.head_name')
+                ->select('research.*');
         }
+
+        $research = $research->get();
         return view('admin.research.research', ['research' => $research]);
     }
 
@@ -118,8 +127,8 @@ class ResearchController extends Controller
             'prodi' => 'required',
             'judul_penelitian' => 'required',
             'kelompok_keahlian' => 'required',
-            'nama_ketua' => 'required',
-            'nama_ketua_mitra' => 'required',
+            // 'nama_ketua' => 'required',
+            // 'nama_ketua_mitra' => 'required',
             'total_dana_external' => 'required',
             'total_dana' => 'required',
             'skema_penelitian' => 'required',
@@ -135,32 +144,32 @@ class ResearchController extends Controller
             'keterangan' => 'required',
         ]);
 
-        $dataMember = [];
-        $input = $request->input();
-        $anggota = $request->jumlah_anggota;
-        if ($anggota > 0) {
-            for ($i = 1; $i <= $anggota; $i++) {
-                $dataMember[$i] = $input["nama_anggota$i"];
-            }
-        }
+        // $dataMember = [];
+        // $input = $request->input();
+        // $anggota = $request->jumlah_anggota;
+        // if ($anggota > 0) {
+        //     for ($i = 1; $i <= $anggota; $i++) {
+        //         $dataMember[$i] = $input["nama_anggota$i"];
+        //     }
+        // }
 
-        $dataMemberPartner = [];
-        $input = $request->input();
-        $anggota_mitra = $request->jumlah_anggota_mitra;
-        if ($anggota_mitra > 0) {
-            for ($i = 1; $i <= $anggota_mitra; $i++) {
-                $dataMemberPartner[$i] = $input["nama_anggota_mitra$i"];
-            }
-        }
+        // $dataMemberPartner = [];
+        // $input = $request->input();
+        // $anggota_mitra = $request->jumlah_anggota_mitra;
+        // if ($anggota_mitra > 0) {
+        //     for ($i = 1; $i <= $anggota_mitra; $i++) {
+        //         $dataMemberPartner[$i] = $input["nama_anggota_mitra$i"];
+        //     }
+        // }
 
-        $dataMahasiswa = [];
-        $input = $request->input();
-        $mahasiswa = $request->jumlah_mahasiswa;
-        if ($mahasiswa > 0) {
-            for ($i = 1; $i <= $mahasiswa; $i++) {
-                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
-            }
-        }
+        // $dataMahasiswa = [];
+        // $input = $request->input();
+        // $mahasiswa = $request->jumlah_mahasiswa;
+        // if ($mahasiswa > 0) {
+        //     for ($i = 1; $i <= $mahasiswa; $i++) {
+        //         $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
+        //     }
+        // }
 
         if (Auth::user()->role == 'user') {
             $research = new Research([
@@ -170,11 +179,11 @@ class ResearchController extends Controller
                 'research_title' => $request->judul_penelitian,
                 'tkt' => $request->tkt,
                 'skill_group' => $request->kelompok_keahlian,
-                'head_name' => $request->nama_ketua,
-                'head_partner_name' => $request->nama_ketua_mitra,
-                'member' => implode("|", $dataMember),
-                'student' => implode("|", $dataMahasiswa),
-                'member_partner' => implode("|", $dataMemberPartner),
+                // 'head_name' => $request->nama_ketua,
+                // 'head_partner_name' => $request->nama_ketua_mitra,
+                // 'member' => implode("|", $dataMember),
+                // 'student' => implode("|", $dataMahasiswa),
+                // 'member_partner' => implode("|", $dataMemberPartner),
                 'fund_external' => $request->total_dana_external,
                 'fund_total' => $request->total_dana,
                 'research_type' => $request->skema_penelitian,
@@ -200,11 +209,11 @@ class ResearchController extends Controller
                 'research_title' => $request->judul_penelitian,
                 'tkt' => $request->tkt,
                 'skill_group' => $request->kelompok_keahlian,
-                'head_name' => $request->nama_ketua,
-                'head_partner_name' => $request->nama_ketua_mitra,
-                'member' => implode("|", $dataMember),
-                'student' => implode("|", $dataMahasiswa),
-                'member_partner' => implode("|", $dataMemberPartner),
+                // 'head_name' => $request->nama_ketua,
+                // 'head_partner_name' => $request->nama_ketua_mitra,
+                // 'member' => implode("|", $dataMember),
+                // 'student' => implode("|", $dataMahasiswa),
+                // 'member_partner' => implode("|", $dataMemberPartner),
                 'fund_external' => $request->total_dana_external,
                 'fund_total' => $request->total_dana,
                 'research_type' => $request->skema_penelitian,
@@ -361,21 +370,37 @@ class ResearchController extends Controller
     public function member($id)
     {
         $user = User::where('role', 'user')->get();
-        $research = DB::table('member_penelitian')
-            ->join('users', 'member_penelitian.user_id', '=', 'users.id')
-            ->join('research', 'member_penelitian.penelitian_id', '=', 'research.research_id')
+        $member = member_penelitian::join('users', 'member_penelitian.user_id', '=', 'users.id')
             ->where('penelitian_id', $id)
-            ->select('users.name', 'research.research_title', 'research.status', 'research.faculty', 'research.tkt', 'member_penelitian.id')
+            ->select('users.name', 'member_penelitian.role', 'member_penelitian.id')
             ->get();
-        return view('admin.research.research_member', ['user' => $user, 'id' => $id, 'research' => $research]);
+        $data = Research::where('research_id', $id)->first();
+        return view('admin.research.research_member', ['user' => $user, 'id' => $id, 'data' => $data, 'member' => $member]);
     }
 
     public function member_store(Request $request, $id)
     {
+
+        $request->validate([
+            'user_id' => 'required|unique:member_penelitian,user_id',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $check = member_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
+            if ($check != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada!',
+                ]);
+            }
+        }
+
         $member = member_penelitian::create([
             'penelitian_id' => $id,
             'user_id' => $request->user_id,
+            'role' => $request->role,
         ]);
+
 
 
         $member->save();

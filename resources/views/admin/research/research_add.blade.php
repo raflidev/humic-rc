@@ -49,64 +49,7 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Kelompok Keahlian" required="" value="{{ old('kelompok_keahlian') }}">
                         </div>
-                        <div class="mb-6">
-                            <label for="nama_ketua" class="block mb-2 text-sm font-medium ">Nama Ketua</label>
-                            {{-- <input type="text" name="nama_ketua"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}"> --}}
-                                <select name="nama_ketua" id="nama_ketua"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                required="">
-                                <option value="">Pilih Ketua</option>
-                                @foreach ($user as $f)
-                                    <option value="{{ $f->id }}">{{ $f->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
-                        <div class="mb-6">
-                            <label for="nama_ketua_mitra" class="block mb-2 text-sm font-medium ">Nama Ketua Mitra</label>
-                            <input type="text" name="nama_ketua_mitra"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua Mitra" required="" value="{{ old('nama_ketua_mitra') }}">
-                        </div>
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_anggota_mitra" class="block mb-2 text-sm font-medium ">Jumlah Anggota
-                                        Mitra</label>
-                                    <input type="number" id="jumlah_anggota_mitra" name="jumlah_anggota_mitra"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Anggota Mitra" required=""
-                                        value="{{ old('jumlah_anggota_mitra') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonAnggotaMitra"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="anggotaMitra" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
-                                        Mahasiswa</label>
-                                    <input type="number" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Mahasiswa" required=""
-                                        value="{{ old('jumlah_mahasiswa') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonMahasiswa"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="mahasiswa" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
 
                         <div class="mb-6">
                             <label for="total_dana_external" class="block mb-2 text-sm font-medium ">Dana External</label>
@@ -120,9 +63,6 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Total Dana" required="" value="{{ old('total_dana') }}">
                         </div>
-
-                    </div>
-                    <div class="w-1/2">
                         <div class="mb-6">
                             <label for="skema_penelitian" class="block mb-2 text-sm font-medium ">Jenis/Skema
                                 Penelitian</label>
@@ -138,6 +78,9 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Tahun Pelaksanaan" required="" value="{{ old('tahun_pelaksanaan') }}">
                         </div>
+                    </div>
+                    <div class="w-1/2">
+
                         <div class="mb-6">
                             <label for="jenis_pendanaan" class="block mb-2 text-sm font-medium ">Jenis Pendanaan</label>
                             <select name="jenis_pendanaan" id="" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">

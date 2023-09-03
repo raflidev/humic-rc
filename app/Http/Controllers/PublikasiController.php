@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Imports\PublikasiImport;
+use App\Models\member_publikasi;
 use App\Models\Publikasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PublikasiController extends Controller
@@ -208,5 +211,36 @@ class PublikasiController extends Controller
         $publikasi = Publikasi::where('id', $id)->firstOrFail();
         $publikasi->delete();
         return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Menghapus Data');
+    }
+
+    public function member($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $data = DB::table('member_publikasi')
+            ->join('users', 'member_publikasi.user_id', '=', 'users.id')
+            ->join('publikasi', 'member_publikasi.publikasi_id', '=', 'publikasi.id')
+            ->where('member_publikasi.publikasi_id', $id)
+            ->select('users.name', 'member_publikasi.id')
+            ->get();
+        return view('admin.publikasi.publikasi_member', ['user' => $user, 'id' => $id, 'data' => $data]);
+    }
+
+    public function member_store(Request $request, $id)
+    {
+        $member = member_publikasi::create([
+            'publikasi_id' => $id,
+            'user_id' => $request->user_id,
+        ]);
+
+
+        $member->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function member_destroy($id)
+    {
+        $member = member_publikasi::where('id', $id);
+        $member->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
 }

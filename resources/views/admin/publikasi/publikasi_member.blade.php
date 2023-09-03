@@ -22,13 +22,8 @@
                 @endforeach
             @endif
 
-            <div class="flex space-x-3 mb-4">
-                <div>Judul Penelitian: </div>
-                <div>{{$data->research_title}}</div>
-            </div>
-
-            @if(Auth::user()->role == "superadmin" || $research[0]->status == false)
-            <form action="{{ route('research.member_store', ['id' => $id]) }}" method="post">
+            @if(Auth::user()->role == "superadmin" || $data[0]->status == false)
+            <form action="{{ route('publikasi.member_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">
@@ -42,16 +37,6 @@
                                     <option value="{{ $f->id }}">{{ $f->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="mb-6">
-                            <label for="role" class="block mb-2 text-sm font-medium ">Role</label>
-                            <select name="role" id="role"
-                            class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            required="">
-                                <option value="Ketua">Ketua</option>
-                                <option value="Member">Member</option>
-                            </select>
-                        </select>
                         </div>
                         <div class="mb-6">
                             <button type="submit"
@@ -70,22 +55,20 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $nomor = 1; ?>
-                    @foreach ($member as $r)
+                    @foreach ($data as $r)
                         <tr>
                             <td>{{ $nomor }}</td>
                             <td>{{ $r->name }}</td>
-                            <td>{{ $r->role }}</td>
                             <td>
                                   @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user'))
 
                                     <form method="POST"
-                                        action="{{ route('research.member_destroy', ['id' => $r->id]) }}"
+                                        action="{{ route('publikasi.member_destroy', ['id' => $r->id]) }}"
                                         style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')

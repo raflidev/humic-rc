@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('member_penelitian', function (Blueprint $table) {
+        Schema::create('mitra_pengmas', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('penelitian_id');
+            $table->string('nama_partner');
+            $table->string('pengmas_id');
             $table->string('role');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_penelitian');
+        Schema::dropIfExists('mitra_pengmas');
     }
 };

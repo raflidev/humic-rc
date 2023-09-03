@@ -14,5 +14,6 @@ class member_penelitian extends Model
     protected $fillable = [
         "user_id",
         "penelitian_id",
+        "role",
     ];
 }

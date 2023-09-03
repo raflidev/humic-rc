@@ -14,5 +14,6 @@ class member_publikasi extends Model
     protected $fillable = [
         "user_id",
         "publikasi_id",
+        "role"
     ];
 }
