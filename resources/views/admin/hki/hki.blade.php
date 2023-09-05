@@ -28,8 +28,6 @@
                         <th>No</th>
                         <th>Tahun</th>
                         <th>Judul</th>
-                        <th>Member</th>
-                        <th>Partner</th>
                         <th>Jenis</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -45,11 +43,13 @@
                             <td>{{ $nomor }}</td>
                             <td>{{$r->tahun}}</td>
                             <td>{{$r->judul}}</td>
-                            <td>{{$r->member}}</td>
-                            <td>{{$r->partner}}</td>
                             <td>{{$r->jenis}}</td>
                             <td>{{$r->status}}</td>
                             <td>
+                                <a href="{{ route('hki.member', ['id' => $r->id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
+                                <a href="{{ route('hki.mitra', ['id' => $r->id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Mitra</a>
                                   <a href="{{ route('hki.edit', ['id' => $r->id]) }}"
                                       class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 

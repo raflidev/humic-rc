@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\PublikasiImport;
 use App\Models\member_publikasi;
+use App\Models\mitra_publikasi;
 use App\Models\Publikasi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,29 +62,9 @@ class PublikasiController extends Controller
             "link_makalah" => 'required',
         ]);
 
-        $dataMember = [];
-        $input = $request->input();
-        $member = $request->jumlah_member;
-        if ($member > 0) {
-            for ($i = 1; $i <= $member; $i++) {
-                $dataMember[$i] = $input["nama_member$i"];
-            }
-        }
-
-        $dataMemberPartner = [];
-        $input = $request->input();
-        $partner = $request->jumlah_partner;
-        if ($partner > 0) {
-            for ($i = 1; $i <= $partner; $i++) {
-                $dataMemberPartner[$i] = $input["nama_partner$i"];
-            }
-        }
-
         $data = new Publikasi();
         $data->jenis_publikasi = $request->jenis_publikasi;
         $data->judul = $request->judul;
-        $data->member = implode("|", $dataMember);
-        $data->partner = implode("|", $dataMemberPartner);
         $data->nama_jurnal = $request->nama_jurnal;
         $data->issue = $request->issue;
         $data->volume = $request->volume;
@@ -145,30 +126,10 @@ class PublikasiController extends Controller
             "link_makalah" => 'required',
         ]);
 
-        $dataMember = [];
-        $input = $request->input();
-        $member = $request->jumlah_member;
-        if ($member > 0) {
-            for ($i = 1; $i <= $member; $i++) {
-                $dataMember[$i] = $input["nama_member$i"];
-            }
-        }
-
-        $dataMemberPartner = [];
-        $input = $request->input();
-        $partner = $request->jumlah_partner;
-        if ($partner > 0) {
-            for ($i = 1; $i <= $partner; $i++) {
-                $dataMemberPartner[$i] = $input["nama_partner$i"];
-            }
-        }
-
         $data = Publikasi::where('id', $id)->firstOrFail();
         $data->jenis_publikasi = $request->jenis_publikasi;
         $data->user_id = Auth::user()->id;
         $data->judul = $request->judul;
-        $data->member = implode("|", $dataMember);
-        $data->partner = implode("|", $dataMemberPartner);
         $data->nama_jurnal = $request->nama_jurnal;
         $data->issue = $request->issue;
         $data->volume = $request->volume;
@@ -216,24 +177,90 @@ class PublikasiController extends Controller
     public function member($id)
     {
         $user = User::where('role', 'user')->get();
-        $data = DB::table('member_publikasi')
-            ->join('users', 'member_publikasi.user_id', '=', 'users.id')
-            ->join('publikasi', 'member_publikasi.publikasi_id', '=', 'publikasi.id')
-            ->where('member_publikasi.publikasi_id', $id)
-            ->select('users.name', 'member_publikasi.id')
+        $member = member_publikasi::join('users', 'member_publikasi.user_id', '=', 'users.id')
+            ->where('publikasi_id', $id)
+            ->select('users.name', 'member_publikasi.role', 'member_publikasi.id')
             ->get();
-        return view('admin.publikasi.publikasi_member', ['user' => $user, 'id' => $id, 'data' => $data]);
+        $data = Publikasi::where('id', $id)->first();
+        return view('admin.publikasi.publikasi_member', ['user' => $user, 'id' => $id, 'data' => $data, 'member' => $member]);
+    }
+
+    public function mitra($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $mitra = mitra_publikasi::where('publikasi_id', $id)->get();
+        $data = Publikasi::where('id', $id)->first();
+        return view('admin.publikasi.publikasi_mitra', ['user' => $user, 'id' => $id, 'data' => $data, 'mitra' => $mitra]);
     }
 
     public function member_store(Request $request, $id)
     {
+
+        $request->validate([
+            'user_id' => 'required|unique:member_publikasi,user_id',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $checkMitra = mitra_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
+                ]);
+            }
+        }
+
         $member = member_publikasi::create([
             'publikasi_id' => $id,
             'user_id' => $request->user_id,
+            'role' => $request->role,
         ]);
 
 
+
         $member->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function mitra_store(Request $request, $id)
+    {
+        $request->validate([
+            'nama_mitra' => 'required',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $checkMitra = mitra_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
+                ]);
+            }
+        }
+
+        $mitra = mitra_publikasi::create([
+            'publikasi_id' => $id,
+            'nama_mitra' => $request->nama_mitra,
+            'role' => $request->role,
+        ]);
+
+
+
+        $mitra->save();
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
     }
 
@@ -241,6 +268,13 @@ class PublikasiController extends Controller
     {
         $member = member_publikasi::where('id', $id);
         $member->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
+
+    public function mitra_destroy($id)
+    {
+        $mitra = mitra_publikasi::where('id', $id);
+        $mitra->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
 }

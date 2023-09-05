@@ -28,20 +28,15 @@
             </div>
 
             @if(Auth::user()->role == "superadmin" || $publikasi[0]->status == false)
-            <form action="{{ route('publikasi.member_store', ['id' => $id]) }}" method="post">
+            <form action="{{ route('publikasi.mitra_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">
                         <div class="mb-6">
-                            <label for="user_id" class="block mb-2 text-sm font-medium ">Member</label>
-                            <select name="user_id" id="user_id"
+                            <label for="nama_mitra" class="block mb-2 text-sm font-medium ">Nama Mitra</label>
+                            <input name="nama_mitra" id="nama_mitra" placeholder="Nama Mitra"
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                required="">
-                                <option value="">Pilih Member</option>
-                                @foreach ($user as $f)
-                                    <option value="{{ $f->id }}">{{ $f->name }}</option>
-                                @endforeach
-                            </select>
+                                required/>
                         </div>
                         <div class="mb-6">
                             <label for="role" class="block mb-2 text-sm font-medium ">Role</label>
@@ -76,10 +71,10 @@
                 </thead>
                 <tbody>
                     <?php $nomor = 1; ?>
-                    @foreach ($member as $r)
+                    @foreach ($mitra as $r)
                         <tr>
                             <td>{{ $nomor }}</td>
-                            <td>{{ $r->name }}</td>
+                            <td>{{ $r->nama_mitra }}</td>
                             <td>{{ $r->role }}</td>
                             <td>
                                   @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user'))

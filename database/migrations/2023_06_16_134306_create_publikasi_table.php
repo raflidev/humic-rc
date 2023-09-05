@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('jenis_publikasi');
             $table->string('judul');
-            $table->string('member');
-            $table->string('partner');
             $table->string('nama_jurnal');
             $table->string('issue');
             $table->string('volume');

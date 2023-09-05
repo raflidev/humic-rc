@@ -28,8 +28,6 @@
                         <th>No</th>
                         <th>Jenis Publikasi</th>
                         <th>Judul</th>
-                        <th>Member</th>
-                        <th>Partner</th>
                         <th>Nama Jurnal</th>
                         <th>Issue / No</th>
                         <th>Volume</th>
@@ -50,8 +48,6 @@
                             <td>{{ $nomor }}</td>
                             <td>{{ $r->jenis_publikasi }}</td>
                             <td>{{ $r->judul }}</td>
-                            <td>{{ $r->member }}</td>
-                            <td>{{ $r->partner }}</td>
                             <td>{{ $r->nama_jurnal }}</td>
                             <td>{{ $r->issue }}</td>
                             <td>{{ $r->volume }}</td>
@@ -62,6 +58,8 @@
                             <td>
                                 <a href="{{ route('publikasi.member', ['id' => $r->id]) }}"
                                     class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
+                                <a href="{{ route('publikasi.mitra', ['id' => $r->id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Mitra</a>
                                   <a href="{{ route('publikasi.edit', ['id' => $r->id]) }}"
                                       class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 

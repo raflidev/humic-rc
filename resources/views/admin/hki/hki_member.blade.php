@@ -23,12 +23,12 @@
             @endif
 
             <div class="flex space-x-3 mb-4">
-                <div>Judul Jurnal: </div>
-                <div>{{$data->nama_jurnal}}</div>
+                <div>Judul HKI: </div>
+                <div>{{$data->judul}}</div>
             </div>
 
-            @if(Auth::user()->role == "superadmin" || $publikasi[0]->status == false)
-            <form action="{{ route('publikasi.member_store', ['id' => $id]) }}" method="post">
+            @if(Auth::user()->role == "superadmin" || $hki[0]->status == false)
+            <form action="{{ route('hki.member_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">

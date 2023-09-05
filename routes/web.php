@@ -50,7 +50,7 @@ Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name
 Route::get('/penelitian/input/member/{id}', [ResearchController::class, 'member'])->name('research.member')->middleware('auth');
 Route::post('/penelitian/input/member/{id}', [ResearchController::class, 'member_store'])->name('research.member_store')->middleware('auth');
 Route::delete('/penelitian/input/member/{id}', [ResearchController::class, 'member_destroy'])->name('research.member_destroy')->middleware('auth');
-// member
+// mitra
 Route::get('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra'])->name('research.mitra')->middleware('auth');
 Route::post('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra_store'])->name('research.mitra_store')->middleware('auth');
 Route::delete('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra_destroy'])->name('research.mitra_destroy')->middleware('auth');
@@ -163,7 +163,10 @@ Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destr
 Route::get('/publikasi/input/member/{id}', [PublikasiController::class, 'member'])->name('publikasi.member')->middleware('auth');
 Route::post('/publikasi/input/member/{id}', [PublikasiController::class, 'member_store'])->name('publikasi.member_store')->middleware('auth');
 Route::delete('/publikasi/input/member/{id}', [PublikasiController::class, 'member_destroy'])->name('publikasi.member_destroy')->middleware('auth');
-
+// mitra
+Route::get('/publikasi/input/mitra/{id}', [PublikasiController::class, 'mitra'])->name('publikasi.mitra')->middleware('auth');
+Route::post('/publikasi/input/mitra/{id}', [PublikasiController::class, 'mitra_store'])->name('publikasi.mitra_store')->middleware('auth');
+Route::delete('/publikasi/input/mitra/{id}', [PublikasiController::class, 'mitra_destroy'])->name('publikasi.mitra_destroy')->middleware('auth');
 // excel
 Route::get('/publikasi/input/import', [PublikasiController::class, 'excel_import'])->name('publikasi.excel_import')->middleware('auth');
 Route::post('/publikasi/input/import', [PublikasiController::class, 'excel_import_post'])->name('publikasi.excel_import_post')->middleware('auth');
@@ -181,6 +184,14 @@ Route::delete('/hki/input/hapus/{id}', [HkiController::class, 'destroy'])->name(
 // excel
 Route::get('/hki/input/import', [HkiController::class, 'excel_import'])->name('hki.excel_import')->middleware('auth');
 Route::post('/hki/input/import', [HkiController::class, 'excel_import_post'])->name('hki.excel_import_post')->middleware('auth');
+// member
+Route::get('/hki/input/member/{id}', [HkiController::class, 'member'])->name('hki.member')->middleware('auth');
+Route::post('/hki/input/member/{id}', [HkiController::class, 'member_store'])->name('hki.member_store')->middleware('auth');
+Route::delete('/hki/input/member/{id}', [HkiController::class, 'member_destroy'])->name('hki.member_destroy')->middleware('auth');
+// mitra
+Route::get('/hki/input/mitra/{id}', [HkiController::class, 'mitra'])->name('hki.mitra')->middleware('auth');
+Route::post('/hki/input/mitra/{id}', [HkiController::class, 'mitra_store'])->name('hki.mitra_store')->middleware('auth');
+Route::delete('/hki/input/mitra/{id}', [HkiController::class, 'mitra_destroy'])->name('hki.mitra_destroy')->middleware('auth');
 
 
 Route::get('/login', [UserController::class, 'login_index'])->name('login');

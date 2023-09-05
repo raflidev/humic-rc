@@ -31,41 +31,7 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Judul" required="" value="{{ old('judul') }}">
                         </div>
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_member" class="block mb-2 text-sm font-medium ">Jumlah Member</label>
-                                    <input type="number" id="jumlah_member" name="jumlah_member"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Member" required="" value="{{ old('jumlah_member') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonAnggota"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="anggota" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_partner" class="block mb-2 text-sm font-medium ">Jumlah Partner</label>
-                                    <input type="number" id="jumlah_partner" name="jumlah_partner"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Partner" required=""
-                                        value="{{ old('jumlah_partner') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonAnggotaMitra"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="anggotaMitra" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-1/2">
+
                         <div class="mb-6">
                             <label for="jenis" class="block mb-2 text-sm font-medium ">Jenis</label>
                             <select name="jenis" class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
