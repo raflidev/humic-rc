@@ -50,6 +50,10 @@ Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name
 Route::get('/penelitian/input/member/{id}', [ResearchController::class, 'member'])->name('research.member')->middleware('auth');
 Route::post('/penelitian/input/member/{id}', [ResearchController::class, 'member_store'])->name('research.member_store')->middleware('auth');
 Route::delete('/penelitian/input/member/{id}', [ResearchController::class, 'member_destroy'])->name('research.member_destroy')->middleware('auth');
+// member
+Route::get('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra'])->name('research.mitra')->middleware('auth');
+Route::post('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra_store'])->name('research.mitra_store')->middleware('auth');
+Route::delete('/penelitian/input/mitra/{id}', [ResearchController::class, 'mitra_destroy'])->name('research.mitra_destroy')->middleware('auth');
 // excel
 Route::get('/penelitian/input/import', [ResearchController::class, 'excel_import'])->name('research.excel_import')->middleware('auth');
 Route::post('/penelitian/input/import', [ResearchController::class, 'excel_import_post'])->name('research.excel_import_post')->middleware('auth');

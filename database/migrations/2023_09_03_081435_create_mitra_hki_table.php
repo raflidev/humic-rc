@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('mitra_hki', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_partner');
+            $table->string('nama_mitra');
             $table->string('hki_id');
             $table->string('role');
             $table->timestamps();

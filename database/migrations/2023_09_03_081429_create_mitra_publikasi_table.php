@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('mitra_publikasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_partner');
+            $table->string('nama_mitra');
             $table->string('publikasi_id');
             $table->string('role');
             $table->timestamps();

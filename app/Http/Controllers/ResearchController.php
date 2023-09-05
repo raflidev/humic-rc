@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\ResearchImport;
 use App\Models\member_penelitian;
 use App\Models\member_publikasi;
+use App\Models\mitra_penelitian;
 use App\Models\Research;
 use App\Models\User;
 use Carbon\Carbon;
@@ -378,6 +379,14 @@ class ResearchController extends Controller
         return view('admin.research.research_member', ['user' => $user, 'id' => $id, 'data' => $data, 'member' => $member]);
     }
 
+    public function mitra($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $mitra = mitra_penelitian::where('penelitian_id', $id)->get();
+        $data = Research::where('research_id', $id)->first();
+        return view('admin.research.research_mitra', ['user' => $user, 'id' => $id, 'data' => $data, 'mitra' => $mitra]);
+    }
+
     public function member_store(Request $request, $id)
     {
 
@@ -387,10 +396,17 @@ class ResearchController extends Controller
         ]);
 
         if ($request->role == 'Ketua') {
-            $check = member_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
-            if ($check != null) {
+            $checkMitra = mitra_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
                 return back()->withErrors([
-                    'wrong' => 'Ketua Sudah Ada!',
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
                 ]);
             }
         }
@@ -407,10 +423,52 @@ class ResearchController extends Controller
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
     }
 
+    public function mitra_store(Request $request, $id)
+    {
+        $request->validate([
+            'nama_mitra' => 'required',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $checkMitra = mitra_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
+                ]);
+            }
+        }
+
+        $mitra = mitra_penelitian::create([
+            'penelitian_id' => $id,
+            'nama_mitra' => $request->nama_mitra,
+            'role' => $request->role,
+        ]);
+
+
+
+        $mitra->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
     public function member_destroy($id)
     {
         $member = member_penelitian::where('id', $id);
         $member->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
+
+    public function mitra_destroy($id)
+    {
+        $mitra = mitra_penelitian::where('id', $id);
+        $mitra->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
 }
