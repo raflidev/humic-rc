@@ -79,27 +79,10 @@ class PengabdianController extends Controller
             'fakultas' => 'required',
             'prodi' => 'required',
             'judul_abdimas' => 'required',
-            'nama_ketua' => 'required',
             'dana' => 'required',
         ]);
 
-        $dataDosen = [];
-        $input = $request->input();
-        $anggota_dosen = $request->jumlah_dosen;
-        if ($anggota_dosen > 0) {
-            for ($i = 1; $i <= $anggota_dosen; $i++) {
-                $dataDosen[$i] = $input["nama_dosen$i"];
-            }
-        }
 
-        $dataMahasiswa = [];
-        $input = $request->input();
-        $mahasiswa = $request->jumlah_mahasiswa;
-        if ($mahasiswa > 0) {
-            for ($i = 1; $i <= $mahasiswa; $i++) {
-                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
-            }
-        }
         if (Auth::user()->role == "superadmin") {
             $pengnas = new Pengnas([
                 'period' => $request->periode,
@@ -110,10 +93,8 @@ class PengabdianController extends Controller
                 'skill_group' => $request->kelompok_keahlian,
                 'title_abdimas' => $request->judul_abdimas,
                 'head' => $request->nama_ketua,
-                'lecturer' => implode("|", $dataDosen),
-                'lecturer_total' => $request->jumlah_dosen,
-                'student' => implode("|", $dataMahasiswa),
-                'student_total' => $request->jumlah_mahasiswa,
+                // 'lecturer_total' => $request->jumlah_dosen,
+                // 'student_total' => $request->jumlah_mahasiswa,
                 'fund' => $request->dana,
                 'society' => $request->masyarakat_sasar,
                 'society_address' => $request->alamat_masyarakat_sasar,
@@ -133,11 +114,11 @@ class PengabdianController extends Controller
                 'study_program' => $request->prodi,
                 'skill_group' => $request->kelompok_keahlian,
                 'title_abdimas' => $request->judul_abdimas,
-                'head' => $request->nama_ketua,
-                'lecturer' => implode("|", $dataDosen),
-                'lecturer_total' => $request->jumlah_dosen,
-                'student' => implode("|", $dataMahasiswa),
-                'student_total' => $request->jumlah_mahasiswa,
+                // 'head' => $request->nama_ketua,
+                // 'lecturer' => implode("|", $dataDosen),
+                // 'lecturer_total' => $request->jumlah_dosen,
+                // 'student' => implode("|", $dataMahasiswa),
+                // 'student_total' => $request->jumlah_mahasiswa,
                 'fund' => $request->dana,
                 'society' => $request->masyarakat_sasar,
                 'society_address' => $request->alamat_masyarakat_sasar,
@@ -193,27 +174,8 @@ class PengabdianController extends Controller
             'fakultas' => 'required',
             'prodi' => 'required',
             'judul_abdimas' => 'required',
-            'nama_ketua' => 'required',
             'dana' => 'required',
         ]);
-
-        $dataDosen = [];
-        $input = $request->input();
-        $anggota_dosen = $request->jumlah_dosen;
-        if ($anggota_dosen > 0) {
-            for ($i = 1; $i <= $anggota_dosen; $i++) {
-                $dataDosen[$i] = $input["nama_dosen$i"];
-            }
-        }
-
-        $dataMahasiswa = [];
-        $input = $request->input();
-        $mahasiswa = $request->jumlah_mahasiswa;
-        if ($mahasiswa > 0) {
-            for ($i = 1; $i <= $mahasiswa; $i++) {
-                $dataMahasiswa[$i] = $input["nama_mahasiswa$i"];
-            }
-        }
 
         $pengnas = Pengnas::where('pengnas_id', $id);
         $pengnas->update([
@@ -223,11 +185,8 @@ class PengabdianController extends Controller
             'study_program' => $request->prodi,
             'skill_group' => $request->kelompok_keahlian,
             'title_abdimas' => $request->judul_abdimas,
-            'head' => $request->nama_ketua,
-            'lecturer' => implode("|", $dataDosen),
-            'lecturer_total' => $request->jumlah_dosen,
-            'student' => implode("|", $dataMahasiswa),
-            'student_total' => $request->jumlah_mahasiswa,
+            // 'head' => $request->nama_ketua,
+            // 'student_total' => $request->jumlah_mahasiswa,
             'fund' => $request->dana,
             'society' => $request->masyarakat_sasar,
             'society_address' => $request->alamat_masyarakat_sasar,

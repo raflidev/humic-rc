@@ -141,7 +141,7 @@
                         <th>Prodi</th>
                         <th>Kelompok Keahlian</th>
                         <th>Judul Penelitian</th>
-                        <th>Nama Ketua</th>
+                        {{-- <th>Nama Ketua</th> --}}
                         <th>Dana</th>
                         <th>Masyarakat Sasar</th>
                         <th>Alamat Masyarakat Sasar</th>
@@ -161,7 +161,7 @@
                             <td>{{ $r->study_program }}</td>
                             <td>{{ $r->skill_group }}</td>
                             <td>{{ $r->title_abdimas }}</td>
-                            <td>{{ $r->head }}</td>
+                            {{-- <td>{{ $r->head }}</td> --}}
                             <td>Rp. {{ number_format($r->fund) }}</td>
                             <td>{{ $r->society }}</td>
                             <td>{{ $r->society_address }}</td>

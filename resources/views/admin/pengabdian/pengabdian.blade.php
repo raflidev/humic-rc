@@ -31,11 +31,6 @@
                         <th>Prodi</th>
                         <th>Kelompok Keahlian</th>
                         <th>Judul Abdimas</th>
-                        <th>Nama Ketua</th>
-                        <th>Anggota Dosen</th>
-                        <th>Jumlah Dosen</th>
-                        <th>Anggota Mahasiswa</th>
-                        <th>Jumlah Mahasiswa</th>
                         <th>Dana</th>
                         <th>Masyarakat Sasar</th>
                         <th>Alamat Skema Masyarakat</th>
@@ -59,11 +54,6 @@
                             <td>{{ $p->study_program }}</td>
                             <td>{{ $p->skill_group }}</td>
                             <td>{{ $p->title_abdimas }}</td>
-                            <td>{{ $p->head }}</td>
-                            <td>{{ $p->lecturer }}</td>
-                            <td>{{ $p->lecturer }}</td>
-                            <td>{{ $p->student }}</td>
-                            <td>{{ $p->student_total }}</td>
                             <td>{{ $p->fund }}</td>
                             <td>{{ $p->society }}</td>
                             <td>{{ $p->society_address }}</td>

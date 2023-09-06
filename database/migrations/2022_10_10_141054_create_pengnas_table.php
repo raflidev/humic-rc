@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string("study_program");
             $table->string("skill_group")->nullable();
             $table->string("title_abdimas");
-            $table->string("head");
-            $table->text("lecturer")->nullable();
-            $table->string("lecturer_total");
-            $table->text("student")->nullable();
-            $table->string("student_total");
+            // $table->string("head");
+            // $table->text("lecturer")->nullable();
+            // $table->string("lecturer_total");
+            // $table->text("student")->nullable();
+            // $table->string("student_total");
             $table->string("society")->nullable();
             $table->string("society_address")->nullable();
             $table->integer("fund");

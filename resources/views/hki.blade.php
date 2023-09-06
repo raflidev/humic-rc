@@ -6,7 +6,7 @@
     <div class="bg-slate-700 pb-20 px-16 py-10 text-white">
         <div class="pb-10" id="navbar">
             <div class="flex justify-between items-center">
-                <h1 class="font-semibold uppercase">Publikasi</h1>
+                <h1 class="font-semibold uppercase">Dashboard - HKI</h1>
                 @include('layout.navbar')
             </div>
         </div>

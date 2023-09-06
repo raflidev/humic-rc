@@ -93,49 +93,8 @@
                                 class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                 placeholder="Judul Abdimas" required="" value="{{ old('judul_abdimas') }}">
                         </div>
-                        <div class="mb-6">
-                            <label for="nama_ketua" class="block mb-2 text-sm font-medium ">Nama Ketua</label>
-                            <input type="text" name="nama_ketua"
-                                class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                placeholder="Nama Ketua" required="" value="{{ old('nama_ketua') }}">
-                        </div>
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_dosen" class="block mb-2 text-sm font-medium ">Jumlah Dosen</label>
-                                    <input type="text" id="jumlah_dosen" name="jumlah_dosen"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Dosen" required="" value="{{ old('jumlah_dosen') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonDosen"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="dosen" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
                     </div>
                     <div class="w-1/2">
-
-                        <div class="mb-6">
-                            <div class="flex items-end space-x-3">
-                                <div class="w-5/6">
-                                    <label for="jumlah_mahasiswa" class="block mb-2 text-sm font-medium ">Jumlah
-                                        Mahasiswa</label>
-                                    <input type="text" id="jumlah_mahasiswa" name="jumlah_mahasiswa"
-                                        class="bg-gray-50 border border-gray-300 text-sm text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                        placeholder="Jumlah Mahasiswa" required=""
-                                        value="{{ old('jumlah_mahasiswa') }}">
-                                </div>
-                                <div class="w-1/6">
-                                    <button id="buttonMahasiswa"
-                                        class="font-medium block w-full py-2 rounded-lg bg-slate-500 hover:bg-slate-400">+</button>
-                                </div>
-                            </div>
-                            <div id="mahasiswa" class="mt-4 bg-slate-400 rounded py-2 hidden">
-                            </div>
-                        </div>
                         <div class="mb-6">
                             <label for="dana" class="block mb-2 text-sm font-medium ">Dana</label>
                             <input type="number" name="dana"
