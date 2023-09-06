@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Imports\PengmasImport;
+use App\Models\member_pengmas;
+use App\Models\mitra_pengmas;
 use App\Models\Pengnas;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -218,5 +221,109 @@ class PengabdianController extends Controller
         $pengnas = Pengnas::where('pengnas_id', $id);
         $pengnas->delete();
         return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Hapus Data');
+    }
+
+    public function member($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $member = member_pengmas::join('users', 'member_pengmas.user_id', '=', 'users.id')
+            ->where('pengmas_id', $id)
+            ->select('users.name', 'member_pengmas.role', 'member_pengmas.id')
+            ->get();
+        $data = Pengnas::where('pengnas_id', $id)->first();
+        return view('admin.pengabdian.pengabdian_member', ['user' => $user, 'id' => $id, 'data' => $data, 'member' => $member]);
+    }
+
+    public function mitra($id)
+    {
+        $user = User::where('role', 'user')->get();
+        $mitra = mitra_pengmas::where('pengmas_id', $id)->get();
+        $data = Pengnas::where('pengnas_id', $id)->first();
+        return view('admin.pengabdian.pengabdian_mitra', ['user' => $user, 'id' => $id, 'data' => $data, 'mitra' => $mitra]);
+    }
+
+    public function member_store(Request $request, $id)
+    {
+
+        $request->validate([
+            'user_id' => 'required|unique:member_pengmas,user_id',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $checkMitra = mitra_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
+                ]);
+            }
+        }
+
+        $member = member_pengmas::create([
+            'pengmas_id' => $id,
+            'user_id' => $request->user_id,
+            'role' => $request->role,
+        ]);
+
+
+
+        $member->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function mitra_store(Request $request, $id)
+    {
+        $request->validate([
+            'nama_mitra' => 'required',
+            'role' => 'required',
+        ]);
+
+        if ($request->role == 'Ketua') {
+            $checkMitra = mitra_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();
+            if ($checkMitra != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Mitra!',
+                ]);
+            }
+
+            $checkMember = member_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();
+            if ($checkMember != null) {
+                return back()->withErrors([
+                    'wrong' => 'Ketua Sudah Ada di Member!',
+                ]);
+            }
+        }
+
+        $mitra = mitra_pengmas::create([
+            'pengmas_id' => $id,
+            'nama_mitra' => $request->nama_mitra,
+            'role' => $request->role,
+        ]);
+
+
+
+        $mitra->save();
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data');
+    }
+
+    public function member_destroy($id)
+    {
+        $member = member_pengmas::where('id', $id);
+        $member->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
+
+    public function mitra_destroy($id)
+    {
+        $mitra = mitra_pengmas::where('id', $id);
+        $mitra->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
 }

@@ -61,6 +61,10 @@
                             <td>{{ $p->society_scheme }}</td>
                             <td>{{ $p->society_faculty }}</td>
                             <td>
+                                <a href="{{ route('pengabdian.member', ['id' => $p->pengnas_id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
+                                <a href="{{ route('pengabdian.mitra', ['id' => $p->pengnas_id]) }}"
+                                    class="bg-green-500 px-4 py-1 rounded-lg">Mitra</a>
                                 @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $p->status == False))
                                     <a href="{{ route('pengabdian.edit', ['id' => $p->pengnas_id]) }}"
                                         class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>

@@ -23,8 +23,8 @@
             @endif
 
             <div class="flex space-x-3 mb-4">
-                <div>Judul Jurnal: </div>
-                <div>{{$data->nama_jurnal}}</div>
+                <div>Judul Pengmas: </div>
+                <div>{{$data->title_abdimas}}</div>
             </div>
 
             @if(Auth::user()->role == "superadmin" || $data->status == false)

@@ -27,7 +27,7 @@
                 <div>{{$data->nama_jurnal}}</div>
             </div>
 
-            @if(Auth::user()->role == "superadmin" || $publikasi[0]->status == false)
+            @if(Auth::user()->role == "superadmin" || $data->status == false)
             <form action="{{ route('publikasi.mitra_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">

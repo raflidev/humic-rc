@@ -27,7 +27,7 @@
                 <div>{{$data->research_title}}</div>
             </div>
 
-            @if(Auth::user()->role == "superadmin" || $research[0]->status == false)
+            @if(Auth::user()->role == "superadmin" || $data->status == false)
             <form action="{{ route('research.mitra_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">

@@ -93,6 +93,14 @@ Route::get('/pengabdian/input/edit/{id}', [PengabdianController::class, 'edit'])
 Route::put('/pengabdian/input/edit/{id}', [PengabdianController::class, 'update'])->name('pengabdian.update')->middleware('auth');
 Route::put('/pengabdian/input/verifikasi/{id}', [PengabdianController::class, 'verifikasi'])->name('pengabdian.verifikasi')->middleware('auth');
 Route::delete('/pengabdian/input/hapus/{id}', [PengabdianController::class, 'destroy'])->name('pengabdian.destroy')->middleware('auth');
+// member
+Route::get('/pengabdian/input/member/{id}', [PengabdianController::class, 'member'])->name('pengabdian.member')->middleware('auth');
+Route::post('/pengabdian/input/member/{id}', [PengabdianController::class, 'member_store'])->name('pengabdian.member_store')->middleware('auth');
+Route::delete('/pengabdian/input/member/{id}', [PengabdianController::class, 'member_destroy'])->name('pengabdian.member_destroy')->middleware('auth');
+// mitra
+Route::get('/pengabdian/input/mitra/{id}', [PengabdianController::class, 'mitra'])->name('pengabdian.mitra')->middleware('auth');
+Route::post('/pengabdian/input/mitra/{id}', [PengabdianController::class, 'mitra_store'])->name('pengabdian.mitra_store')->middleware('auth');
+Route::delete('/pengabdian/input/mitra/{id}', [PengabdianController::class, 'mitra_destroy'])->name('pengabdian.mitra_destroy')->middleware('auth');
 // excel
 Route::get('/pengabdian/input/import', [PengabdianController::class, 'excel_import'])->name('pengabdian.excel_import')->middleware('auth');
 Route::post('/pengabdian/input/import', [PengabdianController::class, 'excel_import_post'])->name('pengabdian.excel_import_post')->middleware('auth');
