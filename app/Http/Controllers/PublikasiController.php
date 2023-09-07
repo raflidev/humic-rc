@@ -27,8 +27,20 @@ class PublikasiController extends Controller
 
     public function create_index()
     {
-        $data = Publikasi::all();
-        return view('admin.publikasi.publikasi', ['data' => $data]);
+        // $data = Publikasi::all();
+
+        $publikasi = Publikasi::query();
+
+        if (Auth::user()->role == "user") {
+            $publikasi = Publikasi::join('member_publikasi', 'publikasi.id', '=', 'member_publikasi.publikasi_id')
+                ->select('publikasi.*')
+                ->where('member_publikasi.user_id', Auth::user()->id);
+        } else {
+            $publikasi = Publikasi::select('publikasi.*');
+        }
+
+        $publikasi = $publikasi->get();
+        return view('admin.publikasi.publikasi', ['data' => $publikasi]);
     }
 
     /**
@@ -197,9 +209,16 @@ class PublikasiController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required|unique:member_publikasi,user_id',
+            'user_id' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = member_publikasi::where('publikasi_id', $id)->where('user_id', $request->user_id)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'User Sudah Ada di Member!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();
@@ -235,6 +254,13 @@ class PublikasiController extends Controller
             'nama_mitra' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = mitra_publikasi::where('publikasi_id', $id)->where('nama_mitra', $request->nama_mitra)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Mitra Sudah Ada di Mitra!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_publikasi::where('publikasi_id', $id)->where('role', 'ketua')->first();

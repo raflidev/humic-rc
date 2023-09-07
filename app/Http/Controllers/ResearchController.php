@@ -38,7 +38,6 @@ class ResearchController extends Controller
 
         $research = Research::where('status', true)->get();
 
-
         $total_dana_internal = DB::table('research')
             ->whereNotNull('year')
             ->where('status', true)
@@ -89,6 +88,7 @@ class ResearchController extends Controller
     public function create_index()
     {
         $research = Research::query();
+
         if (Auth::user()->role == "user") {
             $research = DB::table('research')
                 ->join('member_penelitian', 'research.research_id', '=', 'member_penelitian.penelitian_id')
@@ -394,6 +394,13 @@ class ResearchController extends Controller
             'role' => 'required',
         ]);
 
+        $checkDuplicate = member_penelitian::where('penelitian_id', $id)->where('user_id', $request->user_id)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Member Sudah Ada!',
+            ]);
+        }
+
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();
             if ($checkMitra != null) {
@@ -428,6 +435,13 @@ class ResearchController extends Controller
             'nama_mitra' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = mitra_penelitian::where('penelitian_id', $id)->where('nama_mitra', $request->nama_mitra)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Mitra Sudah Ada!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_penelitian::where('penelitian_id', $id)->where('role', 'ketua')->first();

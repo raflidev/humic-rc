@@ -26,8 +26,20 @@ class HkiController extends Controller
 
     public function create_index()
     {
-        $data = Hki::all();
-        return view('admin.hki.hki', ['data' => $data]);
+        // $data = Hki::all();
+
+        $hki = Hki::query();
+
+        if (Auth::user()->role == "user") {
+            $hki = Hki::join('member_hki', 'hki.id', '=', 'member_hki.hki_id')
+                ->select('hki.*')
+                ->where('member_hki.user_id', Auth::user()->id);
+        } else {
+            $hki = Hki::select('hki.*');
+        }
+
+        $hki = $hki->get();
+        return view('admin.hki.hki', ['data' => $hki]);
     }
 
     /**
@@ -174,9 +186,16 @@ class HkiController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required|unique:member_hki,user_id',
+            'user_id' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = member_hki::where('hki_id', $id)->where('user_id', $request->user_id)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'User Sudah Ada di Member!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_hki::where('hki_id', $id)->where('role', 'ketua')->first();
@@ -212,6 +231,13 @@ class HkiController extends Controller
             'nama_mitra' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = mitra_hki::where('hki_id', $id)->where('nama_mitra', $request->nama_mitra)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Mitra Sudah Ada di Mitra!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_hki::where('hki_id', $id)->where('role', 'ketua')->first();

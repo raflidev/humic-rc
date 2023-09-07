@@ -60,9 +60,9 @@
                                     class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
                                 <a href="{{ route('publikasi.mitra', ['id' => $r->id]) }}"
                                     class="bg-green-500 px-4 py-1 rounded-lg">Mitra</a>
+                                    @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
                                   <a href="{{ route('publikasi.edit', ['id' => $r->id]) }}"
                                       class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
-
                                   <form method="POST"
                                       action="{{ route('publikasi.destroy', ['id' => $r->id]) }}"
                                       style="display: inline-block;">
@@ -80,6 +80,7 @@
                                                 onclick="return confirm('Verifikasi?')">Verifikasi</button>
                                         </form>
                                       @endif
+                                @endif
                             </td>
                             @if (Auth::user()->role == 'user')
                               <td>

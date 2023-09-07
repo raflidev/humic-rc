@@ -28,7 +28,7 @@
             </div>
 
             @if(Auth::user()->role == "superadmin" || $data->status == false)
-            <form action="{{ route('publikasi.mitra_store', ['id' => $id]) }}" method="post">
+            <form action="{{ route('pengabdian.mitra_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">
                     <div class="w-1/2">

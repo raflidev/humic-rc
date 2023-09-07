@@ -42,13 +42,27 @@ class PengabdianController extends Controller
      */
     public function create_index()
     {
+        // if (Auth::user()->role == "user") {
+        //     $name = "%" . Auth::user()->name . "%";
+        //     $data = DB::table('pengnas')->where("head", 'like', "$name")->orWhere('user_id', Auth::user()->id)->orWhere('lecturer', 'like', "$name")->get();
+        // } else {
+        //     $data = DB::table('pengnas')->get();
+        // }
+
+
+        $pengabdian = Pengnas::query();
+
         if (Auth::user()->role == "user") {
-            $name = "%" . Auth::user()->name . "%";
-            $data = DB::table('pengnas')->where("head", 'like', "$name")->orWhere('user_id', Auth::user()->id)->orWhere('lecturer', 'like', "$name")->get();
+            $pengabdian = Pengnas::join('member_pengmas', 'pengnas.pengnas_id', '=', 'member_pengmas.pengmas_id')
+                ->select('pengnas.*')
+                ->where('member_pengmas.user_id', Auth::user()->id);
         } else {
-            $data = DB::table('pengnas')->get();
+            $pengabdian = Pengnas::select('pengnas.*');
         }
-        return view('admin.pengabdian.pengabdian', ['pengabdian' => $data]);
+
+        $pengabdian = $pengabdian->get();
+
+        return view('admin.pengabdian.pengabdian', ['pengabdian' => $pengabdian]);
     }
 
 
@@ -246,9 +260,16 @@ class PengabdianController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required|unique:member_pengmas,user_id',
+            'user_id' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = member_pengmas::where('pengmas_id', $id)->where('user_id', $request->user_id)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Member Sudah Ada!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();
@@ -284,6 +305,13 @@ class PengabdianController extends Controller
             'nama_mitra' => 'required',
             'role' => 'required',
         ]);
+
+        $checkDuplicate = mitra_pengmas::where('pengmas_id', $id)->where('nama_mitra', $request->nama_mitra)->first();
+        if ($checkDuplicate != null) {
+            return back()->withErrors([
+                'wrong' => 'Mitra Sudah Ada!',
+            ]);
+        }
 
         if ($request->role == 'Ketua') {
             $checkMitra = mitra_pengmas::where('pengmas_id', $id)->where('role', 'ketua')->first();

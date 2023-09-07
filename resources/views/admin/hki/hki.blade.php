@@ -50,6 +50,7 @@
                                     class="bg-green-500 px-4 py-1 rounded-lg">Member</a>
                                 <a href="{{ route('hki.mitra', ['id' => $r->id]) }}"
                                     class="bg-green-500 px-4 py-1 rounded-lg">Mitra</a>
+                                @if (Auth::user()->role == 'superadmin' || (Auth::user()->role == 'user' && $r->status == False))
                                   <a href="{{ route('hki.edit', ['id' => $r->id]) }}"
                                       class="bg-yellow-500 px-4 py-1 rounded-lg">Edit</a>
 
@@ -70,6 +71,7 @@
                                                 onclick="return confirm('Verifikasi?')">Verifikasi</button>
                                         </form>
                                       @endif
+                                @endif
                             </td>
                             @if (Auth::user()->role == 'user')
                               <td>
