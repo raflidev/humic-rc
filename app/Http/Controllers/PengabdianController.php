@@ -150,6 +150,14 @@ class PengabdianController extends Controller
 
         $pengnas->save();
 
+        if (Auth::user()->role != 'admin') {
+            $member_pengmas = new member_pengmas;
+            $member_pengmas->pengmas_id = $pengnas->id;
+            $member_pengmas->user_id = Auth::user()->id;
+            $member_pengmas->role = 'Ketua';
+            $member_pengmas->save();
+        }
+
         return redirect()->route('pengabdian.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 

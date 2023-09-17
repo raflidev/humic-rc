@@ -27,7 +27,7 @@
                 <div>{{$data->judul}}</div>
             </div>
 
-            @if(Auth::user()->role == "superadmin" || $hki[0]->status == false)
+            @if(Auth::user()->role == "superadmin" || $data->status_post == false)
             <form action="{{ route('hki.mitra_store', ['id' => $id]) }}" method="post">
                 @csrf
                 <div class="flex space-x-4">

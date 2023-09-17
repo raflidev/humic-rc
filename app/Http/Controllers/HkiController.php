@@ -78,6 +78,13 @@ class HkiController extends Controller
             $data->status_post = true;
         }
         $data->save();
+        if (Auth::user()->role != 'admin') {
+            $member_hki = new member_hki;
+            $member_hki->hki_id = $data->id;
+            $member_hki->user_id = Auth::user()->id;
+            $member_hki->role = 'Ketua';
+            $member_hki->save();
+        }
 
         return redirect()->route('hki.create_index')->with('success', 'Data HKI Berhasil Ditambahkan!');
     }

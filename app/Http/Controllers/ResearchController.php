@@ -233,6 +233,14 @@ class ResearchController extends Controller
 
         $research->save();
 
+        if (Auth::user()->role != 'admin') {
+            $research_member = new member_penelitian;
+            $research_member->penelitian_id = $research->id;
+            $research_member->user_id = Auth::user()->id;
+            $research_member->role = 'Ketua';
+            $research_member->save();
+        }
+
         return redirect()->route('research.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
@@ -390,7 +398,7 @@ class ResearchController extends Controller
     {
 
         $request->validate([
-            'user_id' => 'required|unique:member_penelitian,user_id',
+            'user_id' => 'required',
             'role' => 'required',
         ]);
 

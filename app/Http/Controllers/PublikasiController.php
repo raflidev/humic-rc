@@ -91,6 +91,14 @@ class PublikasiController extends Controller
         }
         $data->save();
 
+        if (Auth::user()->role != 'admin') {
+            $member_publikasi = new member_publikasi;
+            $member_publikasi->publikasi_id = $data->id;
+            $member_publikasi->user_id = Auth::user()->id;
+            $member_publikasi->role = 'Ketua';
+            $member_publikasi->save();
+        }
+
         return redirect()->route('publikasi.create_index')->with('success', 'Berhasil Menambahkan Data');
     }
 
