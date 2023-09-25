@@ -41,7 +41,7 @@
                                     <option value="kosong" disabled selected>kosong</option>
                                 @endif
                                 @foreach($penelitian as $p):
-                                    <option value="penelitian_{{$p->research_title}}">{{$p->research_title}} | {{$p->head_name}}</option>
+                                    <option value="penelitian_{{$p->research_title}}">{{$p->research_title}} | {{$p->year}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,31 +61,38 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Judul</th>
                         <th>Subjek</th>
-                        <th>Ketua</th>
-                        <th>Fakultas</th>
-                        <th>Prodi</th>
-                        <th>Kelompok Keahlian</th>
-                        <th>Skema</th>
-                        <th>Total Bantuan</th>
+                        <th>ID Subjek</th>
+                        <th>Submit By</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $nomor = 1; ?>
+                    <?php $sub; ?>
                     @foreach ($data as $r)
+                        @if ($r->subjek == "Penelitian")
+                            <?php $sub = 'penelitian'; ?>
+                        @elseif($r->subjek == "Pengabdian Masyarakat")
+                            <?php $sub = 'pengabdian'; ?>
+                        @elseif($r->subjek == "MOA")
+                            <?php $sub = 'moa'; ?>
+                        @elseif($r->subjek == "MOU")
+                            <?php $sub = 'mou'; ?>
+                        @elseif($r->subjek == "IA")
+                            <?php $sub = 'ia'; ?>
+                        @elseif($r->subjek == "Publikasi")
+                            <?php $sub = 'publikasi'; ?>
+                        @elseif($r->subjek == "HKI")
+                            <?php $sub = 'hki'; ?>
+                        @endif
                         <tr>
                             <td>{{ $nomor }}</td>
-                            <td>{{ $r->judul }}</td>
                             <td>{{ $r->subjek }}</td>
-                            <td>{{ $r->ketua }}</td>
-                            <td>{{ $r->fakultas }}</td>
-                            <td>{{ $r->prodi }}</td>
-                            <td>{{ $r->kelompok_keahlian }}</td>
-                            <td>{{ $r->skema }}</td>
-                            <td>{{ $r->total_bantuan }}</td>
+                            <td>{{ $r->id_subjek }}</td>
+                            <td>{{ $r->name }}</td>
                             <td>
+                                <a href="/{{$sub}}/input/edit/{{$r->id_subjek}}" class="bg-yellow-500 px-4 py-1 rounded-lg text-white">Detail</a>
                                   <form method="POST"
                                       action="{{ route('isitarget.destroy',
                                       ['id' => $r->id_target, 'id_delete' => $r->id ]) }}"
@@ -129,7 +136,7 @@
                         $('#capaian_val').empty();
                         $.each(data, function(index, value) {
                             if (value.research_title != null) {
-                                $('#capaian_val').append('<option value="' + value.research_id + '">' + value.research_title + ' | ' + value.head_name + ' | ' + value.year + '</option>');
+                                $('#capaian_val').append('<option value="' + value.research_id + '">' + value.research_title + ' | ' + value.year + '</option>');
                             }
                         });
                     }
@@ -138,7 +145,7 @@
                         $('#capaian_val').empty();
                         $.each(data, function(index, value) {
                             if (value.title_abdimas != null) {
-                                $('#capaian_val').append('<option value="' + value.pengnas_id + '">' + value.title_abdimas + ' | ' + value.head + '</option>');
+                                $('#capaian_val').append('<option value="' + value.pengnas_id + '">' + value.title_abdimas + '</option>');
                             }
                         });
                     }

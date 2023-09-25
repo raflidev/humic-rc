@@ -11,6 +11,38 @@
             </div>
         </div>
 
+        <div>
+            <div class="grid grid-cols-4 gap-5">
+                <div class="px-5 py-3 bg-white rounded-md text-black">
+                    <div class="flex items-center">
+                        <div class="w-5/6 space-y-5">
+                            <div>
+                                <div class="text-gray-500 text-sm uppercase">HKI</div>
+                                <div class="text-2xl font-semibold">
+                                    {{$data_count}}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-sm uppercase">HKI tahun ini
+                                </div>
+                                <div class="font-semibold">
+                                    {{$data_count_tahun_ini}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="w-1/6">
+                            <div class="flex justify-center">
+                                <div class="bg-orange-400 p-3 flex justify-center rounded-full">
+                                    <i class="fas fa-globe-asia text-white text-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="">
         <div class="pt-10 px-10">

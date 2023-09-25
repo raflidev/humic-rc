@@ -20,8 +20,10 @@ class HkiController extends Controller
      */
     public function index()
     {
-        $data = Hki::all()->where('status_post', true);
-        return view('hki', ['data' => $data]);
+        $data = Hki::where('status_post', true)->get();
+        $data_count = $data->count();
+        $data_count_tahun_ini = $data->where('tahun', date('Y'))->count();
+        return view('hki', ['data' => $data, 'data_count' => $data_count, 'data_count_tahun_ini' => $data_count_tahun_ini]);
     }
 
     public function create_index()

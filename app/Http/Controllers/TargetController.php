@@ -18,8 +18,21 @@ class TargetController extends Controller
      */
     public function index()
     {
-        $data = DB::table('target')->get();
-        return view('target', ['data' => $data]);
+        $data = DB::table('target');
+        $capaian_sum = $data->sum('capaian');
+        $capaian_tahun_ini = $data->where('tahun', date('Y'))->sum('capaian');
+        $target_sum = $data->sum('target');
+        $target_tahun_ini = $data->where('tahun', date('Y'))->sum('target');
+        $data = $data->get();
+
+
+        return view('target', [
+            'data' => $data,
+            'capaian_sum' => $capaian_sum,
+            'capaian_tahun_ini' => $capaian_tahun_ini,
+            'target_sum' => $target_sum,
+            'target_tahun_ini' => $target_tahun_ini,
+        ]);
     }
 
     public function laporan()

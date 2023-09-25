@@ -21,8 +21,14 @@ class PublikasiController extends Controller
      */
     public function index()
     {
-        $data = Publikasi::all()->where('status', 1);
-        return view('publikasi', ['data' => $data]);
+        $data = Publikasi::where('status', 1)->get();
+        $data_count = $data->count();
+        $data_count_tahun_ini = $data->where('tahun', date('Y'))->count();
+        return view('publikasi', [
+            'data' => $data,
+            'data_count' => $data_count,
+            'data_count_tahun_ini' => $data_count_tahun_ini,
+        ]);
     }
 
     public function create_index()

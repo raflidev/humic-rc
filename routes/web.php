@@ -23,24 +23,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// CRUD PENELITIAN
+// CRUD Target
 Route::get('/', [TargetController::class, 'index'])->name('target.index');
-Route::get('/target/input', [TargetController::class, 'index_admin'])->name('target.index_admin');
-Route::get('/target/input/laporan', [TargetController::class, 'laporan'])->name('target.laporan');
-Route::get('/target/input/add', [TargetController::class, 'create'])->name('target.create');
-Route::post('/target/input/add', [TargetController::class, 'store'])->name('target.store');
-Route::get('/target/input/edit/{id}', [TargetController::class, 'edit'])->name('target.edit');
-Route::put('/target/input/edit/{id}', [TargetController::class, 'update'])->name('target.update');
-Route::delete('/target/input/hapus/{id}', [TargetController::class, 'destroy'])->name('target.destroy');
+Route::get('/target/input', [TargetController::class, 'index_admin'])->name('target.index_admin')->middleware('auth');
+Route::get('/target/input/laporan', [TargetController::class, 'laporan'])->name('target.laporan')->middleware('auth');
+Route::get('/target/input/add', [TargetController::class, 'create'])->name('target.create')->middleware('auth');
+Route::post('/target/input/add', [TargetController::class, 'store'])->name('target.store')->middleware('auth');
+Route::get('/target/input/edit/{id}', [TargetController::class, 'edit'])->name('target.edit')->middleware('auth');
+Route::put('/target/input/edit/{id}', [TargetController::class, 'update'])->name('target.update')->middleware('auth');
+Route::delete('/target/input/hapus/{id}', [TargetController::class, 'destroy'])->name('target.destroy')->middleware('auth');
 
-Route::get('/target/{id}/add', [IsiTargetController::class, 'index'])->name('isitarget.index');
-Route::post('/target/{id}/add', [IsiTargetController::class, 'store'])->name('isitarget.store');
-Route::delete('/target/{id}/hapus/{id_delete}', [IsiTargetController::class, 'destroy'])->name('isitarget.destroy');
+Route::get('/target/{id}/add', [IsiTargetController::class, 'index'])->name('isitarget.index')->middleware('auth');
+Route::post('/target/{id}/add', [IsiTargetController::class, 'store'])->name('isitarget.store')->middleware('auth');
+Route::delete('/target/{id}/hapus/{id_delete}', [IsiTargetController::class, 'destroy'])->name('isitarget.destroy')->middleware('auth');
 
 Route::get('/target/{id}/pic', [PicController::class, 'index'])->name('pic.index');
 Route::post('/target/{id}/pic', [PicController::class, 'store'])->name('pic.store');
 Route::delete('/target/{id}/pic/hapus/{id_delete}', [PicController::class, 'destroy'])->name('pic.destroy');
 
+
+// CRUD PENELITIAN
 Route::get('/penelitian', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');
 // add

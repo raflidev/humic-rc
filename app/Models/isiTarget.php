@@ -12,6 +12,7 @@ class isiTarget extends Model
     protected $table = "isi_target";
 
     protected $fillable = [
+        "id_user",
         "id_target",
         "subjek",
         "fakultas",
