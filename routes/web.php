@@ -45,6 +45,7 @@ Route::delete('/target/{id}/pic/hapus/{id_delete}', [PicController::class, 'dest
 // CRUD PENELITIAN
 Route::get('/penelitian', [ResearchController::class, 'index'])->name('research.index');
 Route::get('/penelitian/input', [ResearchController::class, 'create_index'])->name('research.create_index')->middleware('auth');
+Route::get('/penelitian/input/laporan', [ResearchController::class, 'laporan'])->name('research.laporan')->middleware('auth');
 // add
 Route::get('/penelitian/input/add', [ResearchController::class, 'create'])->name('research.create')->middleware('auth');
 Route::post('/penelitian/input/add', [ResearchController::class, 'store'])->name('research.store')->middleware('auth');
@@ -95,6 +96,7 @@ Route::get('/pengabdian/input/edit/{id}', [PengabdianController::class, 'edit'])
 Route::put('/pengabdian/input/edit/{id}', [PengabdianController::class, 'update'])->name('pengabdian.update')->middleware('auth');
 Route::put('/pengabdian/input/verifikasi/{id}', [PengabdianController::class, 'verifikasi'])->name('pengabdian.verifikasi')->middleware('auth');
 Route::delete('/pengabdian/input/hapus/{id}', [PengabdianController::class, 'destroy'])->name('pengabdian.destroy')->middleware('auth');
+Route::get('/pengabdian/input/laporan', [PengabdianController::class, 'laporan'])->name('pengabdian.laporan')->middleware('auth');
 // member
 Route::get('/pengabdian/input/member/{id}', [PengabdianController::class, 'member'])->name('pengabdian.member')->middleware('auth');
 Route::post('/pengabdian/input/member/{id}', [PengabdianController::class, 'member_store'])->name('pengabdian.member_store')->middleware('auth');
@@ -115,6 +117,7 @@ Route::get('/kerjasama/moa/add', [KerjasamaController::class, 'create_moa'])->na
 Route::get('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'edit_moa'])->name('kerjasama.edit_moa')->middleware('auth');
 Route::put('/kerjasama/moa/edit/{id}', [KerjasamaController::class, 'update_moa'])->name('kerjasama.update_moa')->middleware('auth');
 Route::post('/kerjasama/moa/add', [KerjasamaController::class, 'store_moa'])->name('kerjasama.store_moa')->middleware('auth');
+Route::get('/kerjasama/moa/laporan', [KerjasamaController::class, 'moa_laporan'])->name('kerjasama.laporan_moa')->middleware('auth');
 Route::delete('/kerjasama/moa/hapus/{id}', [KerjasamaController::class, 'destroy_moa'])->name('kerjasama.destroy_moa')->middleware('auth');
 Route::put('/kerjasama/moa/verifikasi/{id}', [KerjasamaController::class, 'verifikasi_moa'])->name('kerjasama.verifikasi_moa')->middleware('auth', 'superadmin');
 //excel
@@ -128,6 +131,7 @@ Route::get('/kerjasama/mou/add', [KerjasamaController::class, 'create_mou'])->na
 Route::get('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'edit_mou'])->name('kerjasama.edit_mou')->middleware('auth');
 Route::put('/kerjasama/mou/edit/{id}', [KerjasamaController::class, 'update_mou'])->name('kerjasama.update_mou')->middleware('auth');
 Route::post('/kerjasama/mou/add', [KerjasamaController::class, 'store_mou'])->name('kerjasama.store_mou')->middleware('auth');
+Route::get('/kerjasama/mou/laporan', [KerjasamaController::class, 'mou_laporan'])->name('kerjasama.laporan_mou')->middleware('auth');
 Route::delete('/kerjasama/mou/hapus/{id}', [KerjasamaController::class, 'destroy_mou'])->name('kerjasama.destroy_mou')->middleware('auth');
 Route::put('/kerjasama/mou/verifikasi/{id}', [KerjasamaController::class, 'verifikasi_mou'])->name('kerjasama.verifikasi_mou')->middleware('auth', 'superadmin');
 
@@ -142,6 +146,7 @@ Route::get('/kerjasama/ai/add', [KerjasamaController::class, 'create_ai'])->name
 Route::get('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'edit_ai'])->name('kerjasama.edit_ai')->middleware('auth');
 Route::put('/kerjasama/ai/edit/{id}', [KerjasamaController::class, 'update_ai'])->name('kerjasama.update_ai')->middleware('auth');
 Route::post('/kerjasama/ai/add', [KerjasamaController::class, 'store_ai'])->name('kerjasama.store_ai')->middleware('auth');
+Route::get('/kerjasama/ai/laporan', [KerjasamaController::class, 'ai_laporan'])->name('kerjasama.laporan_ai')->middleware('auth');
 Route::delete('/kerjasama/ai/hapus/{id}', [KerjasamaController::class, 'destroy_ai'])->name('kerjasama.destroy_ai')->middleware('auth');
 Route::put('/kerjasama/ai/verifikasi/{id}', [KerjasamaController::class, 'verifikasi_ai'])->name('kerjasama.verifikasi_ai')->middleware('auth', 'superadmin');
 
@@ -169,7 +174,8 @@ Route::get('/publikasi/input/edit/{id}', [PublikasiController::class, 'edit'])->
 Route::put('/publikasi/input/edit/{id}', [PublikasiController::class, 'update'])->name('publikasi.update')->middleware('auth');
 Route::put('/publikasi/input/verifikasi/{id}', [PublikasiController::class, 'verifikasi'])->name('publikasi.verifikasi')->middleware('auth');
 Route::delete('/publikasi/input/hapus/{id}', [PublikasiController::class, 'destroy'])->name('publikasi.destroy')->middleware('auth');
-// member
+Route::get('/publikasi/input/laporan', [PublikasiController::class, 'laporan'])->name('publikasi.laporan')->middleware('auth');
+// publikasi
 Route::get('/publikasi/input/member/{id}', [PublikasiController::class, 'member'])->name('publikasi.member')->middleware('auth');
 Route::post('/publikasi/input/member/{id}', [PublikasiController::class, 'member_store'])->name('publikasi.member_store')->middleware('auth');
 Route::delete('/publikasi/input/member/{id}', [PublikasiController::class, 'member_destroy'])->name('publikasi.member_destroy')->middleware('auth');
@@ -191,6 +197,7 @@ Route::get('/hki/input/edit/{id}', [HkiController::class, 'edit'])->name('hki.ed
 Route::put('/hki/input/edit/{id}', [HkiController::class, 'update'])->name('hki.update')->middleware('auth');
 Route::put('/hki/input/verifikasi/{id}', [HkiController::class, 'verifikasi'])->name('hki.verifikasi')->middleware('auth');
 Route::delete('/hki/input/hapus/{id}', [HkiController::class, 'destroy'])->name('hki.destroy')->middleware('auth');
+Route::get('/hki/input/laporan', [HkiController::class, 'laporan'])->name('hki.laporan')->middleware('auth');
 // excel
 Route::get('/hki/input/import', [HkiController::class, 'excel_import'])->name('hki.excel_import')->middleware('auth');
 Route::post('/hki/input/import', [HkiController::class, 'excel_import_post'])->name('hki.excel_import_post')->middleware('auth');

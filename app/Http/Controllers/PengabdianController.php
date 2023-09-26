@@ -362,4 +362,10 @@ class PengabdianController extends Controller
         $mitra->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
+
+    public function laporan()
+    {
+        $data = DB::table('pengnas')->get();
+        return view('admin.pengabdian.pengabdian_laporan', ['data' => $data]);
+    }
 }

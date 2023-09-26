@@ -18,6 +18,7 @@
             </div>
             <a href={{ route('publikasi.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah Publikasi</a>
             <a href="{{route('publikasi.excel_import')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
+            <a href={{ route('publikasi.laporan') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
 
         </div>
 

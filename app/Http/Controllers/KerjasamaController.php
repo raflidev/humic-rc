@@ -454,4 +454,22 @@ class KerjasamaController extends Controller
         $ai->delete();
         return redirect()->route('kerjasama.ai')->with('success', 'Berhasil Hapus Data');
     }
+
+    public function laporan_moa()
+    {
+        $data = DB::table('moa')->get();
+        return view('admin.kerjasama.kerjasama_moa_laporan', ['data' => $data]);
+    }
+
+    public function laporan_mou()
+    {
+        $data = DB::table('mou')->get();
+        return view('admin.kerjasama.kerjasama_mou_laporan', ['data' => $data]);
+    }
+
+    public function laporan_ai()
+    {
+        $data = DB::table('ai')->get();
+        return view('admin.kerjasama.kerjasama_ai_laporan', ['data' => $data]);
+    }
 }

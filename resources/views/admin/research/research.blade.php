@@ -19,6 +19,7 @@
             <a href={{ route('research.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 Penelitian</a>
             <a href="{{route('research.excel_import')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
+            <a href={{ route('research.laporan') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
 
         </div>
 

@@ -20,6 +20,7 @@
             <a href={{ route('kerjasama.create_mou') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 MOU</a>
             <a href="{{route('kerjasama.excel_import_mou')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
+            <a href={{ route('kerjasama.laporan_mou') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
         </div>
 
         <div class="pt-10 px-10">

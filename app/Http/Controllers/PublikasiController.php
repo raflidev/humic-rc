@@ -317,4 +317,12 @@ class PublikasiController extends Controller
         $mitra->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
     }
+
+    public function laporan()
+    {
+        $data = DB::table('publikasi')->get();
+        // $pdf = FacadePdf::loadView('admin.research.research_laporan', ['data' => $data]);
+        // return $pdf->stream();
+        return view('admin.publikasi.publikasi_laporan', ['data' => $data]);
+    }
 }

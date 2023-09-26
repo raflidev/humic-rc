@@ -9,6 +9,7 @@ use App\Models\mitra_hki;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HkiController extends Controller
@@ -288,5 +289,11 @@ class HkiController extends Controller
         $mitra = mitra_hki::where('id', $id);
         $mitra->delete();
         return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
+
+    public function laporan()
+    {
+        $data = DB::table('hki')->get();
+        return view('admin.hki.hki_laporan', ['data' => $data]);
     }
 }

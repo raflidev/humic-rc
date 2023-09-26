@@ -19,6 +19,7 @@
             <a href={{ route('pengabdian.create') }} class="px-4 py-2 bg-green-600 font-medium rounded text-white">Tambah
                 Pengabdian Masyarakat</a>
             <a href="{{route('pengabdian.excel_import')}}"class="px-4 py-2 bg-green-600 font-medium rounded text-white">Import Excel</a>
+            <a href={{ route('pengabdian.laporan') }} target="_blank" class="px-4 py-2 bg-cyan-600 font-medium rounded text-white">Download Laporan</a>
         </div>
         <div class="pt-10 px-10">
             <table id="example" class="display nowrap" style="width:100%">

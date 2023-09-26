@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class ResearchController extends Controller
 {
@@ -101,6 +102,14 @@ class ResearchController extends Controller
 
         $research = $research->get();
         return view('admin.research.research', ['research' => $research]);
+    }
+
+    public function laporan()
+    {
+        $data = DB::table('research')->get();
+        // $pdf = FacadePdf::loadView('admin.research.research_laporan', ['data' => $data]);
+        // return $pdf->stream();
+        return view('admin.research.research_laporan', ['data' => $data]);
     }
 
     public function excel_import()
